@@ -306,7 +306,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-ea856c407a58a2e8a4330d6106244e35e6859b1a26636e8e46aa693740f8c1698f1962a70fd8090fddf4b22a4551525c7f708d7ecab67b85e3154363f6c79b3d",
+            "id": "component-LoginComponent-28ee9f8b9d7a310a766f5f0296be99fdd430e9e1477741e860ff93813882c3595e4a27513d3f7e777260b06a151f2a413b22670b44c31021050f35f66d3c3a7f",
             "file": "src/app/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -353,7 +353,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 26,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -367,7 +367,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n})\r\nexport class LoginComponent implements OnInit {\r\n    \r\n  loginForm!: FormGroup;\r\n\r\n  constructor(private fb: FormBuilder) {}\r\n\r\n  ngOnInit(): void {\r\n    this.loginForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]],\r\n      password: ['', [Validators.required, Validators.minLength(6)]],\r\n      rememberMe: [false],\r\n    });\r\n  }\r\n  onSubmit() {\r\n    if (this.loginForm.valid) {\r\n      console.log('Form submitted:', this.loginForm.value);\r\n    } \r\n    else {\r\n      this.loginForm.markAllAsTouched();\r\n    }\r\n  }\r\n}",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n})\r\nexport class LoginComponent implements OnInit {\r\n    \r\n  loginForm!: FormGroup;\r\n\r\n  constructor(private fb: FormBuilder) {}\r\n\r\n  ngOnInit() {\r\n    this.loginForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]],\r\n      password: ['', [Validators.required, Validators.minLength(6)]],\r\n      rememberMe: [false],\r\n    });\r\n  }\r\n  get email() { return this.loginForm.get('email'); }\r\n  get password() { return this.loginForm.get('password'); }\r\n\r\n  onSubmit() {\r\n    if (this.loginForm.valid) {\r\n      console.log('Form submitted successfully');\r\n    } \r\n    else {\r\n      this.loginForm.markAllAsTouched();\r\n    }\r\n  }\r\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -406,7 +406,27 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"authlite-login\">\r\n    <div class=\"authlite-d1\">\r\n        <div class=\"authlite-d1__left\"></div>\r\n        <div class=\"authlite-d1__right\">\r\n            <div class=\"authlite-mainform\">\r\n                <div class=\"authlite-d1-header\">\r\n                    <div class=\"authlite-d1-logo\">\r\n                        <img src=\"https://authlite-widgets.ioak.io/static/media/authlite_black.449e265c.svg\" alt=\"Authlite logo\">\r\n                    </div>\r\n                    <form action=\"\" class=\"authlite-signin-form\" [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-d1-tagline\">\r\n                                <div class=\"authlite-d1-tagline__title\">\r\n                                    Hello again!!\r\n                                </div>\r\n                                <div class=\"authlite-d1-tagline__subtitle\">\r\n                                    Metus dui sapien phasellus arcu posuere eu adipiscing proin adipiscing mi luctus dignissim sem. hendrerit dapibus ut scelerisque tellus malesuada scelerisque vel est fermentum nullam sociosqu.\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Username Or Email Address</div>\r\n                            <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Password</div>\r\n                            <input type=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n                        </div>\r\n                        <div class=\"authlite-signin-form__forgot authlite-margin-top-small\">\r\n                            <label for=\"\" class=\"authlite-checkbox  authlite-checkbox--theme-default\">\r\n                                <input type=\"checkbox\" name=\"\" id=\"\" class=\"authlite-checkbox__input\">\r\n                                <span class=\"authlite-checkbox__span\">Remember me</span>\r\n                            </label>\r\n                            <button class=\"authlite-button-as-link\" type=\"button\">Forgot Password?</button>\r\n                        </div>\r\n                        <div class=\"authlite-action-bar authlite-margin-top\">\r\n                            <button class=\"authlite-primary-button\" type=\"submit\">Sign in</button>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top authlite-action-bar-center\">\r\n                            Don't have an account?\r\n                            <button class=\"authlite-button-as-link\" type=\"button\">Create account</button>\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+            "accessors": {
+                "email": {
+                    "name": "email",
+                    "getSignature": {
+                        "name": "email",
+                        "type": "",
+                        "returnType": "",
+                        "line": 23
+                    }
+                },
+                "password": {
+                    "name": "password",
+                    "getSignature": {
+                        "name": "password",
+                        "type": "",
+                        "returnType": "",
+                        "line": 24
+                    }
+                }
+            },
+            "templateData": "<div class=\"authlite-login\">\r\n    <div class=\"authlite-d1\">\r\n        <div class=\"authlite-d1__left\"></div>\r\n        <div class=\"authlite-d1__right\">\r\n            <div class=\"authlite-mainform\">\r\n                <div class=\"authlite-d1-header\">\r\n                    <div class=\"authlite-d1-logo\">\r\n                        <img src=\"https://authlite-widgets.ioak.io/static/media/authlite_black.449e265c.svg\" alt=\"Authlite logo\">\r\n                    </div>\r\n                    <form action=\"\" class=\"authlite-signin-form\" [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-d1-tagline\">\r\n                                <div class=\"authlite-d1-tagline__title\">\r\n                                    Hello again!!\r\n                                </div>\r\n                                <div class=\"authlite-d1-tagline__subtitle\">\r\n                                    Metus dui sapien phasellus arcu posuere eu adipiscing proin adipiscing mi luctus dignissim sem. hendrerit dapibus ut scelerisque tellus malesuada scelerisque vel est fermentum nullam sociosqu.\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Username Or Email Address</div>\r\n                            <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n                            <div *ngIf=\"email.invalid && (email.dirty || email.touched)\" class=\"authlite-error-message\">\r\n                                <div *ngIf=\"email.errors.required\">Email is required</div>\r\n                                <div *ngIf=\"email.errors.email\">Invalid email format</div>\r\n                              </div>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Password</div>\r\n                            <input type=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n                            <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"authlite-error-message\">\r\n                                <div *ngIf=\"password.errors.required\">Password is required</div>\r\n                                <div *ngIf=\"password.errors.minlength\">Password must be at least 6 characters</div>\r\n                              </div>\r\n                        </div>\r\n                        <div class=\"authlite-signin-form__forgot authlite-margin-top-small\">\r\n                            <label for=\"\" class=\"authlite-checkbox  authlite-checkbox--theme-default\">\r\n                                <input type=\"checkbox\" name=\"\" id=\"\" class=\"authlite-checkbox__input\">\r\n                                <span class=\"authlite-checkbox__span\">Remember me</span>\r\n                            </label>\r\n                            <button class=\"authlite-button-as-link\" type=\"button\">Forgot Password?</button>\r\n                        </div>\r\n                        <div class=\"authlite-action-bar authlite-margin-top\">\r\n                            <button class=\"authlite-primary-button\" type=\"submit\">Sign in</button>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top authlite-action-bar-center\">\r\n                            Don't have an account?\r\n                            <button class=\"authlite-button-as-link\" type=\"button\">Create account</button>\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
         },
         {
             "name": "PageComponent",
@@ -500,6 +520,131 @@
             ],
             "stylesData": "",
             "extends": []
+        },
+        {
+            "name": "SigninFormComponent",
+            "id": "component-SigninFormComponent-65bd342b26d07c97c623033f6a7f78c8933a6a38dc97da7a5806c57bd5ba1cb3df7e6b020182b9a64487c2ec0b7188723636a5ef27104c577ab4f895cde75a31",
+            "file": "src/app/signinForm/signin-form.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-signinForm",
+            "styleUrls": [
+                "./signin-form.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./signin-form.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "dictionary",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "onForgotPassword",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "onSignin",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "onSignup",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "signinFormErrorMessages",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "state",
+                    "defaultValue": "{\r\n        email: '',\r\n        password: ''\r\n      }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onSubmit",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-signinForm',\r\n  templateUrl: './signin-form.component.html',\r\n  styleUrls: ['./signin-form.component.scss'],\r\n})\r\nexport class SigninFormComponent {\r\n    @Input() signinFormErrorMessages: any;\r\n    @Input() dictionary: any;\r\n    @Input() onSignin: any;\r\n    @Input() onSignup: any;\r\n    @Input() onForgotPassword: any;\r\n\r\n    state = {\r\n        email: '',\r\n        password: ''\r\n      };\r\n    \r\n      onSubmit(event: any) {\r\n        event.preventDefault();\r\n        this.onSignin(this.state);\r\n      }\r\n    }",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./signin-form.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"authlite-login\">\r\n    <div class=\"authlite-d1\">\r\n        <div class=\"authlite-d1__left\"></div>\r\n        <div class=\"authlite-d1__right\">\r\n            <div class=\"authlite-mainform\">\r\n                <div class=\"authlite-d1-header\">\r\n                    <div class=\"authlite-d1-logo\">\r\n                        <img src=\"https://authlite-widgets.ioak.io/static/media/authlite_black.449e265c.svg\" alt=\"Authlite logo\">\r\n                    </div>\r\n                    <form action=\"\" (submit)=\"onSubmit($event)\" class=\"authlite-signin-form\">\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-d1-tagline\">\r\n                                <div class=\"authlite-d1-tagline__title\">\r\n                                    Join Auth lite\r\n                                </div>\r\n                                <div class=\"authlite-d1-tagline__subtitle\">\r\n                                    Join the community of secure authentication and authorization providers.\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Given Name</div>\r\n                            <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Family Name</div>\r\n                            <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Username Or Email Address</div>\r\n                            <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n                            <div *ngIf=\"email.invalid && (email.dirty || email.touched)\" class=\"authlite-error-message\">\r\n                                <div *ngIf=\"email.errors.required\">Email is required</div>\r\n                                <div *ngIf=\"email.errors.email\">Invalid email format</div>\r\n                              </div>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Password</div>\r\n                            <input type=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n                            <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"authlite-error-message\">\r\n                                <div *ngIf=\"password.errors.required\">Password is required</div>\r\n                                <div *ngIf=\"password.errors.minlength\">Password must be at least 6 characters</div>\r\n                              </div>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top\">\r\n                            <div class=\"authlite-form-element-label\">Retype Password</div>\r\n                            <input type=\"password\" class=\"authlite-input\" name=\"retype-password\" value=\"\">\r\n                            <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"authlite-error-message\">\r\n                                <div *ngIf=\"password.errors.required\">Password is required</div>\r\n                                <div *ngIf=\"password.errors.minlength\">Password must be at least 6 characters</div>\r\n                              </div>\r\n                        </div>\r\n                        <div class=\"authlite-action-bar authlite-margin-top\">\r\n                            <button class=\"authlite-primary-button\" type=\"submit\">Create account</button>\r\n                        </div>\r\n                        <div class=\"authlite-margin-top authlite-action-bar-center\">\r\n                            Already have an account?\r\n                            <button class=\"authlite-button-as-link\" type=\"button\">Sign in</button>\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
         }
     ],
     "modules": [],
@@ -962,6 +1107,15 @@
                 "name": "LoginComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/signinForm/signin-form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SigninFormComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {

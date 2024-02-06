@@ -7,7 +7,7 @@
                     <div class="authlite-d1-logo">
                         <img src="https://authlite-widgets.ioak.io/static/media/authlite_black.449e265c.svg" alt="Authlite logo">
                     </div>
-                    <form action="" class="authlite-signin-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <form action="../signinForm/signin-form.component.html" method="post" class="authlite-signin-form" [formGroup]="loginForm" (submit)="handleSubmit($event)">
                         <div class="authlite-margin-top">
                             <div class="authlite-d1-tagline">
                                 <div class="authlite-d1-tagline__title">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="authlite-margin-top authlite-action-bar-center">
                             Don't have an account?
-                            <button class="authlite-button-as-link" type="button">Create account</button>
+                            <button class="authlite-button-as-link" type="submit" [buttonOptions]="submitButtonOptions">Create account</button>
                         </div>
                     </form>
                 </div>
