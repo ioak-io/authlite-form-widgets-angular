@@ -1,25 +1,11 @@
-
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-signinForm',
-  templateUrl: './signin-form.component.html',
-  styleUrls: ['../login/login.component.scss'],
+    selector: 'app-signin-form',
+    templateUrl:'./signin-form.component.html',
+    styleUrls: ['./signin-form.component.scss'],
 })
-export class SigninFormComponent {
-    @Input() signinFormErrorMessages: any;
-    @Input() dictionary: any;
-    @Input() onSignin: any;
-    @Input() onSignup: any;
-    @Input() onForgotPassword: any;
 
-    state = {
-        email: '',
-        password: ''
-      };
-    
-      onSubmit(event: any) {
-        event.preventDefault();
-        this.onSignin(this.state);
-      }
-    }
+export class SigninFormComponent{
+    TranslationDictionaryType: any;
+}

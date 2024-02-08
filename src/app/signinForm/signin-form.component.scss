@@ -1,0 +1,33 @@
+@import '../styles/index.css';
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+.authlite-signin-form {
+    display: grid;
+    grid-auto-flow: row;
+    /* row-gap: 20px; */
+    width: 100%;
+    /* margin-top: 20px; */
+}
+
+.authlite-signin-form__forgot {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.authlite-d1-tagline {
+    text-align: center;
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 6px;
+}
+.authlite-d1-tagline__title {
+    font-size: 20px;
+}
+.authlite-d1-tagline__subtitle {
+    font-size: 12px;
+    opacity: 0.6;
+}

@@ -1,65 +1,24 @@
-<div class="authlite-login">
-    <div class="authlite-d1">
-        <div class="authlite-d1__left"></div>
-        <div class="authlite-d1__right">
-            <div class="authlite-mainform">
-                <div class="authlite-d1-header">
-                    <div class="authlite-d1-logo">
-                        <img src="https://authlite-widgets.ioak.io/static/media/authlite_black.449e265c.svg" alt="Authlite logo">
-                    </div>
-                    <form action="" (submit)="onSubmit($event)" class="authlite-signin-form">
-                        <div class="authlite-margin-top">
-                            <div class="authlite-d1-tagline">
-                                <div class="authlite-d1-tagline__title">
-                                    Join Auth lite
-                                </div>
-                                <div class="authlite-d1-tagline__subtitle">
-                                    Join the community of secure authentication and authorization providers.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="authlite-margin-top">
-                            <div class="authlite-form-element-label">Given Name</div>
-                            <input type="email" class="authlite-input" name="email" autocomplete="off" value="">
-                        </div>
-                        <div class="authlite-margin-top">
-                            <div class="authlite-form-element-label">Family Name</div>
-                            <input type="email" class="authlite-input" name="email" autocomplete="off" value="">
-                        </div>
-                        <div class="authlite-margin-top">
-                            <div class="authlite-form-element-label">Username Or Email Address</div>
-                            <input type="email" class="authlite-input" name="email" autocomplete="off" value="">
-                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="authlite-error-message">
-                                <div *ngIf="email.errors.required">Email is required</div>
-                                <div *ngIf="email.errors.email">Invalid email format</div>
-                              </div>
-                        </div>
-                        <div class="authlite-margin-top">
-                            <div class="authlite-form-element-label">Password</div>
-                            <input type="password" class="authlite-input" name="password" value="">
-                            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="authlite-error-message">
-                                <div *ngIf="password.errors.required">Password is required</div>
-                                <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-                              </div>
-                        </div>
-                        <div class="authlite-margin-top">
-                            <div class="authlite-form-element-label">Retype Password</div>
-                            <input type="password" class="authlite-input" name="retype-password" value="">
-                            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="authlite-error-message">
-                                <div *ngIf="password.errors.required">Password is required</div>
-                                <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-                              </div>
-                        </div>
-                        <div class="authlite-action-bar authlite-margin-top">
-                            <button class="authlite-primary-button" type="submit">Create account</button>
-                        </div>
-                        <div class="authlite-margin-top authlite-action-bar-center">
-                            Already have an account?
-                            <button class="authlite-button-as-link" type="button">Sign in</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<form class="authlite-signin-form">
+    <div class="authlite-margin-top">
+        <app-tagline></app-tagline>
     </div>
-</div>
+    <div class="authlite-margin-top">
+        <div class="authlite-form-element-label" for="userid">Username Or Email Address</div>
+        <input type="email" id="userid" formControlName="userName" class="authlite-input" name="email" autocomplete="off" value="">
+    </div>
+    <div class="authlite-margin-top">
+        <div class="authlite-form-element-label" for="passwordId">Password</div>
+        <input type="password" id="passwordId" formControlName="password" class="authlite-input" name="password" value="">
+    </div>
+    <div class="authlite-signin-form__forgot authlite-margin-top-small">
+        <app-checkbox></app-checkbox>
+        <button class="authlite-button-as-link" type="submit">Forgot Password?</button>
+    </div>
+    <div class="authlite-action-bar authlite-margin-top">
+        <button class="authlite-primary-button" type="submit">Sign in</button>
+    </div>
+    <div class="authlite-margin-top authlite-action-bar-center" style="font-size: 14px;">
+        Don't have an account?
+        <button class="authlite-button-as-link" type="submit">Create account</button>
+    </div>
+</form>
