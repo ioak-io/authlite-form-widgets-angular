@@ -1,33 +1,46 @@
 <form class="authlite-d1-signup-form">
     <div class="authlite-margin-top">
-      <app-tagline></app-tagline>
+      <app-tagline 
+            [title]="signupGreetingTitle"
+            [subtitle]="signupGreetingSubtitle">
+      </app-tagline>
     </div>
     <div class="authlite-margin-top">
-        <div class="authlite-form-element-label" for="">Given Name</div>
+        <app-form-element-message 
+            [username]="signupFormLabelGivenname">
+        </app-form-element-message>
         <input type="text" class="authlite-input" autocomplete="off" value="">
     </div>
     <div class="authlite-margin-top">
-        <div class="authlite-form-element-label" for="">Family Name</div>
+        <app-form-element-message 
+            [username]="signupFormLabelFamilyname">
+        </app-form-element-message>
         <input type="text" class="authlite-input" autocomplete="off" value="">
     </div>
     <div class="authlite-margin-top">
-        <div class="authlite-form-element-label" for="">Username Or Email Address</div>
+        <app-form-element-message 
+            [username]="signupFormLabelEmail">
+        </app-form-element-message>
         <input type="email" id="userid" formControlName="userName" class="authlite-input" name="email" autocomplete="off" value="">
     </div>
     <div class="authlite-margin-top">
-        <div class="authlite-form-element-label" for="">Password</div>
+        <app-form-element-message 
+            [username]="signupFormLabelPassword">
+        </app-form-element-message>
         <input type="password" id="passwordId" formControlName="password" class="authlite-input" name="password" value="">
     </div>
     <div class="authlite-margin-top">
-        <div class="authlite-form-element-label" for="">Retype Password</div>
+        <app-form-element-message 
+            [username]="signupFormLabelRetypePassword">
+        </app-form-element-message>
         <input type="password" id="passwordId" formControlName="password" class="authlite-input" name="password" value="">
     </div>
     <div class="authlite-action-bar authlite-margin-top">
-        <button class="authlite-primary-button" type="submit">Create account</button>
+        <button class="authlite-primary-button" type="submit">{{translationDictionary.SIGNUP_FORM__ACTION_CREATEACCOUNT}}</button>
     </div>
     <div class="authlite-margin-top authlite-action-bar-center" style="font-size: 14px;">
-        Already have an account??
-        <button class="authlite-button-as-link" type="submit">Sign in</button>
+        {{translationDictionary.SIGNUP_FORM__MESSAGE_EXISTING_ACCOUNT}}
+        <button class="authlite-button-as-link" type="submit" routerLink="/SigninForm">{{translationDictionary.SIGNUP_FORM__ACTION_SIGNIN}}</button>
     </div>
   </form>
   

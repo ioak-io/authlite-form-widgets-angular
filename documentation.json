@@ -260,13 +260,13 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "* {\r\n    --authlite-checkbox-height: 20px;\r\n    --authlite-checkbox-label-offset: 6px;\r\n    --authlite-checkbox-font-size: var(--authlite-formelement-font-size);\r\n    --authlite-checkbox-font-weight: var(--authlite-formelement-font-weight);\r\n    --authlite-checkbox-border-radius: 2px;\r\n    --authlite-checkbox-border-thickness: 1px;\r\n    --authlite-checkbox-background-color: none;\r\n\r\n    /* Checkmark */\r\n    --authlite-checkbox-checkmark-width: 6px;\r\n    --authlite-checkbox-checkmark-height: 12px;\r\n    --authlite-checkbox-checkmark-offset-left: 6.2px;\r\n    --authlite-checkbox-checkmark-offset-bottom: -1px;\r\n}\r\n\r\n* {\r\n    --authlite-checkbox-background-color: none;\r\n}\r\n\r\n.authlite-checkbox--theme-default,\r\n.authlite-radio--theme-default {\r\n    --authlite-checkbox-border-color: var(--theme-white-extended-500);\r\n    --authlite-checkbox-checkmark-color: var(--theme-black-500);\r\n    --authlite-checkbox-background-color-hover: var(--theme-default-transparent-100);\r\n    --authlite-checkbox-border-color-hover: var(--theme-white-extended-500);\r\n    --authlite-checkbox-background-color-checked: transparent;\r\n    --authlite-checkbox-border-color-checked: var(--theme-white-extended-500);\r\n}\r\n\r\n.authlite-checkbox {\r\n    cursor: pointer;\r\n    position: relative;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n}\r\n\r\n.authlite-checkbox__input {\r\n    margin: 0;\r\n    padding: 0;\r\n    appearance: none;\r\n    width: var(--authlite-checkbox-height);\r\n    height: var(--authlite-checkbox-height);\r\n    border: var(--authlite-checkbox-border-thickness) solid var(--authlite-checkbox-border-color);\r\n    background-color: var(--authlite-checkbox-background-color);\r\n    outline: 0;\r\n    cursor: pointer;\r\n    border-radius: var(--authlite-checkbox-border-radius);\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    /* position: static; */\r\n    transition: 250ms border-color ease-in-out, 250ms background-color ease-in-out, 250ms color ease-in-out;\r\n}\r\n\r\n.authlite-checkbox__input:checked {\r\n    background-color: var(--authlite-checkbox-background-color-checked);\r\n    border-color: var(--authlite-checkbox-border-color-checked);\r\n}\r\n\r\n.authlite-checkbox__input:hover,\r\n.authlite-checkbox__input:focus,\r\n.authlite-checkbox__input:checked:hover,\r\n.authlite-checkbox__input:checked:focus {\r\n    background-color: var(--authlite-checkbox-background-color-hover);\r\n    border-color: var(--authlite-checkbox-border-color-hover);\r\n}\r\n\r\n.authlite-checkbox__input:checked:after {\r\n    content: \"\";\r\n    display: block;\r\n    position: relative;\r\n    width: var(--authlite-checkbox-checkmark-width);\r\n    height: var(--authlite-checkbox-checkmark-height);\r\n    border-bottom: 1px solid var(--authlite-checkbox-checkmark-color);\r\n    border-right: 1px solid var(--authlite-checkbox-checkmark-color);\r\n    left: var(--authlite-checkbox-checkmark-offset-left);\r\n    bottom: var(--authlite-checkbox-checkmark-offset-bottom);\r\n    transform: rotate(40deg);\r\n}\r\n\r\n.authlite-checkbox__span {\r\n    //font-size: var(--authlite-checkbox-font-size);\r\n    font-size: 14px;\r\n    font-weight: var(--authlite-checkbox-font-weight);\r\n    margin-left: var(--authlite-checkbox-label-offset);\r\n}",
+                    "data": "@import '../../styles/index.css';\r\n\r\n* {\r\n    --authlite-checkbox-height: 20px;\r\n    --authlite-checkbox-label-offset: 6px;\r\n    --authlite-checkbox-font-size: var(--authlite-formelement-font-size);\r\n    --authlite-checkbox-font-weight: var(--authlite-formelement-font-weight);\r\n    --authlite-checkbox-border-radius: 2px;\r\n    --authlite-checkbox-border-thickness: 1px;\r\n    --authlite-checkbox-background-color: none;\r\n\r\n    /* Checkmark */\r\n    --authlite-checkbox-checkmark-width: 6px;\r\n    --authlite-checkbox-checkmark-height: 12px;\r\n    --authlite-checkbox-checkmark-offset-left: 6.2px;\r\n    --authlite-checkbox-checkmark-offset-bottom: -1px;\r\n}\r\n\r\n* {\r\n    --authlite-checkbox-background-color: none;\r\n}\r\n\r\n.authlite-checkbox--theme-default,\r\n.authlite-radio--theme-default {\r\n    --authlite-checkbox-border-color: var(--theme-white-extended-500);\r\n    --authlite-checkbox-checkmark-color: var(--theme-black-500);\r\n    --authlite-checkbox-background-color-hover: var(--theme-default-transparent-100);\r\n    --authlite-checkbox-border-color-hover: var(--theme-white-extended-500);\r\n    --authlite-checkbox-background-color-checked: transparent;\r\n    --authlite-checkbox-border-color-checked: var(--theme-white-extended-500);\r\n}\r\n\r\n.authlite-checkbox {\r\n    cursor: pointer;\r\n    position: relative;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n}\r\n\r\n.authlite-checkbox__input {\r\n    margin: 0;\r\n    padding: 0;\r\n    //appearance: none;\r\n    width: var(--authlite-checkbox-height);\r\n    height: var(--authlite-checkbox-height);\r\n    border: var(--authlite-checkbox-border-thickness) solid var(--authlite-checkbox-border-color);\r\n    background-color: var(--authlite-checkbox-background-color);\r\n    outline: 0;\r\n    cursor: pointer;\r\n    border-radius: var(--authlite-checkbox-border-radius);\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    /* position: static; */\r\n    transition: 250ms border-color ease-in-out, 250ms background-color ease-in-out, 250ms color ease-in-out;\r\n}\r\n\r\n.authlite-checkbox__input:checked {\r\n    background-color: var(--authlite-checkbox-background-color-checked);\r\n    border-color: var(--authlite-checkbox-border-color-checked);\r\n}\r\n\r\n.authlite-checkbox__input:hover,\r\n.authlite-checkbox__input:focus,\r\n.authlite-checkbox__input:checked:hover,\r\n.authlite-checkbox__input:checked:focus {\r\n    background-color: var(--authlite-checkbox-background-color-hover);\r\n    border-color: var(--authlite-checkbox-border-color-hover);\r\n}\r\n\r\n.authlite-checkbox__input:checked:after {\r\n    content: \"\";\r\n    display: block;\r\n    position: relative;\r\n    width: var(--authlite-checkbox-checkmark-width);\r\n    height: var(--authlite-checkbox-checkmark-height);\r\n    border-bottom: 1px solid var(--authlite-checkbox-checkmark-color);\r\n    border-right: 1px solid var(--authlite-checkbox-checkmark-color);\r\n    left: var(--authlite-checkbox-checkmark-offset-left);\r\n    bottom: var(--authlite-checkbox-checkmark-offset-bottom);\r\n    transform: rotate(40deg);\r\n}\r\n\r\n.authlite-checkbox__span {\r\n    //font-size: var(--authlite-checkbox-font-size);\r\n    font-size: 14px;\r\n    font-weight: var(--authlite-checkbox-font-weight);\r\n    margin-left: var(--authlite-checkbox-label-offset);\r\n}",
                     "styleUrl": "./checkbox.component.scss"
                 }
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<label class=\"authlite-checkbox\">\r\n    <input class=\"authlite-checkbox__input\" type=\"checkbox\" />\r\n    <span class=\"authlite-checkbox__span\">Remember me</span>\r\n  </label>"
+            "templateData": "\r\n  <label class=\"authlite-checkbox\" [class.basicui-checkbox--theme-default]=\"theme === 'default'\">\r\n    <input class=\"authlite-checkbox__input\" type=\"checkbox\"/>\r\n    <span class=\"authlite-checkbox__span\">Remember me</span>\r\n  </label>"
         },
         {
             "name": "DesignOneComponent",
@@ -323,7 +323,7 @@
         },
         {
             "name": "ForgotPasswordFormComponent",
-            "id": "component-ForgotPasswordFormComponent-0c3c374765d24f9d5f5c1c4a65ae91750d0af289084b7f505aec2a1dd7d85e0ae5aee090511053ae0df6720ba41e756084d65e13b24527ef52dabbe4ac92d3d7",
+            "id": "component-ForgotPasswordFormComponent-d75a0d934707c33dbad1ecac77c93c9bdd65a548f346625855f4f542a9557bc510860373a30bc22fea10a6c47df5d9d418a1c12b2819708b792364f4c8e60c79",
             "file": "src/app/ForgotPasswordForm/forgot-password-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -340,7 +340,24 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "DEFAULT_TRANSLATION_DICTIONARY",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "TranslationDictionary",
+                    "decorators": []
+                },
+                {
+                    "name": "translationDictionary",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "TranslationDictionary",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [],
@@ -353,17 +370,123 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-forgot-password-form',\r\n  templateUrl: './forgot-password-form.component.html',\r\n  styleUrls: ['./forgot-password-form.component.scss'],\r\n})\r\nexport class ForgotPasswordFormComponent{\r\n  \r\n}",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { TranslationDictionary } from '../types/TranslationDictionaryType';\r\n\r\n@Component({\r\n  selector: 'app-forgot-password-form',\r\n  templateUrl: './forgot-password-form.component.html',\r\n  styleUrls: ['./forgot-password-form.component.scss'],\r\n})\r\nexport class ForgotPasswordFormComponent{\r\n  \r\n  @Input() translationDictionary!: TranslationDictionary;\r\n  \r\n  @Input() DEFAULT_TRANSLATION_DICTIONARY!: TranslationDictionary;\r\n\r\n  get forgotPasswordGreetingTitle(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__GREETING_TITLE;\r\n  }\r\n  get forgotPasswordGreetingSubtitle(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get forgotPasswordFormLabelEmail(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__LABEL_EMAIL;\r\n  }\r\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": "@import '../styles/index.css';",
                     "styleUrl": "./forgot-password-form.component.scss"
                 }
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<form class=\"authlite-d1-forgotpassword-form\">\r\n    <div class=\"authlite-margin-top\">\r\n      <app-tagline></app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <div class=\"authlite-form-element-label\" for=\"userid\">Email Address</div>\r\n        <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n      <button class=\"authlite-primary-button\" type=\"submit\">Send password reset email</button>\r\n    </div>\r\n    <div class=\"authlite-action-bar-center authlite-margin-top\">\r\n      <button class=\"authlite-button-as-link\">Sign in</button>\r\n    </div>\r\n  </form>\r\n  "
+            "accessors": {
+                "forgotPasswordGreetingTitle": {
+                    "name": "forgotPasswordGreetingTitle",
+                    "getSignature": {
+                        "name": "forgotPasswordGreetingTitle",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 15
+                    }
+                },
+                "forgotPasswordGreetingSubtitle": {
+                    "name": "forgotPasswordGreetingSubtitle",
+                    "getSignature": {
+                        "name": "forgotPasswordGreetingSubtitle",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 18
+                    }
+                },
+                "forgotPasswordFormLabelEmail": {
+                    "name": "forgotPasswordFormLabelEmail",
+                    "getSignature": {
+                        "name": "forgotPasswordFormLabelEmail",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 21
+                    }
+                }
+            },
+            "templateData": "<form class=\"authlite-d1-forgotpassword-form\">\r\n    <div class=\"authlite-margin-top\">\r\n      <app-tagline\r\n            [title]=\"forgotPasswordGreetingTitle\"\r\n            [subtitle]=\"forgotPasswordGreetingSubtitle\">\r\n      </app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [username]=\"forgotPasswordFormLabelEmail\">\r\n        </app-form-element-message>\r\n        <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n      <button class=\"authlite-primary-button\" type=\"submit\">{{translationDictionary.FORGOT_PASSWORD_FORM__ACTION_SEND}}</button>\r\n    </div>\r\n    <div class=\"authlite-action-bar-center authlite-margin-top\">\r\n      {{translationDictionary.FORGOT_PASSWORD_FORM__MESSAGE_REMEMBER_PASSWORD}}\r\n      <button class=\"authlite-button-as-link\" routerLink=\"/SigninForm\">{{translationDictionary.FORGOT_PASSWORD_FORM__ACTION_SIGNIN}}</button>\r\n    </div>\r\n  </form>"
+        },
+        {
+            "name": "FormElementMessageComponent",
+            "id": "component-FormElementMessageComponent-dca9446031193fed727767c851efedd223e930b350a3d35fa8a3b864206ac8c40f339a3235ac4a03e91371dea65dd60bc6c09cd1c665b773d569a857f87ad34e",
+            "file": "src/app/shared/FormElementMessage/form-element-message.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-form-element-message",
+            "styleUrls": [
+                "./form-element-message.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./form-element-message.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "password",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "\"error\" | \"warning\" | \"success\" | \"info\" | \"label\"",
+                    "decorators": []
+                },
+                {
+                    "name": "username",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-form-element-message',\r\n  templateUrl: './form-element-message.component.html',\r\n  styleUrls: ['./form-element-message.component.scss'],\r\n})\r\nexport class FormElementMessageComponent {\r\n  @Input() username!: string;\r\n  @Input() password!: string;\r\n  @Input() type!: 'error' | 'warning' | 'success' | 'info' | 'label';\r\n\r\n  constructor() { }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../styles/index.css';",
+                    "styleUrl": "./form-element-message.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 12
+            },
+            "extends": [],
+            "templateData": "\r\n<div class=\"authlite-form-element-label\" type=\"label\">{{username}}{{password}}</div>"
         },
         {
             "name": "HeaderComponent",
@@ -517,14 +640,14 @@
         },
         {
             "name": "LoginWrapperComponent",
-            "id": "component-LoginWrapperComponent-e9a748c2c913a37c071e22288690eb5447c11966de6c6fa254cee7a404e7f1558c54d719cda594579e12a2193dfe9f91d46ade5aff53daf73e5bf7b0c7b04bc3",
+            "id": "component-LoginWrapperComponent-eda2e7a44669e93e0b4ebc478237b99bfeff8f3f432cc176c39b79c94eda311c8d7b981e031411886d93cc2ffe68f194e3b0673dba2b8ccd1372b3fb447cc95b",
             "file": "src/app/Login/login-wrapper.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-Login",
+            "selector": "app-login",
             "styleUrls": [
                 "./style.css"
             ],
@@ -536,29 +659,129 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "theme",
-                    "defaultValue": "ThemeType.default",
+                    "name": "forgotPasswordFormLabelEmail",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
-                    "type": "ThemeType",
+                    "line": 27,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "forgotPasswordGreetingSubtitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "forgotPasswordGreetingTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signinFormLabelPassword",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signinFormLabelUsername",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signinGreetingSubtitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signinGreetingTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signupFormLabelEmail",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signupFormLabelFamilyname",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signupFormLabelGivenname",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signupFormLabelPassword",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signupFormLabelRetypePassword",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signupGreetingSubtitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "signupGreetingTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "translationDictionary",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "TranslationDictionary",
                     "decorators": []
                 }
             ],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 15,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -568,7 +791,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport ThemeType from '../types/ThemeType';\r\n\r\n@Component({\r\n  selector: 'app-Login',\r\n  templateUrl: './login-wrapper.component.html',\r\n  styleUrls: ['./style.css'],\r\n})\r\n\r\nexport class LoginWrapperComponent implements OnInit{\r\n  \r\n  @Input() theme: ThemeType = ThemeType.default;\r\n\r\n  ngOnInit(): void {\r\n    throw new Error('Method not implemented.');\r\n  }\r\n  \r\n}\r\n",
+            "sourceCode": "import { Component, Input} from '@angular/core';\r\nimport { TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login-wrapper.component.html',\r\n  styleUrls: ['./style.css'],\r\n})\r\n\r\nexport class LoginWrapperComponent{\r\n  @Input() translationDictionary!: TranslationDictionary;\r\n  //@Input() translationName!: TranslationName;\r\n  @Input() signinGreetingTitle!: string;\r\n  @Input() signinGreetingSubtitle!: string;\r\n  @Input() signinFormLabelUsername!: string;\r\n  @Input() signinFormLabelPassword!: string;\r\n  @Input() signupGreetingTitle!: string;\r\n  @Input() signupGreetingSubtitle!: string;\r\n  @Input() signupFormLabelGivenname!: string;\r\n  @Input() signupFormLabelFamilyname!: string;\r\n  @Input() signupFormLabelEmail!: string;\r\n  @Input() signupFormLabelPassword!: string;\r\n  @Input() signupFormLabelRetypePassword!: string;\r\n  @Input() forgotPasswordGreetingTitle!: string;\r\n  @Input() forgotPasswordGreetingSubtitle!: string;\r\n  @Input() forgotPasswordFormLabelEmail!: string;\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -578,9 +801,6 @@
             ],
             "stylesData": "",
             "extends": [],
-            "implements": [
-                "OnInit"
-            ],
             "templateData": "<div class=\"authlite-login\">\r\n  <app-design-one></app-design-one>\r\n  <app-sign-in></app-sign-in>\r\n</div>"
         },
         {
@@ -841,7 +1061,7 @@
         },
         {
             "name": "SigninFormComponent",
-            "id": "component-SigninFormComponent-6b8198da4cfe29cf32f56106dc455b5cf9f18436c042b1e0e476348ac4443827e70294896b3a4f003a5d358e5b6f7a7f697af23562501815f8ad2ac2b382046c",
+            "id": "component-SigninFormComponent-3766068da900cb60aa062371620d06b04cc5da423a148eaeb8236bd277982f8cfcd3d6543dfb03817a7961481632976fa4cfcd5cdd85cde8c3594621439c6b12",
             "file": "src/app/SigninForm/signin-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -858,19 +1078,27 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
+            "inputsClass": [
                 {
-                    "name": "TranslationDictionaryType",
+                    "name": "translationDictionary",
+                    "defaultValue": "DEFAULT_TRANSLATION_DICTIONARY",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "any",
-                    "optional": false,
-                    "description": "",
-                    "line": 10
+                    "line": 12,
+                    "type": "TranslationDictionary",
+                    "decorators": []
+                },
+                {
+                    "name": "translationName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "TranslationName",
+                    "decorators": []
                 }
             ],
+            "outputsClass": [],
+            "propertiesClass": [],
             "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
@@ -881,7 +1109,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n    selector: 'app-signin-form',\r\n    templateUrl:'./signin-form.component.html',\r\n    styleUrls: ['./signin-form.component.scss'],\r\n})\r\n\r\nexport class SigninFormComponent{\r\n    TranslationDictionaryType: any;\r\n}",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { TranslationDictionary, TranslationName, getTranslation,DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';\r\n\r\n@Component({\r\n    selector: 'app-signin-form',\r\n    templateUrl:'./signin-form.component.html',\r\n    styleUrls: ['./signin-form.component.scss'],\r\n})\r\n\r\nexport class SigninFormComponent{\r\n\r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n  @Input() translationName!: TranslationName;\r\n\r\n  get signinGreetingTitle(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__GREETING_TITLE;\r\n  }\r\n  get signinGreetingSubtitle(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get signinFormLabelUsername(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__LABEL_USERNAME;\r\n  }\r\n  get signinFormLabelPassword(): string{\r\n    return this.translationDictionary.SIGNIN_FORM__LABEL_PASSWORD;\r\n  }\r\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -891,11 +1119,49 @@
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<form class=\"authlite-signin-form\">\r\n    <div class=\"authlite-margin-top\">\r\n        <app-tagline [title]=\"TranslationDictionaryType.SIGNUP_FORM__GREETING_TITLE\"></app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <div class=\"authlite-form-element-label\" for=\"userid\">Username Or Email Address</div>\r\n        <input type=\"email\" id=\"userid\" formControlName=\"userName\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <div class=\"authlite-form-element-label\" for=\"passwordId\">Password</div>\r\n        <input type=\"password\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-signin-form__forgot authlite-margin-top-small\">\r\n        <app-checkbox></app-checkbox>\r\n        <button class=\"authlite-button-as-link\" type=\"submit\">Forgot Password?</button>\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n        <button class=\"authlite-primary-button\" type=\"submit\">Sign in</button>\r\n    </div>\r\n    <div class=\"authlite-margin-top authlite-action-bar-center\" style=\"font-size: 14px;\">\r\n        Don't have an account?\r\n        <button class=\"authlite-button-as-link\" type=\"submit\">Create account</button>\r\n    </div>\r\n</form>"
+            "accessors": {
+                "signinGreetingTitle": {
+                    "name": "signinGreetingTitle",
+                    "getSignature": {
+                        "name": "signinGreetingTitle",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 15
+                    }
+                },
+                "signinGreetingSubtitle": {
+                    "name": "signinGreetingSubtitle",
+                    "getSignature": {
+                        "name": "signinGreetingSubtitle",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 18
+                    }
+                },
+                "signinFormLabelUsername": {
+                    "name": "signinFormLabelUsername",
+                    "getSignature": {
+                        "name": "signinFormLabelUsername",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 21
+                    }
+                },
+                "signinFormLabelPassword": {
+                    "name": "signinFormLabelPassword",
+                    "getSignature": {
+                        "name": "signinFormLabelPassword",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 24
+                    }
+                }
+            },
+            "templateData": "<form class=\"authlite-signin-form\">\r\n    <div class=\"authlite-margin-top\">\r\n        <app-tagline \r\n            [title]=\"signinGreetingTitle\"\r\n            [subtitle]=\"signinGreetingSubtitle\">\r\n        </app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [username]=\"signinFormLabelUsername\">\r\n        </app-form-element-message>\r\n        <input class=\"authlite-input\" autoComplete=\"off\" name=\"email\"/>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [password]=\"signinFormLabelPassword\">\r\n        </app-form-element-message>\r\n        <input type=\"password\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-signin-form__forgot authlite-margin-top-small\">\r\n        <app-checkbox></app-checkbox>\r\n        <button class=\"authlite-button-as-link\" type=\"submit\" routerLink=\"/ForgotPasswordForm\">{{translationDictionary.SIGNIN_FORM__ACTION_FORGOTPASSWORD}}</button>\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n        <button class=\"authlite-primary-button\" type=\"submit\">{{translationDictionary.SIGNIN_FORM__ACTION_SIGNIN}}</button>\r\n    </div>\r\n    <div class=\"authlite-margin-top authlite-action-bar-center\" style=\"font-size: 14px;\">\r\n        {{translationDictionary.SIGNIN_FORM__MESSAGE_NO_ACCOUNT}}\r\n        <button routerLink=\"/signup-form\" class=\"authlite-button-as-link\" type=\"submit\">{{translationDictionary.SIGNIN_FORM__ACTION_CREATEACCOUNT}}</button>\r\n    </div>\r\n</form>\r\n<router-outlet></router-outlet>"
         },
         {
             "name": "SignupFormComponent",
-            "id": "component-SignupFormComponent-7f7df474b8e38437c6cb101bd55cfe37d4998bce2d87d2baa15a6a1d52dda4b138a1ccbb884210f7b923f3e6cf8cb38a5fe07276f7dbe600b0846b1febc26ebf",
+            "id": "component-SignupFormComponent-83407677183891759475e56e3bb725ff563f063ad4ec18982896643df28e36b90e6bb609498eff2d676ac3ecc42ba3e5fc534bf320ed4129c2ab77784123b171",
             "file": "src/app/SignupForm/signup-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -912,7 +1178,16 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "translationDictionary",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "TranslationDictionary",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [],
@@ -925,7 +1200,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component} from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-signup-form',\r\n  templateUrl: './signup-form.component.html',\r\n  styleUrls: ['./signup-form.component.scss'],\r\n})\r\nexport class SignupFormComponent {\r\n  \r\n}\r\n",
+            "sourceCode": "import { Component, Input} from '@angular/core';\r\nimport { TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';\r\n\r\n@Component({\r\n  selector: 'app-signup-form',\r\n  templateUrl: './signup-form.component.html',\r\n  styleUrls: ['./signup-form.component.scss'],\r\n})\r\nexport class SignupFormComponent {\r\n\r\n  @Input() translationDictionary!: TranslationDictionary;\r\n\r\n  get signupGreetingTitle(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__GREETING_TITLE;\r\n  }\r\n  get signupGreetingSubtitle(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get signupFormLabelGivenname(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_GIVENNAME;\r\n  }\r\n  get signupFormLabelFamilyname(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_GIVENNAME;\r\n  }\r\n  get signupFormLabelEmail() : string{\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_EMAIL;\r\n  }\r\n  get signupFormLabelPassword() : string{\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_PASSWORD;\r\n  }\r\n  get signupFormLabelRetypePassword() : string{\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_RETYPEPASSWORD;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -935,11 +1210,76 @@
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<form class=\"authlite-d1-signup-form\">\r\n    <div class=\"authlite-margin-top\">\r\n      <app-tagline></app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <div class=\"authlite-form-element-label\" for=\"\">Given Name</div>\r\n        <input type=\"text\" class=\"authlite-input\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <div class=\"authlite-form-element-label\" for=\"\">Family Name</div>\r\n        <input type=\"text\" class=\"authlite-input\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <div class=\"authlite-form-element-label\" for=\"\">Username Or Email Address</div>\r\n        <input type=\"email\" id=\"userid\" formControlName=\"userName\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <div class=\"authlite-form-element-label\" for=\"\">Password</div>\r\n        <input type=\"password\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <div class=\"authlite-form-element-label\" for=\"\">Retype Password</div>\r\n        <input type=\"password\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n        <button class=\"authlite-primary-button\" type=\"submit\">Create account</button>\r\n    </div>\r\n    <div class=\"authlite-margin-top authlite-action-bar-center\" style=\"font-size: 14px;\">\r\n        Already have an account??\r\n        <button class=\"authlite-button-as-link\" type=\"submit\">Sign in</button>\r\n    </div>\r\n  </form>\r\n  "
+            "accessors": {
+                "signupGreetingTitle": {
+                    "name": "signupGreetingTitle",
+                    "getSignature": {
+                        "name": "signupGreetingTitle",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 13
+                    }
+                },
+                "signupGreetingSubtitle": {
+                    "name": "signupGreetingSubtitle",
+                    "getSignature": {
+                        "name": "signupGreetingSubtitle",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 16
+                    }
+                },
+                "signupFormLabelGivenname": {
+                    "name": "signupFormLabelGivenname",
+                    "getSignature": {
+                        "name": "signupFormLabelGivenname",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 19
+                    }
+                },
+                "signupFormLabelFamilyname": {
+                    "name": "signupFormLabelFamilyname",
+                    "getSignature": {
+                        "name": "signupFormLabelFamilyname",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 22
+                    }
+                },
+                "signupFormLabelEmail": {
+                    "name": "signupFormLabelEmail",
+                    "getSignature": {
+                        "name": "signupFormLabelEmail",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 25
+                    }
+                },
+                "signupFormLabelPassword": {
+                    "name": "signupFormLabelPassword",
+                    "getSignature": {
+                        "name": "signupFormLabelPassword",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 28
+                    }
+                },
+                "signupFormLabelRetypePassword": {
+                    "name": "signupFormLabelRetypePassword",
+                    "getSignature": {
+                        "name": "signupFormLabelRetypePassword",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 31
+                    }
+                }
+            },
+            "templateData": "<form class=\"authlite-d1-signup-form\">\r\n    <div class=\"authlite-margin-top\">\r\n      <app-tagline \r\n            [title]=\"signupGreetingTitle\"\r\n            [subtitle]=\"signupGreetingSubtitle\">\r\n      </app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [username]=\"signupFormLabelGivenname\">\r\n        </app-form-element-message>\r\n        <input type=\"text\" class=\"authlite-input\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [username]=\"signupFormLabelFamilyname\">\r\n        </app-form-element-message>\r\n        <input type=\"text\" class=\"authlite-input\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [username]=\"signupFormLabelEmail\">\r\n        </app-form-element-message>\r\n        <input type=\"email\" id=\"userid\" formControlName=\"userName\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [username]=\"signupFormLabelPassword\">\r\n        </app-form-element-message>\r\n        <input type=\"password\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [username]=\"signupFormLabelRetypePassword\">\r\n        </app-form-element-message>\r\n        <input type=\"password\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n        <button class=\"authlite-primary-button\" type=\"submit\">{{translationDictionary.SIGNUP_FORM__ACTION_CREATEACCOUNT}}</button>\r\n    </div>\r\n    <div class=\"authlite-margin-top authlite-action-bar-center\" style=\"font-size: 14px;\">\r\n        {{translationDictionary.SIGNUP_FORM__MESSAGE_EXISTING_ACCOUNT}}\r\n        <button class=\"authlite-button-as-link\" type=\"submit\" routerLink=\"/SigninForm\">{{translationDictionary.SIGNUP_FORM__ACTION_SIGNIN}}</button>\r\n    </div>\r\n  </form>\r\n  "
         },
         {
             "name": "TaglineComponent",
-            "id": "component-TaglineComponent-1f3cf389cbf80e2a44fdc0c7fc77bd9bbe3318629318ad11b3d94688ea04deced1b7dbbd28d39b70ef7ac29f7adb1cea59c09d3d9e7bbffdb0a7bc581243f221",
+            "id": "component-TaglineComponent-e2a8eee5ce98411f56c22905aae961480a9c5c0ae3618cecfb0a5e4e23810b66f81551dc084f8520aa66255cd9dc5dcaf82e68ffda34174ab7c616e847a9a62d",
             "file": "src/app/Tagline/tagline.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -958,26 +1298,24 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "TranslationDictionary",
+                    "name": "subtitle",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 11,
-                    "type": "any",
+                    "type": "string",
                     "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [
+                },
                 {
                     "name": "title",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "any",
-                    "optional": false,
-                    "description": "",
-                    "line": 10
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
                 }
             ],
+            "outputsClass": [],
+            "propertiesClass": [],
             "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
@@ -988,7 +1326,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input} from '@angular/core';\r\nimport { TranslationDictionary } from '../types/TranslationDictionaryType';\r\n\r\n@Component({\r\n  selector: 'app-tagline',\r\n  templateUrl: './tagline.component.html',\r\n  styleUrls: ['./tagline.component.scss'],\r\n})\r\nexport class TaglineComponent {\r\ntitle: any;\r\n  @Input() TranslationDictionary: any;\r\n}",
+            "sourceCode": "import { Component, Input} from '@angular/core';\r\n//import { TranslationDictionary, getTranslation, TranslationName } from '../types/TranslationDictionaryType';\r\n\r\n@Component({\r\n  selector: 'app-tagline',\r\n  templateUrl: './tagline.component.html',\r\n  styleUrls: ['./tagline.component.scss'],\r\n})\r\nexport class TaglineComponent {\r\n  @Input() title!: string;\r\n  @Input() subtitle!: string;\r\n\r\n  constructor() { }\r\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -997,20 +1335,28 @@
                 }
             ],
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 11
+            },
             "extends": [],
-            "templateData": "<div class=\"authlite-d1-tagline\">\r\n    <div class=\"authlite-d1-tagline__title\">{{title}}</div>\r\n    <div class=\"authlite-d1-tagline__subtitle\">Metus dui sapien phasellus arcu posuere eu adipiscing proin adipiscing mi luctus dignissim sem. hendrerit dapibus ut scelerisque tellus malesuada scelerisque vel est fermentum nullam sociosqu.</div>\r\n</div>"
+            "templateData": "<div class=\"authlite-d1-tagline\">\r\n    <div class=\"authlite-d1-tagline__title\">{{title}}</div>\r\n    <div class=\"authlite-d1-tagline__subtitle\">{{subtitle}}</div>\r\n</div>"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-2b0539b5ec2e84e33df680871f6275cd82c22f72ea603ad52a7c27b550fadd650a42fdccacf9cc366177b034fa3f2d37b5ba2c044c0f42178d2c7b29cdff9544",
+            "id": "module-AppModule-1671e39d3485c1ee7c3edfa720c52c82b6d3fc1dba04a0f0a3ae8ffb6dd728e3d7df9bf605f2d90bcd86d3d6b75ae8389a8c8781a581e487af31a97db2e6d249",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { BrowserModule } from '@angular/platform-browser';\r\nimport { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';\r\nimport { AppComponent } from './app.component';\r\nimport { ReactiveFormsModule } from '@angular/forms';\r\nimport { DesignOneComponent } from './Login/DesignOne/design-one.component';\r\nimport { MainFormComponent } from './Login/MainForm/main-form.component';\r\nimport { HeaderComponent } from './Header/header.component';\r\nimport { LogoComponent } from './Logo/logo.component';\r\nimport { LoginWrapperComponent } from './Login/login-wrapper.component';\r\nimport { SigninFormComponent } from './SigninForm/signin-form.component';\r\nimport { CheckboxComponent } from './ui/checkbox/checkbox.component';\r\nimport { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';\r\nimport { SignupFormComponent } from './SignupForm/signup-form.component';\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DesignOneComponent,\r\n    MainFormComponent,\r\n    HeaderComponent,\r\n    LogoComponent,\r\n    LoginWrapperComponent,\r\n    SigninFormComponent,\r\n    CheckboxComponent,\r\n    ForgotPasswordFormComponent,\r\n    SignupFormComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule, ReactiveFormsModule\r\n  ],\r\n  providers: [],\r\n  schemas:[CUSTOM_ELEMENTS_SCHEMA],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { BrowserModule } from '@angular/platform-browser';\r\nimport { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';\r\nimport { AppComponent } from './app.component';\r\nimport { ReactiveFormsModule } from '@angular/forms';\r\nimport { DesignOneComponent } from './Login/DesignOne/design-one.component';\r\nimport { MainFormComponent } from './Login/MainForm/main-form.component';\r\nimport { HeaderComponent } from './Header/header.component';\r\nimport { LogoComponent } from './Logo/logo.component';\r\nimport { LoginWrapperComponent } from './Login/login-wrapper.component';\r\nimport { SigninFormComponent } from './SigninForm/signin-form.component';\r\nimport { CheckboxComponent } from './ui/checkbox/checkbox.component';\r\nimport { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';\r\nimport { SignupFormComponent } from './SignupForm/signup-form.component';\r\nimport { AppRoutingModule } from './app-routing.module';\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DesignOneComponent,\r\n    MainFormComponent,\r\n    HeaderComponent,\r\n    LogoComponent,\r\n    LoginWrapperComponent,\r\n    SigninFormComponent,\r\n    CheckboxComponent,\r\n    ForgotPasswordFormComponent,\r\n    SignupFormComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule, ReactiveFormsModule, AppRoutingModule, \r\n  ],\r\n  providers: [],\r\n  schemas:[CUSTOM_ELEMENTS_SCHEMA],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -1050,7 +1396,11 @@
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
@@ -1063,6 +1413,42 @@
                             "name": "AppComponent"
                         }
                     ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-48a6baec4c42bd9949aa53459432b6f71d3d96a265cf54fb960afefc6daf4575af1820e4dedb35c74e775689d4542014294d331b618a871ae6cc89c2b7679916",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app-routing.module.ts",
+            "methods": [],
+            "sourceCode": "\r\nimport { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { SigninFormComponent } from './SigninForm/signin-form.component';\r\nimport { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';\r\nimport { SignupFormComponent } from './SignupForm/signup-form.component';\r\n\r\nconst routes: Routes = [\r\n  { path:'', redirectTo:'/signin-form', pathMatch:'full'},\r\n  { path: 'signin-form', component: SigninFormComponent },\r\n  { path: 'forgot-password-form', component: ForgotPasswordFormComponent },\r\n  { path: 'signup-Form', component: SignupFormComponent },\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule],\r\n})\r\nexport class AppRoutingModule {}\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
                 },
                 {
                     "type": "classes",
@@ -2640,7 +3026,7 @@
                 "linktype": "component",
                 "name": "ForgotPasswordFormComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -2676,7 +3062,7 @@
                 "linktype": "component",
                 "name": "LoginWrapperComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/16",
                 "status": "low"
             },
             {
@@ -2723,7 +3109,7 @@
                 "linktype": "component",
                 "name": "SigninFormComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -2732,7 +3118,7 @@
                 "linktype": "component",
                 "name": "SignupFormComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {
@@ -2741,7 +3127,7 @@
                 "linktype": "component",
                 "name": "TaglineComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -2761,6 +3147,15 @@
                 "name": "appConfig",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/FormElementMessage/form-element-message.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FormElementMessageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {

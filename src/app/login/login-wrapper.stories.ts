@@ -1,4 +1,5 @@
 import { moduleMetadata, Meta, Story } from '@storybook/angular';
+import { RouterTestingModule } from '@angular/router/testing';
 import { LoginWrapperComponent } from './login-wrapper.component';
 import { DesignOneComponent } from './DesignOne/design-one.component';
 import { MainFormComponent } from './MainForm/main-form.component';
@@ -9,6 +10,8 @@ import { TaglineComponent } from '../Tagline/tagline.component';
 import { CheckboxComponent } from '../ui/checkbox/checkbox.component';
 import { ForgotPasswordFormComponent } from '../ForgotPasswordForm/forgot-password-form.component';
 import { SignupFormComponent } from '../SignupForm/signup-form.component';
+import { DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
+import { FormElementMessageComponent } from '../shared/FormElementMessage/form-element-message.component';
 
 export default {
   title: 'Form Elements/Login',
@@ -25,7 +28,10 @@ export default {
         TaglineComponent,
         CheckboxComponent,
         ForgotPasswordFormComponent,
-        SignupFormComponent
+        SignupFormComponent,
+        FormElementMessageComponent,
+      ],
+      imports: [RouterTestingModule
       ],
     }),
   ],
@@ -38,5 +44,19 @@ const Template: Story<LoginWrapperComponent> = (args:LoginWrapperComponent) => (
 
 export const Demo = Template.bind({});
 Demo.args = {
-  
-};
+  translationDictionary: DEFAULT_TRANSLATION_DICTIONARY,
+  signinGreetingTitle: DEFAULT_TRANSLATION_DICTIONARY.SIGNIN_FORM__GREETING_TITLE,
+  signinGreetingSubtitle: DEFAULT_TRANSLATION_DICTIONARY.SIGNIN_FORM__GREETING_SUBTITLE,
+  signupGreetingTitle: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__GREETING_TITLE,
+  signupGreetingSubtitle: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__GREETING_SUBTITLE,
+  forgotPasswordGreetingTitle: DEFAULT_TRANSLATION_DICTIONARY.FORGOT_PASSWORD_FORM__GREETING_TITLE,
+  forgotPasswordGreetingSubtitle: DEFAULT_TRANSLATION_DICTIONARY.FORGOT_PASSWORD_FORM__GREETING_SUBTITLE,
+  signinFormLabelUsername: DEFAULT_TRANSLATION_DICTIONARY.SIGNIN_FORM__LABEL_USERNAME,
+  signinFormLabelPassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNIN_FORM__LABEL_PASSWORD,
+  signupFormLabelGivenname: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_GIVENNAME,
+  signupFormLabelFamilyname: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_FAMILYNAME,
+  signupFormLabelEmail: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_EMAIL,
+  signupFormLabelPassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_PASSWORD,
+  signupFormLabelRetypePassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_RETYPEPASSWORD,
+  forgotPasswordFormLabelEmail: DEFAULT_TRANSLATION_DICTIONARY.FORGOT_PASSWORD_FORM__LABEL_EMAIL,
+}

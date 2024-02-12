@@ -1,24 +1,31 @@
 <form class="authlite-signin-form">
     <div class="authlite-margin-top">
-        <app-tagline></app-tagline>
+        <app-tagline 
+            [title]="signinGreetingTitle"
+            [subtitle]="signinGreetingSubtitle">
+        </app-tagline>
     </div>
     <div class="authlite-margin-top">
-        <div class="authlite-form-element-label" for="userid">Username Or Email Address</div>
-        <input type="email" id="userid" formControlName="userName" class="authlite-input" name="email" autocomplete="off" value="">
+        <app-form-element-message 
+            [username]="signinFormLabelUsername">
+        </app-form-element-message>
+        <input class="authlite-input" autoComplete="off" name="email"/>
     </div>
     <div class="authlite-margin-top">
-        <div class="authlite-form-element-label" for="passwordId">Password</div>
+        <app-form-element-message 
+            [password]="signinFormLabelPassword">
+        </app-form-element-message>
         <input type="password" id="passwordId" formControlName="password" class="authlite-input" name="password" value="">
     </div>
     <div class="authlite-signin-form__forgot authlite-margin-top-small">
         <app-checkbox></app-checkbox>
-        <button class="authlite-button-as-link" type="submit">Forgot Password?</button>
+        <button class="authlite-button-as-link" type="submit">{{translationDictionary.SIGNIN_FORM__ACTION_FORGOTPASSWORD}}</button>
     </div>
     <div class="authlite-action-bar authlite-margin-top">
-        <button class="authlite-primary-button" type="submit">Sign in</button>
+        <button class="authlite-primary-button" type="submit">{{translationDictionary.SIGNIN_FORM__ACTION_SIGNIN}}</button>
     </div>
     <div class="authlite-margin-top authlite-action-bar-center" style="font-size: 14px;">
-        Don't have an account?
-        <button class="authlite-button-as-link" type="submit">Create account</button>
+        {{translationDictionary.SIGNIN_FORM__MESSAGE_NO_ACCOUNT}}
+        <button routerLink="/signup-form" class="authlite-button-as-link" type="submit">{{translationDictionary.SIGNIN_FORM__ACTION_CREATEACCOUNT}}</button>
     </div>
 </form>

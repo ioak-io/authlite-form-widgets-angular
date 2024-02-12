@@ -11,6 +11,7 @@ import { SigninFormComponent } from './SigninForm/signin-form.component';
 import { CheckboxComponent } from './ui/checkbox/checkbox.component';
 import { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';
 import { SignupFormComponent } from './SignupForm/signup-form.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { SignupFormComponent } from './SignupForm/signup-form.component';
     SignupFormComponent
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule
+    BrowserModule, ReactiveFormsModule, AppRoutingModule, 
   ],
   providers: [],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],

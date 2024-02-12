@@ -6,5 +6,8 @@ import { Component, Input} from '@angular/core';
   styleUrls: ['./tagline.component.scss'],
 })
 export class TaglineComponent {
-    title: any;
+  @Input() title!: string;
+  @Input() subtitle!: string;
+
+  constructor() { }
 }

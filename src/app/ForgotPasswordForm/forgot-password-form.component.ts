@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TranslationDictionary } from '../types/TranslationDictionaryType';
 
 @Component({
   selector: 'app-forgot-password-form',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class ForgotPasswordFormComponent{
   
+  @Input() translationDictionary!: TranslationDictionary;
+  
+  @Input() DEFAULT_TRANSLATION_DICTIONARY!: TranslationDictionary;
+
+  get forgotPasswordGreetingTitle(): string {
+    return this.translationDictionary.FORGOT_PASSWORD_FORM__GREETING_TITLE;
+  }
+  get forgotPasswordGreetingSubtitle(): string {
+    return this.translationDictionary.FORGOT_PASSWORD_FORM__GREETING_SUBTITLE;
+  }
+  get forgotPasswordFormLabelEmail(): string {
+    return this.translationDictionary.FORGOT_PASSWORD_FORM__LABEL_EMAIL;
+  }
 }
