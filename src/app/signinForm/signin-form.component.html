@@ -19,13 +19,13 @@
     </div>
     <div class="authlite-signin-form__forgot authlite-margin-top-small">
         <app-checkbox></app-checkbox>
-        <button class="authlite-button-as-link" type="submit">{{translationDictionary.SIGNIN_FORM__ACTION_FORGOTPASSWORD}}</button>
+        <a [routerLink]="['/forgot-password-form']" class="authlite-button-as-link">{{translationDictionary.SIGNIN_FORM__ACTION_FORGOTPASSWORD}}</a>
     </div>
     <div class="authlite-action-bar authlite-margin-top">
         <button class="authlite-primary-button" type="submit">{{translationDictionary.SIGNIN_FORM__ACTION_SIGNIN}}</button>
     </div>
-    <div class="authlite-margin-top authlite-action-bar-center" style="font-size: 14px;">
+    <div class="authlite-margin-top authlite-action-bar-center">
         {{translationDictionary.SIGNIN_FORM__MESSAGE_NO_ACCOUNT}}
-        <button routerLink="/signup-form" class="authlite-button-as-link" type="submit">{{translationDictionary.SIGNIN_FORM__ACTION_CREATEACCOUNT}}</button>
+        <a [routerLink]="['/signup-form']" class="authlite-button-as-link">{{translationDictionary.SIGNIN_FORM__ACTION_CREATEACCOUNT}}</a>
     </div>
 </form>

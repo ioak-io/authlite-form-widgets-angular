@@ -1,9 +1,10 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SigninFormComponent } from './SigninForm/signin-form.component';
+import { SigninFormComponent } from './signinForm/signin-form.component';
 import { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';
 import { SignupFormComponent } from './SignupForm/signup-form.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 const routes: Routes = [
   { path:'', redirectTo:'/signin-form', pathMatch:'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'}],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
