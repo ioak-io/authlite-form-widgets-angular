@@ -7,10 +7,9 @@ import { SignupFormComponent } from './SignupForm/signup-form.component';
 import { APP_BASE_HREF } from '@angular/common';
 
 const routes: Routes = [
-  { path:'', redirectTo:'/signin-form', pathMatch:'full'},
   { path: 'signin-form', component: SigninFormComponent },
   { path: 'forgot-password-form', component: ForgotPasswordFormComponent },
-  { path: 'signup-Form', component: SignupFormComponent },
+  { path: 'signup-form', component: SignupFormComponent },
 ];
 
 @NgModule({
