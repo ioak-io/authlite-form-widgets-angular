@@ -12,6 +12,9 @@ import { ForgotPasswordFormComponent } from '../ForgotPasswordForm/forgot-passwo
 import { SignupFormComponent } from '../SignupForm/signup-form.component';
 import { DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { FormElementMessageComponent } from '../shared/FormElementMessage/form-element-message.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ResendVerifyLinkFormComponent } from '../ResendVerifyLinkForm/resend-verify-link-form.component';
+import { SignupSuccessPageComponent } from '../SignupSuccessPage/signup-success-page.component';
 
 export default {
   title: 'Form Elements/Login',
@@ -30,8 +33,10 @@ export default {
         ForgotPasswordFormComponent,
         SignupFormComponent,
         FormElementMessageComponent,
+        ResendVerifyLinkFormComponent,
+        SignupSuccessPageComponent
       ],
-      imports: [RouterTestingModule
+      imports: [RouterTestingModule, ReactiveFormsModule
       ],
     }),
   ],
@@ -59,4 +64,9 @@ Demo.args = {
   signupFormLabelPassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_PASSWORD,
   signupFormLabelRetypePassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_RETYPEPASSWORD,
   forgotPasswordFormLabelEmail: DEFAULT_TRANSLATION_DICTIONARY.FORGOT_PASSWORD_FORM__LABEL_EMAIL,
+  resendVerifyLinkFormGreetingTitle:DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__GREETING_TITLE,
+  resendVerifyLinkFormGreetingSubtitle:DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__GREETING_SUBTITLE,
+  resendVerifyLinkFormLabelEmail:DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__LABEL_EMAIL,
+  heading: 'Signup Successful',
+  children: 'Your account has been successfully created.',
 }

@@ -24,4 +24,9 @@ export class LoginWrapperComponent{
   @Input() forgotPasswordGreetingTitle!: string;
   @Input() forgotPasswordGreetingSubtitle!: string;
   @Input() forgotPasswordFormLabelEmail!: string;
+  @Input() resendVerifyLinkFormGreetingTitle!:string;
+  @Input() resendVerifyLinkFormGreetingSubtitle!: string;
+  @Input() resendVerifyLinkFormLabelEmail!:string;
+  @Input() heading: string = '';
+  @Input() children: any;
 }
