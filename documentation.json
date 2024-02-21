@@ -323,7 +323,7 @@
         },
         {
             "name": "ForgotPasswordFormComponent",
-            "id": "component-ForgotPasswordFormComponent-9e2c80bb6cff690c628b8f68145dc753930a9afd1e084d63ecde6b7297450a9a3e80bd341fa2f299fde08f000d105fcd4ff9a78e89b9c571d4df65ace7abddad",
+            "id": "component-ForgotPasswordFormComponent-07341eba4b431f9270397e3616a5c287d5ffdacef2f454f42a297e7d3dc1e88d01a8894630ee7a5542a2d1c11d24cf67fcda7dfa4d7ab55b87f239a6321ad31b",
             "file": "src/app/ForgotPasswordForm/forgot-password-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -369,6 +369,16 @@
                     "optional": false,
                     "description": "",
                     "line": 16
+                },
+                {
+                    "name": "passwordResetLinkSent",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
                 }
             ],
             "methodsClass": [
@@ -378,9 +388,40 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 25,
                     "deprecated": false,
                     "deprecationMessage": ""
+                },
+                {
+                    "name": "isUserExists",
+                    "args": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 67,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "ngOnInit",
@@ -388,7 +429,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 20,
+                    "line": 22,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -398,7 +439,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -412,7 +453,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { TranslationDictionary, DEFAULT_TRANSLATION_DICTIONARY, TranslationName } from '../types/TranslationDictionaryType';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-forgot-password-form',\r\n  templateUrl: './forgot-password-form.component.html',\r\n  styleUrls: ['./forgot-password-form.component.scss'],\r\n})\r\nexport class ForgotPasswordFormComponent{\r\n  \r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n\r\n  @Input() translationName!: TranslationName;\r\n\r\n  forgotPasswordForm!: FormGroup;\r\n\r\n  constructor(private fb:FormBuilder) {}\r\n\r\n  ngOnInit(): void {\r\n    this.initForm();\r\n  }\r\n  initForm(): void {\r\n    this.forgotPasswordForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]],\r\n      password: ['', Validators.required],\r\n    });\r\n  }\r\n\r\n  get forgotPasswordGreetingTitle(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__GREETING_TITLE;\r\n  }\r\n  get forgotPasswordGreetingSubtitle(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get forgotPasswordFormLabelEmail(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__LABEL_EMAIL;\r\n  }\r\n  get forgotPasswordFormUsernameErrorMessage(): string{\r\n    return this.translationDictionary['FORGOT_PASSWORD_ERROR__BLANK_USERNAME'];\r\n  }\r\n  get forgotPasswordFormInvalidUsername(): string{\r\n    return this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME;\r\n  }\r\n  get forgotPasswordFormUserNotFound(): string{\r\n    return this.translationDictionary.FORGOT_PASSWORD_ERROR__USER_NOT_FOUND;\r\n  }\r\n  onSubmit(): void {\r\n    if (this.forgotPasswordForm.invalid) {\r\n      this.forgotPasswordForm.markAllAsTouched();\r\n      return;\r\n    }\r\n}\r\n}",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { TranslationDictionary, DEFAULT_TRANSLATION_DICTIONARY, TranslationName } from '../types/TranslationDictionaryType';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-forgot-password-form',\r\n  templateUrl: './forgot-password-form.component.html',\r\n  styleUrls: ['./forgot-password-form.component.scss'],\r\n})\r\nexport class ForgotPasswordFormComponent {\r\n\r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n\r\n  @Input() translationName!: TranslationName;\r\n\r\n  forgotPasswordForm!: FormGroup;\r\n\r\n  passwordResetLinkSent: boolean = false;\r\n\r\n  constructor(private fb: FormBuilder) { }\r\n\r\n  ngOnInit(): void {\r\n    this.initForm();\r\n  }\r\n  initForm(): void {\r\n    this.forgotPasswordForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]],\r\n      password: ['', Validators.required],\r\n    });\r\n  }\r\n\r\n  get forgotPasswordGreetingTitle(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__GREETING_TITLE;\r\n  }\r\n  get forgotPasswordGreetingSubtitle(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get forgotPasswordFormLabelEmail(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_FORM__LABEL_EMAIL;\r\n  }\r\n  get forgotPasswordFormUsernameErrorMessage(): string {\r\n    const email = this.forgotPasswordForm.get('email');\r\n    return email?.hasError('required') ? this.translationDictionary['FORGOT_PASSWORD_ERROR__BLANK_USERNAME'] : email?.hasError('email') ? this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME : '';\r\n  }\r\n  get forgotPasswordFormInvalidUsername(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME;\r\n  }\r\n  get forgotPasswordFormUserNotFound(): string {\r\n    return this.translationDictionary.FORGOT_PASSWORD_ERROR__USER_NOT_FOUND;\r\n  }\r\n  onSubmit(): void {\r\n    console.log('onSubmit')\r\n    if (this.forgotPasswordForm.invalid) {\r\n      this.forgotPasswordForm.markAllAsTouched();\r\n      return;\r\n    }\r\n    const enteredEmail = this.forgotPasswordForm.value.email;\r\n\r\n    if (!this.isUserExists(enteredEmail)) {\r\n      this.forgotPasswordForm.setErrors({ userNotFound: true});\r\n    }\r\n    else {\r\n      console.log('email:', this.forgotPasswordForm.value);\r\n      //this.sendPasswordResetLink(email);\r\n    }\r\n  }\r\n  private isUserExists(email: string): boolean {\r\n    return false;\r\n  }\r\n  /*private sendPasswordResetLink(email: string): void {\r\n    console.log('Password reset link sent to ${email}', email);\r\n    this.passwordResetLinkSent = true;\r\n  }*/\r\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -434,7 +475,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 16,
+                "line": 18,
                 "jsdoctags": [
                     {
                         "name": "fb",
@@ -455,7 +496,7 @@
                         "name": "forgotPasswordGreetingTitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 30
+                        "line": 32
                     }
                 },
                 "forgotPasswordGreetingSubtitle": {
@@ -464,7 +505,7 @@
                         "name": "forgotPasswordGreetingSubtitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 33
+                        "line": 35
                     }
                 },
                 "forgotPasswordFormLabelEmail": {
@@ -473,7 +514,7 @@
                         "name": "forgotPasswordFormLabelEmail",
                         "type": "string",
                         "returnType": "string",
-                        "line": 36
+                        "line": 38
                     }
                 },
                 "forgotPasswordFormUsernameErrorMessage": {
@@ -482,7 +523,7 @@
                         "name": "forgotPasswordFormUsernameErrorMessage",
                         "type": "string",
                         "returnType": "string",
-                        "line": 39
+                        "line": 41
                     }
                 },
                 "forgotPasswordFormInvalidUsername": {
@@ -491,7 +532,7 @@
                         "name": "forgotPasswordFormInvalidUsername",
                         "type": "string",
                         "returnType": "string",
-                        "line": 42
+                        "line": 45
                     }
                 },
                 "forgotPasswordFormUserNotFound": {
@@ -500,11 +541,11 @@
                         "name": "forgotPasswordFormUserNotFound",
                         "type": "string",
                         "returnType": "string",
-                        "line": 45
+                        "line": 48
                     }
                 }
             },
-            "templateData": "<form class=\"authlite-d1-forgotpassword-form\" [formGroup]=\"forgotPasswordForm\" (ngSubmit)=\"onSubmit()\">\r\n    <div class=\"authlite-margin-top\">\r\n      <app-tagline\r\n            [title]=\"forgotPasswordGreetingTitle\"\r\n            [subtitle]=\"forgotPasswordGreetingSubtitle\">\r\n      </app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [email]=\"forgotPasswordFormLabelEmail\">\r\n        </app-form-element-message>\r\n        <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\" formControlName=\"email\">\r\n        <app-form-element-message\r\n            *ngIf=\"forgotPasswordForm.controls.email.touched && forgotPasswordForm.controls.email.hasError('required')\"\r\n            [blankUsername]=\"forgotPasswordFormUsernameErrorMessage\">\r\n        </app-form-element-message>\r\n        <app-form-element-message\r\n            *ngIf=\"forgotPasswordForm.controls.email.touched && forgotPasswordForm.controls.email.hasError('email')\"\r\n            [invalidUsername]=\"forgotPasswordFormInvalidUsername\">\r\n        </app-form-element-message>\r\n        <app-form-element-message\r\n            *ngIf=\"forgotPasswordForm.errors?.userNotFound\"\r\n            [userNotFound]=\"forgotPasswordFormUserNotFound\">\r\n        </app-form-element-message>\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n      <button class=\"authlite-primary-button\" type=\"submit\">{{translationDictionary.FORGOT_PASSWORD_FORM__ACTION_SEND}}</button>\r\n    </div>\r\n    <div class=\"authlite-action-bar-center authlite-margin-top\">\r\n      {{translationDictionary.FORGOT_PASSWORD_FORM__MESSAGE_REMEMBER_PASSWORD}}\r\n      <button class=\"authlite-button-as-link\" routerLink=\"/SigninForm\">{{translationDictionary.FORGOT_PASSWORD_FORM__ACTION_SIGNIN}}</button>\r\n    </div>\r\n  </form>"
+            "templateData": "<form class=\"authlite-d1-forgotpassword-form\" [formGroup]=\"forgotPasswordForm\" (ngSubmit)=\"onSubmit()\">\r\n    <div class=\"authlite-margin-top\">\r\n      <app-tagline\r\n            [title]=\"forgotPasswordGreetingTitle\"\r\n            [subtitle]=\"forgotPasswordGreetingSubtitle\">\r\n      </app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [email]=\"forgotPasswordFormLabelEmail\">\r\n        </app-form-element-message>\r\n        <input type=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" formControlName=\"email\"/>\r\n        <app-form-element-message\r\n            *ngIf=\"forgotPasswordForm.controls.email.touched && forgotPasswordForm.controls.email.hasError('required')\"\r\n            [blankUsername]=\"forgotPasswordFormUsernameErrorMessage\">\r\n        </app-form-element-message>\r\n        <app-form-element-message\r\n            *ngIf=\"forgotPasswordForm.controls.email.touched && forgotPasswordForm.controls.email.hasError('email')\"\r\n            [invalidUsername]=\"forgotPasswordFormInvalidUsername\">\r\n        </app-form-element-message>\r\n        <app-form-element-message\r\n            *ngIf=\"forgotPasswordForm.errors?.userNotFound\"\r\n            [userNotFound]=\"forgotPasswordFormUserNotFound\">\r\n        </app-form-element-message>\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n      <button class=\"authlite-primary-button\" type=\"submit\">{{translationDictionary.FORGOT_PASSWORD_FORM__ACTION_SEND}}</button>\r\n    </div>\r\n    <div class=\"authlite-action-bar-center authlite-margin-top\">\r\n      {{translationDictionary.FORGOT_PASSWORD_FORM__MESSAGE_REMEMBER_PASSWORD}}\r\n      <button class=\"authlite-button-as-link\" routerLink=\"/SigninForm\">{{translationDictionary.FORGOT_PASSWORD_FORM__ACTION_SIGNIN}}</button>\r\n    </div>\r\n  </form>"
         },
         {
             "name": "FormElementMessageComponent",
@@ -1144,7 +1185,7 @@
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "\r\n<div class=\"authlite-mainform\">\r\n    <app-header></app-header>\r\n    <app-signin-form></app-signin-form>\r\n    <app-signup-form></app-signup-form>\r\n    <app-forgot-password-form></app-forgot-password-form>\r\n</div>\r\n"
+            "templateData": "\r\n<div class=\"authlite-mainform\">\r\n    <app-header></app-header>\r\n    <app-signin-form></app-signin-form>\r\n    <app-signup-form></app-signup-form>\r\n    <app-forgot-password-form></app-forgot-password-form>\r\n    <app-resend-verify-link-form></app-resend-verify-link-form>\r\n    <app-signup-success-page></app-signup-success-page>\r\n</div>"
         },
         {
             "name": "PageComponent",
@@ -1285,14 +1326,14 @@
         },
         {
             "name": "ResendVerifyLinkFormComponent",
-            "id": "component-ResendVerifyLinkFormComponent-7f74f785d9d3c83a593338922e26378bb57d5ebcb9b6501ba11aa4ddc1986b3eca73ba20d558471368e808ee9dd63e19facf598bcf8ff3ab9571e205cb4cd0cd",
+            "id": "component-ResendVerifyLinkFormComponent-c10754825a3e1aea1cfb6fb544d8a13ee8ad6a985c4eba473f4c88fd7bd0badf22cc947bc6527a7967778765c8b483cf1455dc7e27fab063365925975af6efdf",
             "file": "src/app/ResendVerifyLinkForm/resend-verify-link-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-signup-form",
+            "selector": "app-resend-verify-link-form",
             "styleUrls": [
                 "./resend-verify-link-form.component.scss"
             ],
@@ -1360,7 +1401,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1374,11 +1415,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit} from '@angular/core';\r\nimport { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';\r\nimport { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-signup-form',\r\n  templateUrl: './resend-verify-link-form.component.html',\r\n  styleUrls: ['./resend-verify-link-form.component.scss'],\r\n})\r\nexport class ResendVerifyLinkFormComponent implements OnInit{\r\n  \r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n\r\n  @Input() translationName!: TranslationName;\r\n\r\n  resendVerifyLinkForm!: FormGroup;\r\n\r\n  constructor(private fb:FormBuilder) {}\r\n\r\n  ngOnInit(): void {\r\n    this.initForm();\r\n  }\r\n  initForm(): void {\r\n    this.resendVerifyLinkForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]],\r\n    });\r\n  }\r\n  get resendVerifyLinkFormGreetingTitle(): string {\r\n    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__GREETING_TITLE;\r\n  }\r\n  get resendVerifyLinkFormGreetingSubtitle(): string {\r\n    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get resendVerifyLinkFormLabelEmail() : string{\r\n    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__LABEL_EMAIL;\r\n  }\r\n  onSubmit(): void {\r\n    if (this.resendVerifyLinkForm.invalid) {\r\n      this.resendVerifyLinkForm.markAllAsTouched();\r\n      return;\r\n    }\r\n}\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit} from '@angular/core';\r\nimport { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';\r\nimport { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-resend-verify-link-form',\r\n  templateUrl: './resend-verify-link-form.component.html',\r\n  styleUrls: ['./resend-verify-link-form.component.scss'],\r\n})\r\nexport class ResendVerifyLinkFormComponent implements OnInit{\r\n  \r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n\r\n  @Input() translationName!: TranslationName;\r\n\r\n  resendVerifyLinkForm!: FormGroup;\r\n\r\n  constructor(private fb:FormBuilder) {}\r\n\r\n  ngOnInit(): void {\r\n    this.initForm();\r\n  }\r\n  initForm(): void {\r\n    this.resendVerifyLinkForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]],\r\n    });\r\n  }\r\n  get resendVerifyLinkFormGreetingTitle(): string {\r\n    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__GREETING_TITLE;\r\n  }\r\n  get resendVerifyLinkFormGreetingSubtitle(): string {\r\n    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get resendVerifyLinkFormLabelEmail() : string{\r\n    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__LABEL_EMAIL;\r\n  }\r\n  get resendVerifyLinkFormUsernameErrorMessage() :string{\r\n    return this.translationDictionary['RESEND_VERIFY_LINK_ERROR__BLANK_USERNAME'];\r\n  }\r\n  get resendVerifyLinkFormInvalidUsername(): string{\r\n    return this.translationDictionary.RESEND_VERIFY_LINK_ERROR__INVALID_USERNAME;\r\n  }\r\n  get resendVerifyLinkFormUserNotFound(): string{\r\n    return this.translationDictionary.RESEND_VERIFY_LINK_ERROR__USER_NOT_FOUND;\r\n  }\r\n  onSubmit(): void {\r\n    if (this.resendVerifyLinkForm.invalid) {\r\n      this.resendVerifyLinkForm.markAllAsTouched();\r\n      return;\r\n    }\r\n}\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".authlite-resendverifylink-form {\r\n    display: grid;\r\n    grid-auto-flow: row;\r\n    /* row-gap: 20px; */\r\n    width: 100%;\r\n}",
+                    "data": "@import '../styles/index.css';\r\n\r\n.authlite-resendverifylink-form {\r\n    display: grid;\r\n    grid-auto-flow: row;\r\n    /* row-gap: 20px; */\r\n    width: 100%;\r\n}\r\n.authlite-action-bar,\r\n.authlite-action-bar-center {\r\n    font-size: 12px;\r\n}",
                     "styleUrl": "./resend-verify-link-form.component.scss"
                 }
             ],
@@ -1440,13 +1481,40 @@
                         "returnType": "string",
                         "line": 34
                     }
+                },
+                "resendVerifyLinkFormUsernameErrorMessage": {
+                    "name": "resendVerifyLinkFormUsernameErrorMessage",
+                    "getSignature": {
+                        "name": "resendVerifyLinkFormUsernameErrorMessage",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 37
+                    }
+                },
+                "resendVerifyLinkFormInvalidUsername": {
+                    "name": "resendVerifyLinkFormInvalidUsername",
+                    "getSignature": {
+                        "name": "resendVerifyLinkFormInvalidUsername",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 40
+                    }
+                },
+                "resendVerifyLinkFormUserNotFound": {
+                    "name": "resendVerifyLinkFormUserNotFound",
+                    "getSignature": {
+                        "name": "resendVerifyLinkFormUserNotFound",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 43
+                    }
                 }
             },
-            "templateData": "<form [formGroup]=\"resendVerifyLinkForm\" (ngSubmit)=\"onSubmit()\" class=\"authlite-resendverifylink-form\">\r\n  <div class=\"authlite-margin-top\">\r\n    <app-tagline \r\n          [title]=\"resendVerifyLinkFormGreetingTitle\"\r\n          [subtitle]=\"resendVerifyLinkFormGreetingSubtitle\">\r\n    </app-tagline>\r\n  </div>\r\n    <div class=\"authlite-margin-top\">\r\n      <app-form-element-message\r\n          [email]=\"resendVerifyLinkFormLabelEmail\"\r\n      ></app-form-element-message>\r\n      <input type=\"email\" formControlName=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\"/>\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n      <button class=\"authlite-primary-button\" type=\"submit\">\r\n        {{ translationDictionary.RESEND_VERIFY_LINK_FORM__ACTION_SEND }}\r\n      </button>\r\n    </div>\r\n    <div class=\"authlite-action-bar-center authlite-margin-top\">\r\n      {{ translationDictionary.RESEND_VERIFY_LINK_FORM__MESSAGE_ALREADY_VERIFIED }}\r\n      <button class=\"authlite-button-as-link\" type=\"submit\">\r\n        {{ translationDictionary.RESEND_VERIFY_LINK_FORM__ACTION_SIGNIN }}\r\n      </button>\r\n    </div>\r\n  </form>\r\n  "
+            "templateData": "<form [formGroup]=\"resendVerifyLinkForm\" (ngSubmit)=\"onSubmit()\" class=\"authlite-resendverifylink-form\">\r\n  <div class=\"authlite-margin-top\">\r\n    <app-tagline \r\n          [title]=\"resendVerifyLinkFormGreetingTitle\"\r\n          [subtitle]=\"resendVerifyLinkFormGreetingSubtitle\">\r\n    </app-tagline>\r\n  </div>\r\n    <div class=\"authlite-margin-top\">\r\n      <app-form-element-message\r\n          [email]=\"resendVerifyLinkFormLabelEmail\"\r\n      ></app-form-element-message>\r\n      <input type=\"email\" formControlName=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\"/>\r\n      <app-form-element-message\r\n          *ngIf=\"resendVerifyLinkForm.controls.email.touched && resendVerifyLinkForm.controls.email.hasError('required')\"\r\n          [blankUsername]=\"resendVerifyLinkFormUsernameErrorMessage\">\r\n      </app-form-element-message>\r\n      <app-form-element-message\r\n            *ngIf=\"resendVerifyLinkForm.controls.email.touched && resendVerifyLinkForm.controls.email.hasError('email')\"\r\n            [invalidUsername]=\"resendVerifyLinkFormInvalidUsername\">\r\n        </app-form-element-message>\r\n      <app-form-element-message\r\n            *ngIf=\"resendVerifyLinkForm.errors?.userNotFound\"\r\n            [userNotFound]=\"resendVerifyLinkFormUserNotFound\">\r\n        </app-form-element-message>\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n      <button class=\"authlite-primary-button\" type=\"submit\">\r\n        {{ translationDictionary.RESEND_VERIFY_LINK_FORM__ACTION_SEND }}\r\n      </button>\r\n    </div>\r\n    <div class=\"authlite-action-bar-center authlite-margin-top\">\r\n      {{ translationDictionary.RESEND_VERIFY_LINK_FORM__MESSAGE_ALREADY_VERIFIED }}\r\n      <button class=\"authlite-button-as-link\" type=\"submit\">\r\n        {{ translationDictionary.RESEND_VERIFY_LINK_FORM__ACTION_SIGNIN }}\r\n      </button>\r\n    </div>\r\n  </form>\r\n  "
         },
         {
             "name": "SigninFormComponent",
-            "id": "component-SigninFormComponent-b6a509dd039aac73e063c97ac1077e9d249e3f2e9f7a62567ae8958124694ae290476b273c770602d06fa06f020bc70feee06dc70e9ded316ec5de5864e732a4",
+            "id": "component-SigninFormComponent-7e044427781dedf008beecd37710bfe4bb5046be5ecb46270ed9b7be946cb4c338d02ac829a4c1df967ac2034b383b11a384160d7bb3a30823f7409195df034a",
             "file": "src/app/signinForm/signin-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1485,6 +1553,26 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "changeType",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "show",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
                     "name": "signinForm",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -1501,9 +1589,55 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 31,
                     "deprecated": false,
                     "deprecationMessage": ""
+                },
+                {
+                    "name": "isUserExists",
+                    "args": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 81,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "ngOnInit",
@@ -1511,7 +1645,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 20,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1521,7 +1655,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 58,
+                    "line": 65,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "view",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1535,11 +1679,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { TranslationDictionary, TranslationName, getTranslation,DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n    selector: 'app-signin-form',\r\n    templateUrl:'./signin-form.component.html',\r\n    styleUrls: ['./signin-form.component.scss'],\r\n})\r\nexport class SigninFormComponent implements OnInit{\r\n\r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n\r\n  @Input() translationName!: TranslationName;\r\n\r\n  signinForm!: FormGroup;\r\n\r\n  constructor(private fb:FormBuilder) {}\r\n\r\n  ngOnInit(): void {\r\n    this.initForm();\r\n  }\r\n  initForm(): void {\r\n    this.signinForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]],\r\n      password: ['', Validators.required],\r\n    });\r\n  }\r\n  get signinGreetingTitle(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__GREETING_TITLE;\r\n  }\r\n  get signinGreetingSubtitle(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get signinFormLabelUsername(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__LABEL_USERNAME;\r\n  }\r\n  get signinFormLabelPassword(): string{\r\n    return this.translationDictionary.SIGNIN_FORM__LABEL_PASSWORD;\r\n  }\r\n  get signinFormUsernameErrorMessage(): string{\r\n    //return this.translationDictionary.SIGNIN_ERROR__BLANK_USERNAME;\r\n    const email = this.signinForm.get('email');\r\n    return email?.hasError('required') ? this.translationDictionary.SIGNIN_ERROR__BLANK_USERNAME : email?.hasError('email') ? this.translationDictionary.SIGNIN_ERROR__INVALID_USERNAME : '';\r\n  }\r\n  get signinFormPasswordErrorMessage(): string{\r\n    return this.translationDictionary.SIGNIN_ERROR__BLANK_PASSWORD;\r\n  }\r\n  get signinFormInvalidUsername(): string{\r\n    return this.translationDictionary.SIGNIN_ERROR__INVALID_USERNAME;\r\n  }\r\n  get signinFormIncorrectPassword(): string{\r\n    return this.translationDictionary.SIGNIN_ERROR__INCORRECT_PASSWORD;\r\n  }\r\n  get signinFormUserNotFound(): string{\r\n    return this.translationDictionary.SIGNIN_ERROR__USER_NOT_FOUND;\r\n  }\r\n  onSubmit(): void {\r\n    if (this.signinForm.invalid) {\r\n      this.signinForm.markAllAsTouched();\r\n      return;\r\n    }\r\n    const enteredEmail = this.signinForm.value.email;\r\n    const enteredPassword = this.signinForm.value.password;\r\n\r\n    const userData = {\r\n      email: 'user@example.com',\r\n      password: 'password123',\r\n    };\r\n\r\n    if (enteredEmail !== userData.email) {\r\n      \r\n      this.signinForm.setErrors({ userNotFound: true });\r\n    } else if (enteredPassword !== userData.password) {\r\n      this.signinForm.setErrors({ incorrectPassword: true });\r\n    } else {\r\n      console.log('Login successful');\r\n    }\r\n  }\r\n}",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { TranslationDictionary, TranslationName, getTranslation, DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-signin-form',\r\n  templateUrl: './signin-form.component.html',\r\n  styleUrls: ['./signin-form.component.scss'],\r\n})\r\nexport class SigninFormComponent implements OnInit {\r\n\r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n\r\n  @Input() translationName!: TranslationName;\r\n\r\n  signinForm!: FormGroup;\r\n\r\n  show: boolean = true; //password eye icon functionality\r\n  changeType: boolean = true;\r\n  view() {\r\n    this.show = !this.show\r\n    this.changeType = !this.changeType\r\n  }\r\n\r\n  constructor(private fb: FormBuilder) { }\r\n\r\n  ngOnInit(): void {\r\n    this.initForm();\r\n  }\r\n\r\n  initForm(): void {\r\n    this.signinForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]],\r\n      password: ['', Validators.required],\r\n    });\r\n  }\r\n  get signinGreetingTitle(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__GREETING_TITLE;\r\n  }\r\n  get signinGreetingSubtitle(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get signinFormLabelUsername(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__LABEL_USERNAME;\r\n  }\r\n  get signinFormLabelPassword(): string {\r\n    return this.translationDictionary.SIGNIN_FORM__LABEL_PASSWORD;\r\n  }\r\n  get signinFormUsernameErrorMessage(): string {\r\n    const email = this.signinForm.get('email');\r\n    return email?.hasError('required') ? this.translationDictionary.SIGNIN_ERROR__BLANK_USERNAME : email?.hasError('email') ? this.translationDictionary.SIGNIN_ERROR__INVALID_USERNAME : '';\r\n  }\r\n  get signinFormPasswordErrorMessage(): string {\r\n    return this.translationDictionary.SIGNIN_ERROR__BLANK_PASSWORD;\r\n  }\r\n  get signinFormInvalidUsername(): string {\r\n    return this.translationDictionary.SIGNIN_ERROR__INVALID_USERNAME;\r\n  }\r\n  get signinFormIncorrectPassword(): string {\r\n    return this.translationDictionary.SIGNIN_ERROR__INCORRECT_PASSWORD;\r\n  }\r\n  get signinFormUserNotFound(): string {\r\n    return this.translationDictionary.SIGNIN_ERROR__USER_NOT_FOUND;\r\n  }\r\n  onSubmit(): void {\r\n    console.log('onSubmit')\r\n    if (this.signinForm.invalid) {\r\n      this.signinForm.markAllAsTouched();\r\n      return;\r\n    }\r\n    const enteredEmail = this.signinForm.value.email;\r\n    const enteredPassword = this.signinForm.value.password;\r\n\r\n    if (!this.isUserExists(enteredEmail, enteredPassword)) {\r\n      this.signinForm.setErrors({ userNotFound: true });\r\n    }\r\n    else {\r\n      console.log('Login Successful', this.signinForm.value);\r\n    }\r\n  }\r\n  private isUserExists(email: string, password: string): boolean {\r\n    return false;\r\n  }\r\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import '../styles/index.css';\r\n\r\n*{\r\n    font-family: 'Roboto', sans-serif;\r\n}\r\n.authlite-signin-form {\r\n    display: grid;\r\n    grid-auto-flow: row;\r\n    width: 100%;\r\n}\r\n.authlite-signin-form__forgot {\r\n    display: flex;\r\n    flex-direction: row;\r\n    flex-wrap: wrap;\r\n    justify-content: space-between;\r\n}\r\n.authlite-d1-tagline {\r\n    text-align: center;\r\n    display: grid;\r\n    grid-auto-flow: row;\r\n    row-gap: 6px;\r\n}\r\n.authlite-d1-tagline__title {\r\n    font-size: 20px;\r\n}\r\n.authlite-d1-tagline__subtitle {\r\n    font-size: 12px;\r\n    opacity: 0.6;\r\n}\r\n.authlite-action-bar,\r\n.authlite-action-bar-center {\r\n    font-size: 12px;\r\n}\r\n",
+                    "data": "@import '../styles/index.css';\r\n\r\n*{\r\n    font-family: 'Roboto', sans-serif;\r\n}\r\n.authlite-signin-form {\r\n    display: grid;\r\n    grid-auto-flow: row;\r\n    width: 100%;\r\n}\r\n.authlite-signin-form__forgot {\r\n    display: flex;\r\n    flex-direction: row;\r\n    flex-wrap: wrap;\r\n    justify-content: space-between;\r\n}\r\n.authlite-d1-tagline {\r\n    text-align: center;\r\n    display: grid;\r\n    grid-auto-flow: row;\r\n    row-gap: 6px;\r\n}\r\n.authlite-d1-tagline__title {\r\n    font-size: 20px;\r\n}\r\n.authlite-d1-tagline__subtitle {\r\n    font-size: 12px;\r\n    opacity: 0.6;\r\n}\r\n.authlite-action-bar,\r\n.authlite-action-bar-center {\r\n    font-size: 12px;\r\n}\r\n.authlite-input-container {\r\n  position: relative;\r\n}\r\n\r\n.authlite-input {\r\n  width: 100%;\r\n  padding: 10px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.authlite-password-hide-icon,\r\n.authlite-password-show-icon {\r\n  position: absolute;\r\n  top: 40%;\r\n  right: 10px;\r\n  transform: translateY(-50%);\r\n  cursor: pointer;\r\n  width: 4%;\r\n}\r\n\r\n.authlite-password-show-icon {\r\n  //display: none;\r\n  width: 4%;\r\n}\r\n\r\n.authlite-input-container.show-password .authlite-password-hide-icon {\r\n  display: none;\r\n}\r\n\r\n.authlite-input-container.show-password .authlite-password-show-icon {\r\n  display: block;\r\n}",
                     "styleUrl": "./signin-form.component.scss"
                 }
             ],
@@ -1557,7 +1701,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 16,
+                "line": 23,
                 "jsdoctags": [
                     {
                         "name": "fb",
@@ -1581,7 +1725,7 @@
                         "name": "signinGreetingTitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 29
+                        "line": 37
                     }
                 },
                 "signinGreetingSubtitle": {
@@ -1590,7 +1734,7 @@
                         "name": "signinGreetingSubtitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 32
+                        "line": 40
                     }
                 },
                 "signinFormLabelUsername": {
@@ -1599,7 +1743,7 @@
                         "name": "signinFormLabelUsername",
                         "type": "string",
                         "returnType": "string",
-                        "line": 35
+                        "line": 43
                     }
                 },
                 "signinFormLabelPassword": {
@@ -1608,7 +1752,7 @@
                         "name": "signinFormLabelPassword",
                         "type": "string",
                         "returnType": "string",
-                        "line": 38
+                        "line": 46
                     }
                 },
                 "signinFormUsernameErrorMessage": {
@@ -1617,7 +1761,7 @@
                         "name": "signinFormUsernameErrorMessage",
                         "type": "string",
                         "returnType": "string",
-                        "line": 41
+                        "line": 49
                     }
                 },
                 "signinFormPasswordErrorMessage": {
@@ -1626,7 +1770,7 @@
                         "name": "signinFormPasswordErrorMessage",
                         "type": "string",
                         "returnType": "string",
-                        "line": 46
+                        "line": 53
                     }
                 },
                 "signinFormInvalidUsername": {
@@ -1635,7 +1779,7 @@
                         "name": "signinFormInvalidUsername",
                         "type": "string",
                         "returnType": "string",
-                        "line": 49
+                        "line": 56
                     }
                 },
                 "signinFormIncorrectPassword": {
@@ -1644,7 +1788,7 @@
                         "name": "signinFormIncorrectPassword",
                         "type": "string",
                         "returnType": "string",
-                        "line": 52
+                        "line": 59
                     }
                 },
                 "signinFormUserNotFound": {
@@ -1653,15 +1797,15 @@
                         "name": "signinFormUserNotFound",
                         "type": "string",
                         "returnType": "string",
-                        "line": 55
+                        "line": 62
                     }
                 }
             },
-            "templateData": "<form class=\"authlite-signin-form\" [formGroup]=\"signinForm\" (ngSubmit)=\"onSubmit()\">\r\n    <div class=\"authlite-margin-top\">\r\n        <app-tagline \r\n            [title]=\"signinGreetingTitle\"\r\n            [subtitle]=\"signinGreetingSubtitle\">\r\n        </app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [email]=\"signinFormLabelUsername\">\r\n        </app-form-element-message>\r\n        <input class=\"authlite-input\" autoComplete=\"off\" name=\"email\" formControlName=\"email\"/>\r\n        <app-form-element-message\r\n            *ngIf=\"signinForm.controls.email.touched && signinForm.controls.email.hasError('required')\"\r\n            [blankUsername]=\"signinFormUsernameErrorMessage\">\r\n        </app-form-element-message>\r\n        <app-form-element-message\r\n            *ngIf=\"signinForm.controls.email.touched && signinForm.controls.email.hasError('email')\"\r\n            [invalidUsername]=\"signinFormInvalidUsername\">\r\n        </app-form-element-message>\r\n        <app-form-element-message\r\n            *ngIf=\"signinForm.errors?.userNotFound\"\r\n            [userNotFound]=\"signinFormUserNotFound\">\r\n        </app-form-element-message>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [password]=\"signinFormLabelPassword\">\r\n        </app-form-element-message>\r\n        <input type=\"password\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n        <app-form-element-message \r\n            *ngIf=\"signinForm.controls.password.touched && signinForm.controls.password.hasError('required')\"\r\n            [blankPassword]=\"signinFormPasswordErrorMessage\">\r\n        </app-form-element-message>\r\n        <app-form-element-message \r\n            *ngIf=\"signinForm.errors?.incorrectPassword\"\r\n            [incorrectPassword]=\"signinFormIncorrectPassword\">\r\n        </app-form-element-message>\r\n    </div>\r\n    <div class=\"authlite-signin-form__forgot authlite-margin-top-small\">\r\n        <app-checkbox></app-checkbox>\r\n        <a [routerLink]=\"['/forgot-password-form']\" class=\"authlite-button-as-link\">{{translationDictionary.SIGNIN_FORM__ACTION_FORGOTPASSWORD}}</a>\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n        <button class=\"authlite-primary-button\" type=\"submit\">{{translationDictionary.SIGNIN_FORM__ACTION_SIGNIN}}</button>\r\n    </div>\r\n    <div class=\"authlite-margin-top authlite-action-bar-center\">\r\n        {{translationDictionary.SIGNIN_FORM__MESSAGE_NO_ACCOUNT}}\r\n        <a [routerLink]=\"['/signup-form']\" class=\"authlite-button-as-link\">{{translationDictionary.SIGNIN_FORM__ACTION_CREATEACCOUNT}}</a>\r\n    </div>\r\n</form>"
+            "templateData": "<form class=\"authlite-signin-form\" [formGroup]=\"signinForm\" (ngSubmit)=\"onSubmit()\">\r\n    <div class=\"authlite-margin-top\">\r\n        <app-tagline \r\n            [title]=\"signinGreetingTitle\"\r\n            [subtitle]=\"signinGreetingSubtitle\">\r\n        </app-tagline>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [email]=\"signinFormLabelUsername\">\r\n        </app-form-element-message>\r\n        <input class=\"authlite-input\" autoComplete=\"off\" name=\"email\" formControlName=\"email\" type=\"email\"/>\r\n        <app-form-element-message\r\n            *ngIf=\"signinForm.controls.email.touched && signinForm.controls.email.hasError('required')\"\r\n            [blankUsername]=\"signinFormUsernameErrorMessage\">\r\n        </app-form-element-message>\r\n        <app-form-element-message\r\n            *ngIf=\"signinForm.controls.email.touched && signinForm.controls.email.hasError('email')\"\r\n            [invalidUsername]=\"signinFormInvalidUsername\">\r\n        </app-form-element-message>\r\n        <app-form-element-message\r\n            *ngIf=\"signinForm.errors?.userNotFound\"\r\n            [userNotFound]=\"signinFormUserNotFound\">\r\n        </app-form-element-message>\r\n    </div>\r\n    <div class=\"authlite-margin-top\">\r\n        <app-form-element-message \r\n            [password]=\"signinFormLabelPassword\">\r\n        </app-form-element-message>\r\n        <div class=\"authlite-input-container\">\r\n            <input [type]=\"changeType?'password':'text'\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n            <span (click)=\"view()\">\r\n                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 512\" *ngIf=\"!show\" class=\"authlite-password-hide-icon\">\r\n                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->\r\n                    <path d=\"M320 400c-75.9 0-137.3-58.7-142.9-133.1L72.2 185.8c-13.8 17.3-26.5 35.6-36.7 55.6a32.4 32.4 0 0 0 0 29.2C89.7 376.4 197.1 448 320 448c26.9 0 52.9-4 77.9-10.5L346 397.4a144.1 144.1 0 0 1 -26 2.6zm313.8 58.1l-110.6-85.4a331.3 331.3 0 0 0 81.3-102.1 32.4 32.4 0 0 0 0-29.2C550.3 135.6 442.9 64 320 64a308.2 308.2 0 0 0 -147.3 37.7L45.5 3.4A16 16 0 0 0 23 6.2L3.4 31.5A16 16 0 0 0 6.2 53.9l588.4 454.7a16 16 0 0 0 22.5-2.8l19.6-25.3a16 16 0 0 0 -2.8-22.5zm-183.7-142l-39.3-30.4A94.8 94.8 0 0 0 416 256a94.8 94.8 0 0 0 -121.3-92.2A47.7 47.7 0 0 1 304 192a46.6 46.6 0 0 1 -1.5 10l-73.6-56.9A142.3 142.3 0 0 1 320 112a143.9 143.9 0 0 1 144 144c0 21.6-5.3 41.8-13.9 60.1z\"/>\r\n                </svg>\r\n                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 576 512\" *ngIf=\"show\" class=\"authlite-password-show-icon\">\r\n                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->\r\n                    <path d=\"M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z\"/>\r\n                </svg>\r\n            </span>\r\n        </div>\r\n        <app-form-element-message \r\n            *ngIf=\"signinForm.controls.password.touched && signinForm.controls.password.hasError('required')\"\r\n            [blankPassword]=\"signinFormPasswordErrorMessage\">\r\n        </app-form-element-message>\r\n        <app-form-element-message \r\n            *ngIf=\"signinForm.errors?.incorrectPassword\"\r\n            [incorrectPassword]=\"signinFormIncorrectPassword\">\r\n        </app-form-element-message>\r\n    </div>\r\n    <div class=\"authlite-signin-form__forgot authlite-margin-top-small\">\r\n        <app-checkbox></app-checkbox>\r\n        <a [routerLink]=\"['/forgot-password-form']\" class=\"authlite-button-as-link\">{{translationDictionary.SIGNIN_FORM__ACTION_FORGOTPASSWORD}}</a>\r\n    </div>\r\n    <div class=\"authlite-action-bar authlite-margin-top\">\r\n        <button class=\"authlite-primary-button\" type=\"submit\">{{translationDictionary.SIGNIN_FORM__ACTION_SIGNIN}}</button>\r\n    </div>\r\n    <div class=\"authlite-margin-top authlite-action-bar-center\">\r\n        {{translationDictionary.SIGNIN_FORM__MESSAGE_NO_ACCOUNT}}\r\n        <a [routerLink]=\"['/signup-form']\" class=\"authlite-button-as-link\">{{translationDictionary.SIGNIN_FORM__ACTION_CREATEACCOUNT}}</a>\r\n    </div>\r\n</form>"
         },
         {
             "name": "SignupFormComponent",
-            "id": "component-SignupFormComponent-838218a614746da2f43cfde477388d37cd1643227b9dbe49f18a2fa6b93b2ceaa7c18ce546f95d1f5de7899e01c195960f36253a226e8f0c2025627d92863a16",
+            "id": "component-SignupFormComponent-0ae7dca80dc93067b1041ac785a4936f6d9cab033ce45df41ada12e0b9b1f9bd174fc92b98eb751bd31a8e78a6f0b2f50a81c0ce887a9d1838ef18dda8fa2409",
             "file": "src/app/SignupForm/signup-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1684,7 +1828,7 @@
                     "defaultValue": "DEFAULT_TRANSLATION_DICTIONARY",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 13,
                     "type": "TranslationDictionary",
                     "decorators": []
                 },
@@ -1692,7 +1836,7 @@
                     "name": "translationName",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 15,
                     "type": "TranslationName",
                     "decorators": []
                 }
@@ -1700,13 +1844,33 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "changeType",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "show",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                },
+                {
                     "name": "signupForm",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "FormGroup",
                     "optional": false,
                     "description": "",
-                    "line": 16
+                    "line": 17
                 }
             ],
             "methodsClass": [
@@ -1716,7 +1880,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 32,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1726,7 +1890,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 20,
+                    "line": 29,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1736,7 +1900,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 91,
+                    "line": 100,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1753,7 +1917,7 @@
                     "optional": false,
                     "returnType": "literal type | null",
                     "typeParameters": [],
-                    "line": 81,
+                    "line": 90,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1767,6 +1931,16 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "view",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "deprecated": false,
@@ -1778,11 +1952,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit} from '@angular/core';\r\nimport { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';\r\nimport { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-signup-form',\r\n  templateUrl: './signup-form.component.html',\r\n  styleUrls: ['./signup-form.component.scss'],\r\n})\r\nexport class SignupFormComponent implements OnInit{\r\n  \r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n\r\n  @Input() translationName!: TranslationName;\r\n\r\n  signupForm!: FormGroup;\r\n\r\n  constructor(private fb:FormBuilder) {}\r\n\r\n  ngOnInit(): void {\r\n    this.initForm();\r\n  }\r\n  initForm(): void {\r\n    this.signupForm = this.fb.group({\r\n      given_name:['',Validators.required],\r\n      family_name:['',Validators.required],\r\n      email: ['', [Validators.required, Validators.email]],\r\n      password: ['', Validators.required],\r\n      retype_password: ['', Validators.required],\r\n    }, \r\n    {\r\n      validators: this.passwordMatchValidator,\r\n    });\r\n    \r\n  }\r\n\r\n  get signupGreetingTitle(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__GREETING_TITLE;\r\n  }\r\n  get signupGreetingSubtitle(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get signupFormLabelGivenname(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_GIVENNAME;\r\n  }\r\n  get signupFormLabelFamilyname(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_FAMILYNAME;\r\n  }\r\n  get signupFormLabelUsername() : string{\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_EMAIL;\r\n  }\r\n  get signupFormLabelPassword() : string{\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_PASSWORD;\r\n  }\r\n  get signupFormLabelRetypePassword() : string{\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_RETYPEPASSWORD;\r\n  }\r\n  get signupFormGivennameErrorMessage(): string{\r\n    return this.translationDictionary.SIGNUP_ERROR__BLANK_GIVENNAME;\r\n  }\r\n  get signupFormFamilynameErrorMessage(): string{\r\n    return this.translationDictionary.SIGNUP_ERROR__BLANK_FAMILYNAME;\r\n  }\r\n  get signupFormUsernameErrorMessage(): string{\r\n    const email = this.signupForm.get('email');\r\n    return email?.hasError('required') ? this.translationDictionary.SIGNUP_ERROR__BLANK_USERNAME : email?.hasError('email') ? this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME : '';\r\n  }\r\n  get signupFormInvalidUsername(): string{\r\n    return this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME;\r\n  }\r\n  get signupFormPasswordErrorMessage(): string{\r\n    return this.translationDictionary.SIGNUP_ERROR__BLANK_PASSWORD;\r\n  }\r\n  get signupFormReTypePasswordErrorMessage(): string{\r\n    return this.translationDictionary.SIGNUP_ERROR__BLANK_RETYPEPASSWORD;\r\n  }\r\n  get signupFormReTypePasswordDoesnotMatch(): string {\r\n    const retypePassword = this.signupForm.get('retype_password');\r\n    return retypePassword?.hasError('required') ? this.translationDictionary.SIGNUP_ERROR__BLANK_RETYPEPASSWORD : this.translationDictionary.SIGNUP_ERROR__PASSWORDS_DO_NOT_MATCH;\r\n  }\r\n  passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {\r\n    const password = control.get('password');\r\n    const retypePassword = control.get('retype_password');\r\n\r\n    if (password && retypePassword && password.value !== retypePassword.value) {\r\n      return { 'passwordMismatch': true };\r\n    }\r\n\r\n    return null;\r\n  }\r\n  onSubmit(): void {\r\n    if (this.signupForm.invalid) {\r\n      this.signupForm.markAllAsTouched();\r\n\r\n      return;\r\n    }\r\n      const enteredEmail = this.signupForm.value.email;\r\n      const enteredPassword = this.signupForm.value.password;\r\n\r\n    const userData = {\r\n      email: 'user@example.com',\r\n      password: 'password123',\r\n    };\r\n\r\n    if (enteredEmail !== userData.email) {\r\n      \r\n      this.signupForm.setErrors({ userNotFound: true });\r\n    } else if (enteredPassword !== userData.password) {\r\n      this.signupForm.setErrors({ incorrectPassword: true });\r\n    } else {\r\n      console.log('Login successful');\r\n    }\r\n   \r\n  }\r\n}\r\n\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';\r\nimport { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-signup-form',\r\n  templateUrl: './signup-form.component.html',\r\n  styleUrls: ['./signup-form.component.scss'],\r\n})\r\nexport class SignupFormComponent implements OnInit {\r\n\r\n  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;\r\n\r\n  @Input() translationName!: TranslationName;\r\n\r\n  signupForm!: FormGroup;\r\n\r\n  show: boolean = true;\r\n  changeType: boolean = true;\r\n\r\n  view() {\r\n    this.show = !this.show\r\n    this.changeType = !this.changeType\r\n  }\r\n\r\n  constructor(private fb: FormBuilder, private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n    this.initForm();\r\n  }\r\n  initForm(): void {\r\n    this.signupForm = this.fb.group({\r\n      given_name: ['', Validators.required],\r\n      family_name: ['', Validators.required],\r\n      email: ['', [Validators.required, Validators.email]],\r\n      password: ['', Validators.required],\r\n      retype_password: ['', Validators.required],\r\n    },\r\n      {\r\n        validators: this.passwordMatchValidator,\r\n      });\r\n\r\n  }\r\n\r\n  get signupGreetingTitle(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__GREETING_TITLE;\r\n  }\r\n  get signupGreetingSubtitle(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__GREETING_SUBTITLE;\r\n  }\r\n  get signupFormLabelGivenname(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_GIVENNAME;\r\n  }\r\n  get signupFormLabelFamilyname(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_FAMILYNAME;\r\n  }\r\n  get signupFormLabelUsername(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_EMAIL;\r\n  }\r\n  get signupFormLabelPassword(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_PASSWORD;\r\n  }\r\n  get signupFormLabelRetypePassword(): string {\r\n    return this.translationDictionary.SIGNUP_FORM__LABEL_RETYPEPASSWORD;\r\n  }\r\n  get signupFormGivennameErrorMessage(): string {\r\n    return this.translationDictionary.SIGNUP_ERROR__BLANK_GIVENNAME;\r\n  }\r\n  get signupFormFamilynameErrorMessage(): string {\r\n    return this.translationDictionary.SIGNUP_ERROR__BLANK_FAMILYNAME;\r\n  }\r\n  get signupFormUsernameErrorMessage(): string {\r\n    const email = this.signupForm.get('email');\r\n    return email?.hasError('required') ? this.translationDictionary.SIGNUP_ERROR__BLANK_USERNAME : email?.hasError('email') ? this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME : '';\r\n  }\r\n  get signupFormInvalidUsername(): string {\r\n    return this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME;\r\n  }\r\n  get signupFormPasswordErrorMessage(): string {\r\n    return this.translationDictionary.SIGNUP_ERROR__BLANK_PASSWORD;\r\n  }\r\n  get signupFormReTypePasswordErrorMessage(): string {\r\n    return this.translationDictionary.SIGNUP_ERROR__BLANK_RETYPEPASSWORD;\r\n  }\r\n  get signupFormReTypePasswordDoesnotMatch(): string {\r\n    const retypePassword = this.signupForm.get('retype_password');\r\n    return retypePassword?.hasError('required') ? this.translationDictionary.SIGNUP_ERROR__BLANK_RETYPEPASSWORD : this.translationDictionary.SIGNUP_ERROR__PASSWORDS_DO_NOT_MATCH;\r\n  }\r\n  passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {\r\n    const password = control.get('password');\r\n    const retypePassword = control.get('retype_password');\r\n\r\n    if (password && retypePassword && password.value !== retypePassword.value) {\r\n      return { 'passwordMismatch': true };\r\n    }\r\n\r\n    return null;\r\n  }\r\n  onSubmit(): void {\r\n    console.log('onSubmit')\r\n    if (this.signupForm.invalid) {\r\n      this.signupForm.markAllAsTouched();\r\n      return;\r\n    }\r\n    else {\r\n      console.log('Signup Successfull:', this.signupForm.value);\r\n      this.router.navigate(['/signup-success-page']);\r\n    }\r\n  }\r\n}\r\n\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import '../styles/index.css';\r\n.authlite-action-bar,\r\n.authlite-action-bar-center {\r\n    font-size: 12px;\r\n}",
+                    "data": "@import '../styles/index.css';\r\n.authlite-action-bar,\r\n.authlite-action-bar-center {\r\n    font-size: 12px;\r\n}\r\n.authlite-input-container {\r\n\tposition: relative;\r\n  }\r\n  \r\n  .authlite-input {\r\n\twidth: 100%;\r\n\tpadding: 10px;\r\n\tmargin-bottom: 10px;\r\n  }\r\n  \r\n  .authlite-password-hide-icon,\r\n  .authlite-password-show-icon {\r\n\tposition: absolute;\r\n\ttop: 40%;\r\n\tright: 10px;\r\n\ttransform: translateY(-50%);\r\n\tcursor: pointer;\r\n\twidth: 4%;\r\n  }\r\n  \r\n  .authlite-password-show-icon {\r\n\t//display: none;\r\n\twidth: 4%;\r\n  }\r\n  \r\n  .authlite-input-container.show-password .authlite-password-hide-icon {\r\n\tdisplay: none;\r\n  }\r\n  \r\n  .authlite-input-container.show-password .authlite-password-show-icon {\r\n\tdisplay: block;\r\n  }",
                     "styleUrl": "./signup-form.component.scss"
                 }
             ],
@@ -1798,13 +1972,28 @@
                         "type": "FormBuilder",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 16,
+                "line": 25,
                 "jsdoctags": [
                     {
                         "name": "fb",
                         "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -1824,7 +2013,7 @@
                         "name": "signupGreetingTitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 37
+                        "line": 46
                     }
                 },
                 "signupGreetingSubtitle": {
@@ -1833,7 +2022,7 @@
                         "name": "signupGreetingSubtitle",
                         "type": "string",
                         "returnType": "string",
-                        "line": 40
+                        "line": 49
                     }
                 },
                 "signupFormLabelGivenname": {
@@ -1842,7 +2031,7 @@
                         "name": "signupFormLabelGivenname",
                         "type": "string",
                         "returnType": "string",
-                        "line": 43
+                        "line": 52
                     }
                 },
                 "signupFormLabelFamilyname": {
@@ -1851,7 +2040,7 @@
                         "name": "signupFormLabelFamilyname",
                         "type": "string",
                         "returnType": "string",
-                        "line": 46
+                        "line": 55
                     }
                 },
                 "signupFormLabelUsername": {
@@ -1860,7 +2049,7 @@
                         "name": "signupFormLabelUsername",
                         "type": "string",
                         "returnType": "string",
-                        "line": 49
+                        "line": 58
                     }
                 },
                 "signupFormLabelPassword": {
@@ -1869,7 +2058,7 @@
                         "name": "signupFormLabelPassword",
                         "type": "string",
                         "returnType": "string",
-                        "line": 52
+                        "line": 61
                     }
                 },
                 "signupFormLabelRetypePassword": {
@@ -1878,7 +2067,7 @@
                         "name": "signupFormLabelRetypePassword",
                         "type": "string",
                         "returnType": "string",
-                        "line": 55
+                        "line": 64
                     }
                 },
                 "signupFormGivennameErrorMessage": {
@@ -1887,7 +2076,7 @@
                         "name": "signupFormGivennameErrorMessage",
                         "type": "string",
                         "returnType": "string",
-                        "line": 58
+                        "line": 67
                     }
                 },
                 "signupFormFamilynameErrorMessage": {
@@ -1896,7 +2085,7 @@
                         "name": "signupFormFamilynameErrorMessage",
                         "type": "string",
                         "returnType": "string",
-                        "line": 61
+                        "line": 70
                     }
                 },
                 "signupFormUsernameErrorMessage": {
@@ -1905,7 +2094,7 @@
                         "name": "signupFormUsernameErrorMessage",
                         "type": "string",
                         "returnType": "string",
-                        "line": 64
+                        "line": 73
                     }
                 },
                 "signupFormInvalidUsername": {
@@ -1914,7 +2103,7 @@
                         "name": "signupFormInvalidUsername",
                         "type": "string",
                         "returnType": "string",
-                        "line": 68
+                        "line": 77
                     }
                 },
                 "signupFormPasswordErrorMessage": {
@@ -1923,7 +2112,7 @@
                         "name": "signupFormPasswordErrorMessage",
                         "type": "string",
                         "returnType": "string",
-                        "line": 71
+                        "line": 80
                     }
                 },
                 "signupFormReTypePasswordErrorMessage": {
@@ -1932,7 +2121,7 @@
                         "name": "signupFormReTypePasswordErrorMessage",
                         "type": "string",
                         "returnType": "string",
-                        "line": 74
+                        "line": 83
                     }
                 },
                 "signupFormReTypePasswordDoesnotMatch": {
@@ -1941,11 +2130,11 @@
                         "name": "signupFormReTypePasswordDoesnotMatch",
                         "type": "string",
                         "returnType": "string",
-                        "line": 77
+                        "line": 86
                     }
                 }
             },
-            "templateData": "<form class=\"authlite-d1-signup-form\" [formGroup]=\"signupForm\" (ngSubmit)=\"onSubmit()\">\r\n  <div class=\"authlite-margin-top\">\r\n    <app-tagline \r\n          [title]=\"signupGreetingTitle\"\r\n          [subtitle]=\"signupGreetingSubtitle\">\r\n    </app-tagline>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [given_name]=\"signupFormLabelGivenname\">\r\n      </app-form-element-message>\r\n      <input type=\"text\" class=\"authlite-input\" autocomplete=\"off\" value=\"\" formControlName=\"given_name\">\r\n      <app-form-element-message\r\n          *ngIf=\"signupForm.controls.given_name.touched && signupForm.controls.given_name.hasError('required')\"\r\n          [blankGivenname]=\"signupFormGivennameErrorMessage\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [family_name]=\"signupFormLabelFamilyname\">\r\n      </app-form-element-message>\r\n      <input type=\"text\" class=\"authlite-input\" autocomplete=\"off\" value=\"\" formControlName=\"family_name\">\r\n      <app-form-element-message\r\n          *ngIf=\"signupForm.controls.family_name.touched && signupForm.controls.family_name.hasError('required')\"\r\n          [blankGivenname]=\"signupFormFamilynameErrorMessage\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [email]=\"signupFormLabelUsername\">\r\n      </app-form-element-message>\r\n      <input type=\"email\" id=\"userid\" formControlName=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n      <app-form-element-message\r\n          *ngIf=\"signupForm.controls.email.touched && signupForm.controls.email.hasError('required')\"\r\n          [blankUsername]=\"signupFormUsernameErrorMessage\">\r\n      </app-form-element-message>\r\n      <app-form-element-message\r\n          *ngIf=\"signupForm.controls.email.touched && signupForm.controls.email.hasError('email')\"\r\n          [invalidUsername]=\"signupFormInvalidUsername\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [password]=\"signupFormLabelPassword\">\r\n      </app-form-element-message>\r\n      <input type=\"password\" id=\"passwordId\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n      <app-form-element-message \r\n          *ngIf=\"signupForm.controls.password.touched && signupForm.controls.password.hasError('required')\"\r\n          [blankPassword]=\"signupFormPasswordErrorMessage\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [retype_password]=\"signupFormLabelRetypePassword\">\r\n      </app-form-element-message>\r\n      <input type=\"password\" id=\"passwordId\" formControlName=\"retype_password\" class=\"authlite-input\" name=\"retype_password\" value=\"\">\r\n      <app-form-element-message \r\n          *ngIf=\"signupForm.controls.retype_password.touched && signupForm.controls.retype_password.hasError('required')\"\r\n          [blankRetypePassword]=\"signupFormReTypePasswordErrorMessage\">\r\n      </app-form-element-message>\r\n      <app-form-element-message \r\n          *ngIf=\"signupForm.hasError('passwordMismatch') && (signupForm.controls.retype_password.touched || signupForm.controls.password.touched)\"\r\n          [RetypePasswordDoesnotmatch]=\"signupFormReTypePasswordDoesnotMatch\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-action-bar authlite-margin-top\">\r\n      <button class=\"authlite-primary-button\" type=\"submit\">{{translationDictionary.SIGNUP_FORM__ACTION_CREATEACCOUNT}}</button>\r\n  </div>\r\n  <div class=\"authlite-margin-top authlite-action-bar-center\">\r\n      {{translationDictionary.SIGNUP_FORM__MESSAGE_EXISTING_ACCOUNT}}\r\n      <button class=\"authlite-button-as-link\" type=\"submit\" routerLink=\"/SigninForm\">{{translationDictionary.SIGNUP_FORM__ACTION_SIGNIN}}</button>\r\n  </div>\r\n</form>\r\n"
+            "templateData": "<form class=\"authlite-d1-signup-form\" [formGroup]=\"signupForm\" (ngSubmit)=\"onSubmit()\">\r\n  <div class=\"authlite-margin-top\">\r\n    <app-tagline \r\n          [title]=\"signupGreetingTitle\"\r\n          [subtitle]=\"signupGreetingSubtitle\">\r\n    </app-tagline>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [given_name]=\"signupFormLabelGivenname\">\r\n      </app-form-element-message> \r\n      <input type=\"text\" class=\"authlite-input\" autocomplete=\"off\" value=\"\" formControlName=\"given_name\">\r\n      <app-form-element-message\r\n          *ngIf=\"signupForm.controls.given_name.touched && signupForm.controls.given_name.hasError('required')\"\r\n          [blankGivenname]=\"signupFormGivennameErrorMessage\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [family_name]=\"signupFormLabelFamilyname\">\r\n      </app-form-element-message>\r\n      <input type=\"text\" class=\"authlite-input\" autocomplete=\"off\" value=\"\" formControlName=\"family_name\">\r\n      <app-form-element-message\r\n          *ngIf=\"signupForm.controls.family_name.touched && signupForm.controls.family_name.hasError('required')\"\r\n          [blankGivenname]=\"signupFormFamilynameErrorMessage\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [email]=\"signupFormLabelUsername\">\r\n      </app-form-element-message>\r\n      <input type=\"email\" id=\"userid\" formControlName=\"email\" class=\"authlite-input\" name=\"email\" autocomplete=\"off\" value=\"\">\r\n      <app-form-element-message\r\n          *ngIf=\"signupForm.controls.email.touched && signupForm.controls.email.hasError('required')\"\r\n          [blankUsername]=\"signupFormUsernameErrorMessage\">\r\n      </app-form-element-message>\r\n      <app-form-element-message\r\n          *ngIf=\"signupForm.controls.email.touched && signupForm.controls.email.hasError('email')\"\r\n          [invalidUsername]=\"signupFormInvalidUsername\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [password]=\"signupFormLabelPassword\">\r\n      </app-form-element-message>\r\n      <div class=\"authlite-input-container\">\r\n        <input [type]=\"changeType?'password':'text'\" formControlName=\"password\" class=\"authlite-input\" name=\"password\" value=\"\">\r\n        <span (click)=\"view()\">\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 512\" *ngIf=\"!show\" class=\"authlite-password-hide-icon\">\r\n                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->\r\n                <path d=\"M320 400c-75.9 0-137.3-58.7-142.9-133.1L72.2 185.8c-13.8 17.3-26.5 35.6-36.7 55.6a32.4 32.4 0 0 0 0 29.2C89.7 376.4 197.1 448 320 448c26.9 0 52.9-4 77.9-10.5L346 397.4a144.1 144.1 0 0 1 -26 2.6zm313.8 58.1l-110.6-85.4a331.3 331.3 0 0 0 81.3-102.1 32.4 32.4 0 0 0 0-29.2C550.3 135.6 442.9 64 320 64a308.2 308.2 0 0 0 -147.3 37.7L45.5 3.4A16 16 0 0 0 23 6.2L3.4 31.5A16 16 0 0 0 6.2 53.9l588.4 454.7a16 16 0 0 0 22.5-2.8l19.6-25.3a16 16 0 0 0 -2.8-22.5zm-183.7-142l-39.3-30.4A94.8 94.8 0 0 0 416 256a94.8 94.8 0 0 0 -121.3-92.2A47.7 47.7 0 0 1 304 192a46.6 46.6 0 0 1 -1.5 10l-73.6-56.9A142.3 142.3 0 0 1 320 112a143.9 143.9 0 0 1 144 144c0 21.6-5.3 41.8-13.9 60.1z\"/>\r\n            </svg>\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 576 512\" *ngIf=\"show\" class=\"authlite-password-show-icon\">\r\n                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->\r\n                <path d=\"M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z\"/>\r\n            </svg>\r\n        </span>\r\n    </div>\r\n      <app-form-element-message \r\n          *ngIf=\"signupForm.controls.password.touched && signupForm.controls.password.hasError('required')\"\r\n          [blankPassword]=\"signupFormPasswordErrorMessage\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-margin-top\">\r\n      <app-form-element-message \r\n          [retype_password]=\"signupFormLabelRetypePassword\">\r\n      </app-form-element-message>\r\n      <div class=\"authlite-input-container\">\r\n        <input [type]=\"changeType?'password':'text'\" formControlName=\"retype_password\" class=\"authlite-input\" name=\"retype_password\" value=\"\">\r\n        <span (click)=\"view()\">\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 512\" *ngIf=\"!show\" class=\"authlite-password-hide-icon\">\r\n                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->\r\n                <path d=\"M320 400c-75.9 0-137.3-58.7-142.9-133.1L72.2 185.8c-13.8 17.3-26.5 35.6-36.7 55.6a32.4 32.4 0 0 0 0 29.2C89.7 376.4 197.1 448 320 448c26.9 0 52.9-4 77.9-10.5L346 397.4a144.1 144.1 0 0 1 -26 2.6zm313.8 58.1l-110.6-85.4a331.3 331.3 0 0 0 81.3-102.1 32.4 32.4 0 0 0 0-29.2C550.3 135.6 442.9 64 320 64a308.2 308.2 0 0 0 -147.3 37.7L45.5 3.4A16 16 0 0 0 23 6.2L3.4 31.5A16 16 0 0 0 6.2 53.9l588.4 454.7a16 16 0 0 0 22.5-2.8l19.6-25.3a16 16 0 0 0 -2.8-22.5zm-183.7-142l-39.3-30.4A94.8 94.8 0 0 0 416 256a94.8 94.8 0 0 0 -121.3-92.2A47.7 47.7 0 0 1 304 192a46.6 46.6 0 0 1 -1.5 10l-73.6-56.9A142.3 142.3 0 0 1 320 112a143.9 143.9 0 0 1 144 144c0 21.6-5.3 41.8-13.9 60.1z\"/>\r\n            </svg>\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 576 512\" *ngIf=\"show\" class=\"authlite-password-show-icon\">\r\n                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->\r\n                <path d=\"M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z\"/>\r\n            </svg>\r\n        </span>\r\n    </div>\r\n      <app-form-element-message \r\n          *ngIf=\"signupForm.controls.retype_password.touched && signupForm.controls.retype_password.hasError('required')\"\r\n          [blankRetypePassword]=\"signupFormReTypePasswordErrorMessage\">\r\n      </app-form-element-message>\r\n      <app-form-element-message \r\n          *ngIf=\"signupForm.hasError('passwordMismatch') && (signupForm.controls.retype_password.touched || signupForm.controls.password.touched)\"\r\n          [RetypePasswordDoesnotmatch]=\"signupFormReTypePasswordDoesnotMatch\">\r\n      </app-form-element-message>\r\n  </div>\r\n  <div class=\"authlite-action-bar authlite-margin-top\">\r\n      <button class=\"authlite-primary-button\" type=\"submit\" routerLink=\"/signup-success-page\">{{translationDictionary.SIGNUP_FORM__ACTION_CREATEACCOUNT}}</button>\r\n  </div>\r\n  <div class=\"authlite-margin-top authlite-action-bar-center\">\r\n      {{translationDictionary.SIGNUP_FORM__MESSAGE_EXISTING_ACCOUNT}}\r\n      <button class=\"authlite-button-as-link\" type=\"submit\" routerLink=\"/signin-form\">{{translationDictionary.SIGNUP_FORM__ACTION_SIGNIN}}</button>\r\n  </div>\r\n</form>\r\n"
         },
         {
             "name": "SignupSuccessPageComponent",
@@ -2163,13 +2352,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-c15fe01442a21f0ab88dcb4a6f2027bdf9188f8ca483b5aa006725b5d753fe94051fe889909499eae72d77ba1f36879c43d8cb520c7c435b87fd05c58dee40e9",
+            "id": "module-AppRoutingModule-7b26273104505bd27d8eaeddf4ea4121fd7a62b8dbedac82c60d94f961143139ad51a0e1203db127661b26ceb10ab549080e2c10eb92056b3d8cc69e7556c101",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "\r\nimport { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { SigninFormComponent } from './signinForm/signin-form.component';\r\nimport { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';\r\nimport { SignupFormComponent } from './SignupForm/signup-form.component';\r\nimport { APP_BASE_HREF } from '@angular/common';\r\n\r\nconst routes: Routes = [\r\n  { path: 'signin-form', component: SigninFormComponent },\r\n  { path: 'forgot-password-form', component: ForgotPasswordFormComponent },\r\n  { path: 'signup-form', component: SignupFormComponent },\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  providers: [{provide: APP_BASE_HREF, useValue: '/'}],\r\n  exports: [RouterModule],\r\n})\r\nexport class AppRoutingModule {}\r\n",
+            "sourceCode": "\r\nimport { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { SigninFormComponent } from './signinForm/signin-form.component';\r\nimport { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';\r\nimport { SignupFormComponent } from './SignupForm/signup-form.component';\r\nimport { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-page.component';\r\nimport { APP_BASE_HREF } from '@angular/common';\r\n\r\nconst routes: Routes = [\r\n  { path: 'signin-form', component: SigninFormComponent },\r\n  { path: 'forgot-password-form', component: ForgotPasswordFormComponent },\r\n  { path: 'signup-form', component: SignupFormComponent },\r\n  { path: 'signup-success-page', component: SignupSuccessPageComponent },\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  providers: [{provide: APP_BASE_HREF, useValue: '/'}],\r\n  exports: [RouterModule],\r\n})\r\nexport class AppRoutingModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -4189,7 +4378,7 @@
                 "linktype": "component",
                 "name": "ForgotPasswordFormComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -4234,7 +4423,7 @@
                 "linktype": "component",
                 "name": "SignupFormComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {
@@ -4336,7 +4525,7 @@
                 "linktype": "component",
                 "name": "SigninFormComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {

@@ -7,15 +7,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './forgot-password-form.component.html',
   styleUrls: ['./forgot-password-form.component.scss'],
 })
-export class ForgotPasswordFormComponent{
-  
+export class ForgotPasswordFormComponent {
+
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
 
   @Input() translationName!: TranslationName;
 
   forgotPasswordForm!: FormGroup;
 
-  constructor(private fb:FormBuilder) {}
+  passwordResetLinkSent: boolean = false;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -23,7 +25,6 @@ export class ForgotPasswordFormComponent{
   initForm(): void {
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
     });
   }
 
@@ -36,19 +37,37 @@ export class ForgotPasswordFormComponent{
   get forgotPasswordFormLabelEmail(): string {
     return this.translationDictionary.FORGOT_PASSWORD_FORM__LABEL_EMAIL;
   }
-  get forgotPasswordFormUsernameErrorMessage(): string{
-    return this.translationDictionary['FORGOT_PASSWORD_ERROR__BLANK_USERNAME'];
+  get forgotPasswordFormUsernameErrorMessage(): string {
+    const email = this.forgotPasswordForm.get('email');
+    return email?.hasError('required') ? this.translationDictionary['FORGOT_PASSWORD_ERROR__BLANK_USERNAME'] : email?.hasError('email') ? this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME : '';
   }
-  get forgotPasswordFormInvalidUsername(): string{
+  get forgotPasswordFormInvalidUsername(): string {
     return this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME;
   }
-  get forgotPasswordFormUserNotFound(): string{
+  get forgotPasswordFormUserNotFound(): string {
     return this.translationDictionary.FORGOT_PASSWORD_ERROR__USER_NOT_FOUND;
   }
   onSubmit(): void {
+    console.log('onSubmit')
     if (this.forgotPasswordForm.invalid) {
       this.forgotPasswordForm.markAllAsTouched();
       return;
     }
-}
+    const enteredEmail = this.forgotPasswordForm.value.email;
+
+    if (!this.isUserExists(enteredEmail)) {
+      this.forgotPasswordForm.setErrors({ userNotFound: true});
+    }
+    else {
+      console.log('reset link sent to:', this.forgotPasswordForm.value);
+      this.sendPasswordResetLink(enteredEmail);
+    }
+  }
+  private isUserExists(email: string): boolean {
+    return false;
+  }
+  private sendPasswordResetLink(email: string): void {
+    console.log('Password reset link sent to ${enteredEmail}', email);
+    this.passwordResetLinkSent = true;
+  }
 }

@@ -1,40 +1,43 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss'],
 })
-export class SignupFormComponent implements OnInit{
-  
+export class SignupFormComponent implements OnInit {
+
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
 
   @Input() translationName!: TranslationName;
-
+  
   signupForm!: FormGroup;
 
-  show: boolean = true;
-  changeType: boolean = true;
+  showPassword: boolean = true;
 
-  constructor(private fb:FormBuilder) {}
+  togglePassword() {
+    this.showPassword = !this.showPassword
+  }
+
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
   }
   initForm(): void {
     this.signupForm = this.fb.group({
-      given_name:['',Validators.required],
-      family_name:['',Validators.required],
+      given_name: ['', Validators.required],
+      family_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       retype_password: ['', Validators.required],
-    }, 
-    {
-      validators: this.passwordMatchValidator,
-    });
-    
+    },
+      {
+        validators: this.passwordMatchValidator,
+      });
   }
 
   get signupGreetingTitle(): string {
@@ -49,32 +52,32 @@ export class SignupFormComponent implements OnInit{
   get signupFormLabelFamilyname(): string {
     return this.translationDictionary.SIGNUP_FORM__LABEL_FAMILYNAME;
   }
-  get signupFormLabelUsername() : string{
+  get signupFormLabelUsername(): string {
     return this.translationDictionary.SIGNUP_FORM__LABEL_EMAIL;
   }
-  get signupFormLabelPassword() : string{
+  get signupFormLabelPassword(): string {
     return this.translationDictionary.SIGNUP_FORM__LABEL_PASSWORD;
   }
-  get signupFormLabelRetypePassword() : string{
+  get signupFormLabelRetypePassword(): string {
     return this.translationDictionary.SIGNUP_FORM__LABEL_RETYPEPASSWORD;
   }
-  get signupFormGivennameErrorMessage(): string{
+  get signupFormGivennameErrorMessage(): string {
     return this.translationDictionary.SIGNUP_ERROR__BLANK_GIVENNAME;
   }
-  get signupFormFamilynameErrorMessage(): string{
+  get signupFormFamilynameErrorMessage(): string {
     return this.translationDictionary.SIGNUP_ERROR__BLANK_FAMILYNAME;
   }
-  get signupFormUsernameErrorMessage(): string{
+  get signupFormUsernameErrorMessage(): string {
     const email = this.signupForm.get('email');
     return email?.hasError('required') ? this.translationDictionary.SIGNUP_ERROR__BLANK_USERNAME : email?.hasError('email') ? this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME : '';
   }
-  get signupFormInvalidUsername(): string{
+  get signupFormInvalidUsername(): string {
     return this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME;
   }
-  get signupFormPasswordErrorMessage(): string{
+  get signupFormPasswordErrorMessage(): string {
     return this.translationDictionary.SIGNUP_ERROR__BLANK_PASSWORD;
   }
-  get signupFormReTypePasswordErrorMessage(): string{
+  get signupFormReTypePasswordErrorMessage(): string {
     return this.translationDictionary.SIGNUP_ERROR__BLANK_RETYPEPASSWORD;
   }
   get signupFormReTypePasswordDoesnotMatch(): string {
@@ -88,36 +91,17 @@ export class SignupFormComponent implements OnInit{
     if (password && retypePassword && password.value !== retypePassword.value) {
       return { 'passwordMismatch': true };
     }
-
     return null;
   }
   onSubmit(): void {
     if (this.signupForm.invalid) {
       this.signupForm.markAllAsTouched();
-
       return;
     }
-      const enteredEmail = this.signupForm.value.email;
-      const enteredPassword = this.signupForm.value.password;
-
-    const userData = {
-      email: 'user@example.com',
-      password: 'password123',
-    };
-
-    if (enteredEmail !== userData.email) {
-      
-      this.signupForm.setErrors({ userNotFound: true });
-    } else if (enteredPassword !== userData.password) {
-      this.signupForm.setErrors({ incorrectPassword: true });
-    } else {
-      console.log('Login successful');
+    else {
+      console.log('Signup Successful:', this.signupForm.value);
+      //this.router.navigate(['/signup-success-page']);
     }
-   
-  }
-  view() {
-    this.show = !this.show
-    this.changeType = !this.changeType
   }
 }
 

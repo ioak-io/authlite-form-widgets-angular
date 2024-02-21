@@ -14,12 +14,16 @@ export class SigninFormComponent implements OnInit {
   @Input() translationName!: TranslationName;
 
   signinForm!: FormGroup;
-  show: boolean = true;
-  changeType: boolean = true;
+
+  showPassword: boolean = true; //password eye icon functionality
+  
+  togglePassword() {
+    this.showPassword = !this.showPassword
+  }
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.initForm();
   }
 
@@ -42,7 +46,6 @@ export class SigninFormComponent implements OnInit {
     return this.translationDictionary.SIGNIN_FORM__LABEL_PASSWORD;
   }
   get signinFormUsernameErrorMessage(): string {
-    //return this.translationDictionary.SIGNIN_ERROR__BLANK_USERNAME;
     const email = this.signinForm.get('email');
     return email?.hasError('required') ? this.translationDictionary.SIGNIN_ERROR__BLANK_USERNAME : email?.hasError('email') ? this.translationDictionary.SIGNIN_ERROR__INVALID_USERNAME : '';
   }
@@ -59,6 +62,7 @@ export class SigninFormComponent implements OnInit {
     return this.translationDictionary.SIGNIN_ERROR__USER_NOT_FOUND;
   }
   onSubmit(): void {
+    console.log('onSubmit')
     if (this.signinForm.invalid) {
       this.signinForm.markAllAsTouched();
       return;
@@ -66,21 +70,14 @@ export class SigninFormComponent implements OnInit {
     const enteredEmail = this.signinForm.value.email;
     const enteredPassword = this.signinForm.value.password;
 
-    const userData = {
-      email: 'user@example.com',
-      password: 'password123',
-    };
-
-    if (enteredEmail !== userData.email) {
+    if (!this.isUserExists(enteredEmail, enteredPassword)) {
       this.signinForm.setErrors({ userNotFound: true });
-    } else if (enteredPassword !== userData.password) {
-      this.signinForm.setErrors({ incorrectPassword: true });
-    } else {
-      console.log('Login successful');
+    }
+    else {
+      console.log('Login Successful', this.signinForm.value);
     }
   }
-  view() {
-    this.show = !this.show
-    this.changeType = !this.changeType
+  private isUserExists(email: string, password: string): boolean {
+    return false;
   }
 }
