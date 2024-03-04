@@ -16,7 +16,7 @@ export class SigninFormComponent implements OnInit {
   signinForm!: FormGroup;
 
   showPassword: boolean = true; //password eye icon functionality
-  
+    
   togglePassword() {
     this.showPassword = !this.showPassword
   }
@@ -46,8 +46,7 @@ export class SigninFormComponent implements OnInit {
     return this.translationDictionary.SIGNIN_FORM__LABEL_PASSWORD;
   }
   get signinFormUsernameErrorMessage(): string {
-    const email = this.signinForm.get('email');
-    return email?.hasError('required') ? this.translationDictionary.SIGNIN_ERROR__BLANK_USERNAME : email?.hasError('email') ? this.translationDictionary.SIGNIN_ERROR__INVALID_USERNAME : '';
+    return this.translationDictionary.SIGNIN_ERROR__BLANK_USERNAME;
   }
   get signinFormPasswordErrorMessage(): string {
     return this.translationDictionary.SIGNIN_ERROR__BLANK_PASSWORD;
@@ -77,7 +76,7 @@ export class SigninFormComponent implements OnInit {
       console.log('Login Successful', this.signinForm.value);
     }
   }
-  private isUserExists(email: string, password: string): boolean {
+  isUserExists(email: string, password: string): boolean {
     return false;
   }
 }
