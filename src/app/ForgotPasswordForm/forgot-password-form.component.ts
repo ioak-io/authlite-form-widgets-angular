@@ -38,8 +38,7 @@ export class ForgotPasswordFormComponent {
     return this.translationDictionary.FORGOT_PASSWORD_FORM__LABEL_EMAIL;
   }
   get forgotPasswordFormUsernameErrorMessage(): string {
-    const email = this.forgotPasswordForm.get('email');
-    return email?.hasError('required') ? this.translationDictionary['FORGOT_PASSWORD_ERROR__BLANK_USERNAME'] : email?.hasError('email') ? this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME : '';
+    return this.translationDictionary['FORGOT_PASSWORD_ERROR__BLANK_USERNAME'];
   }
   get forgotPasswordFormInvalidUsername(): string {
     return this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME;
@@ -63,10 +62,10 @@ export class ForgotPasswordFormComponent {
       this.sendPasswordResetLink(enteredEmail);
     }
   }
-  private isUserExists(email: string): boolean {
+  isUserExists(email: string): boolean {
     return false;
   }
-  private sendPasswordResetLink(email: string): void {
+  sendPasswordResetLink(email: string): void {
     console.log('Password reset link sent to ${enteredEmail}', email);
     this.passwordResetLinkSent = true;
   }
