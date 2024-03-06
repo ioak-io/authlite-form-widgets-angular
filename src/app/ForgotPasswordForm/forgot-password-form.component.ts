@@ -16,6 +16,7 @@ export class ForgotPasswordFormComponent {
   forgotPasswordForm!: FormGroup;
 
   passwordResetLinkSent: boolean = false;
+  email: any;
 
   constructor(private fb: FormBuilder) { }
 
@@ -55,7 +56,7 @@ export class ForgotPasswordFormComponent {
     const enteredEmail = this.forgotPasswordForm.value.email;
 
     if (!this.isUserExists(enteredEmail)) {
-      this.forgotPasswordForm.setErrors({ userNotFound: true});
+      this.forgotPasswordForm.setErrors({ userNotFound: true });
     }
     else {
       console.log('reset link sent to:', this.forgotPasswordForm.value);

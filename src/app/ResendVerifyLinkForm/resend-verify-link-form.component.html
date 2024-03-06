@@ -1,38 +1,32 @@
 <form [formGroup]="resendVerifyLinkForm" (ngSubmit)="onSubmit()" class="authlite-resendverifylink-form">
   <div class="authlite-margin-top">
-    <app-tagline 
-          [title]="resendVerifyLinkFormGreetingTitle"
-          [subtitle]="resendVerifyLinkFormGreetingSubtitle">
+    <app-tagline [title]="resendVerifyLinkFormGreetingTitle" [subtitle]="resendVerifyLinkFormGreetingSubtitle">
     </app-tagline>
   </div>
-    <div class="authlite-margin-top">
-      <app-form-element-message
-          [email]="resendVerifyLinkFormLabelEmail"
-      ></app-form-element-message>
-      <input type="email" formControlName="email" class="authlite-input" name="email" autocomplete="off" value=""/>
-      <app-form-element-message
-          *ngIf="resendVerifyLinkForm.controls.email.touched && resendVerifyLinkForm.controls.email.hasError('required')"
-          [blankUsername]="resendVerifyLinkFormUsernameErrorMessage">
-      </app-form-element-message>
-      <app-form-element-message
-            *ngIf="resendVerifyLinkForm.controls.email.touched && resendVerifyLinkForm.controls.email.hasError('email')"
-            [invalidUsername]="resendVerifyLinkFormInvalidUsername">
-        </app-form-element-message>
-      <app-form-element-message
-            *ngIf="resendVerifyLinkForm.errors?.userNotFound"
-            [userNotFound]="resendVerifyLinkFormUserNotFound">
-        </app-form-element-message>
-    </div>
-    <div class="authlite-action-bar authlite-margin-top">
-      <button class="authlite-primary-button" type="submit">
-        {{ translationDictionary.RESEND_VERIFY_LINK_FORM__ACTION_SEND }}
-      </button>
-    </div>
-    <div class="authlite-action-bar-center authlite-margin-top">
-      {{ translationDictionary.RESEND_VERIFY_LINK_FORM__MESSAGE_ALREADY_VERIFIED }}
-      <button class="authlite-button-as-link" type="submit">
-        {{ translationDictionary.RESEND_VERIFY_LINK_FORM__ACTION_SIGNIN }}
-      </button>
-    </div>
-  </form>
-  
+  <div class="authlite-margin-top">
+    <app-form-element-message [email]="resendVerifyLinkFormLabelEmail"></app-form-element-message>
+    <input type="email" formControlName="email" class="authlite-input" name="email" autocomplete="off" value="" />
+    <app-form-element-message
+      *ngIf="resendVerifyLinkForm.controls.email.touched && resendVerifyLinkForm.controls.email.hasError('required')"
+      [blankUsername]="resendVerifyLinkFormUsernameErrorMessage">
+    </app-form-element-message>
+    <app-form-element-message
+      *ngIf="resendVerifyLinkForm.controls.email.touched && resendVerifyLinkForm.controls.email.hasError('email')"
+      [invalidUsername]="resendVerifyLinkFormInvalidUsername">
+    </app-form-element-message>
+    <app-form-element-message *ngIf="resendVerifyLinkForm.errors?.userNotFound"
+      [userNotFound]="resendVerifyLinkFormUserNotFound">
+    </app-form-element-message>
+  </div>
+  <div class="authlite-action-bar authlite-margin-top">
+    <button class="authlite-primary-button" type="submit">
+      {{ translationDictionary.RESEND_VERIFY_LINK_FORM__ACTION_SEND }}
+    </button>
+  </div>
+  <div class="authlite-action-bar-center authlite-margin-top">
+    {{ translationDictionary.RESEND_VERIFY_LINK_FORM__MESSAGE_ALREADY_VERIFIED }}
+    <button class="authlite-button-as-link" type="submit">
+      {{ translationDictionary.RESEND_VERIFY_LINK_FORM__ACTION_SIGNIN }}
+    </button>
+  </div>
+</form>
