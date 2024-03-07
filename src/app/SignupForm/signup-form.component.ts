@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+//import { AuthService } from "../services/AuthenticationService";
+//import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup-form',
@@ -13,7 +15,7 @@ export class SignupFormComponent implements OnInit {
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
 
   @Input() translationName!: TranslationName;
-  
+
   signupForm!: FormGroup;
 
   showPassword: boolean = true;
@@ -22,8 +24,20 @@ export class SignupFormComponent implements OnInit {
     this.showPassword = !this.showPassword
   }
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, /*private http: HttpClient, public authService: AuthService*/) { }
 
+
+  /*onSignupForm(signupForm: NgForm) {
+    if (signupForm.invalid) {
+      return;
+    }
+    this.authService.CreateUser(
+      signupForm.value.given_name,
+      signupForm.value.family_name,
+      signupForm.value.email,
+      signupForm.value.password,
+      signupForm.value.retype_password);
+  }*/
   ngOnInit(): void {
     this.initForm();
   }
@@ -68,8 +82,7 @@ export class SignupFormComponent implements OnInit {
     return this.translationDictionary.SIGNUP_ERROR__BLANK_FAMILYNAME;
   }
   get signupFormUsernameErrorMessage(): string {
-    const email = this.signupForm.get('email');
-    return email?.hasError('required') ? this.translationDictionary.SIGNUP_ERROR__BLANK_USERNAME : email?.hasError('email') ? this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME : '';
+    return this.translationDictionary.SIGNUP_ERROR__BLANK_USERNAME;
   }
   get signupFormInvalidUsername(): string {
     return this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME;
@@ -82,7 +95,7 @@ export class SignupFormComponent implements OnInit {
   }
   get signupFormReTypePasswordDoesnotMatch(): string {
     const retypePassword = this.signupForm.get('retype_password');
-    return retypePassword?.hasError('required') ? this.translationDictionary.SIGNUP_ERROR__BLANK_RETYPEPASSWORD : this.translationDictionary.SIGNUP_ERROR__PASSWORDS_DO_NOT_MATCH;
+    return this.translationDictionary.SIGNUP_ERROR__PASSWORDS_DO_NOT_MATCH;
   }
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password');

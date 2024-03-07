@@ -52,13 +52,13 @@ export class ResendVerifyLinkFormComponent implements OnInit {
     const enteredEmail = this.resendVerifyLinkForm.value.email;
 
     if (!this.isUserExists(enteredEmail)) {
-      this.resendVerifyLinkForm.setErrors({ userNotFound: true});
+      this.resendVerifyLinkForm.setErrors({ userNotFound: true });
     }
     else {
       console.log('reset link sent to:', this.resendVerifyLinkForm.value);
     }
   }
-  private isUserExists(_email: string): boolean {
+  isUserExists(_email: string): boolean {
     return false;
   }
 }
