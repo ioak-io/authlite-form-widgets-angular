@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslationDictionary, TranslationName, getTranslation, DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/AuthenticationService';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signin-form',
@@ -21,7 +24,14 @@ export class SigninFormComponent implements OnInit {
     this.showPassword = !this.showPassword
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, 
+              private router: Router, 
+              private authService:AuthService,
+              private http:HttpClient) { }
+
+  navigateToSignupForm() {
+    this.router.navigate(['/signup-form']);
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -66,10 +76,27 @@ export class SigninFormComponent implements OnInit {
       this.signinForm.markAllAsTouched();
       return;
     }
+
+    
     const enteredEmail = this.signinForm.value.email;
     const enteredPassword = this.signinForm.value.password;
 
-    if (!this.isUserExists(enteredEmail, enteredPassword)) {
+    const signinRequest = this.signinForm.value;
+
+    const environment = 'local';
+    const realm = '228';
+
+    this.authService.signin(environment, realm, signinRequest)
+    .subscribe(
+      (response: any) => {
+        console.log('Login Successful', response);
+      },
+      (error) => {
+        console.error('Login Error', error);
+      }
+    );
+  }
+  /*if (!this.isUserExists(enteredEmail, enteredPassword)) {
       this.signinForm.setErrors({ userNotFound: true });
     }
     else {
@@ -78,5 +105,5 @@ export class SigninFormComponent implements OnInit {
   }
   isUserExists(email: string, password: string): boolean {
     return false;
-  }
+  }*/
 }

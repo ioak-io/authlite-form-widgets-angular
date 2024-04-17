@@ -2,8 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';
 import { FormBuilder, FormGroup, Validators, AbstractControl, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-//import { AuthService } from "../services/AuthenticationService";
-//import { HttpClient } from '@angular/common/http';
+import { AuthService } from "../services/AuthenticationService";
 
 @Component({
   selector: 'app-signup-form',
@@ -19,25 +18,14 @@ export class SignupFormComponent implements OnInit {
   signupForm!: FormGroup;
 
   showPassword: boolean = true;
+  data!: any;
 
   togglePassword() {
     this.showPassword = !this.showPassword
   }
 
-  constructor(private fb: FormBuilder, private router: Router, /*private http: HttpClient, public authService: AuthService*/) { }
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService ) { }
 
-
-  /*onSignupForm(signupForm: NgForm) {
-    if (signupForm.invalid) {
-      return;
-    }
-    this.authService.CreateUser(
-      signupForm.value.given_name,
-      signupForm.value.family_name,
-      signupForm.value.email,
-      signupForm.value.password,
-      signupForm.value.retype_password);
-  }*/
   ngOnInit(): void {
     this.initForm();
   }
@@ -53,7 +41,6 @@ export class SignupFormComponent implements OnInit {
         validators: this.passwordMatchValidator,
       });
   }
-
   get signupGreetingTitle(): string {
     return this.translationDictionary.SIGNUP_FORM__GREETING_TITLE;
   }
@@ -111,10 +98,16 @@ export class SignupFormComponent implements OnInit {
       this.signupForm.markAllAsTouched();
       return;
     }
-    else {
-      console.log('Signup Successful:', this.signupForm.value);
-      //this.router.navigate(['/signup-success-page']);
-    }
+    const signupRequest = this.signupForm.value;
+    /*this.authService.signup('local', '228', signupRequest, 'apikey').subscribe(
+      (response) => {
+        console.log('Signup Successful:', response);
+        this.router.navigate(['/signup-success-page']);
+      },
+      (error) => {
+        console.error('Signup Error:', error);
+      }
+    );*/
   }
 }
 

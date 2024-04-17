@@ -11,15 +11,15 @@
         </app-form-element-message>
         <input class="authlite-input" autoComplete="off" name="email" formControlName="email" type="email"/>
         <app-form-element-message
-            *ngIf="signinForm.controls.email.touched && signinForm.controls.email.hasError('required')"
+            *ngIf="signinForm.controls['email'].touched && signinForm.controls['email'].hasError('required')"
             [blankUsername]="signinFormUsernameErrorMessage">
         </app-form-element-message>
         <app-form-element-message
-            *ngIf="signinForm.controls.email.touched && signinForm.controls.email.hasError('email')"
+            *ngIf="signinForm.controls['email'].touched && signinForm.controls['email'].hasError('email')"
             [invalidUsername]="signinFormInvalidUsername">
         </app-form-element-message>
         <app-form-element-message
-            *ngIf="signinForm.errors?.userNotFound"
+            *ngIf="signinForm.errors?.['userNotFound']" 
             [userNotFound]="signinFormUserNotFound">
         </app-form-element-message>
     </div>
@@ -39,11 +39,11 @@
             </span>
         </div>
         <app-form-element-message 
-            *ngIf="signinForm.controls.password.touched && signinForm.controls.password.hasError('required')"
+            *ngIf="signinForm.controls['password'].touched && signinForm.controls['password'].hasError('required')"
             [blankPassword]="signinFormPasswordErrorMessage">
         </app-form-element-message>
         <app-form-element-message 
-            *ngIf="signinForm.errors?.incorrectPassword"
+            *ngIf="signinForm.errors?.['incorrectPassword']"
             [incorrectPassword]="signinFormIncorrectPassword">
         </app-form-element-message>
     </div>
@@ -59,3 +59,4 @@
         <a routerLink="/signup-form" class="authlite-button-as-link">{{translationDictionary.SIGNIN_FORM__ACTION_CREATEACCOUNT}}</a>
     </div>
 </form>
+<router-outlet></router-outlet>

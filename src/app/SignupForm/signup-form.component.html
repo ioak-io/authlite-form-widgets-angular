@@ -11,7 +11,7 @@
       </app-form-element-message> 
       <input type="text" class="authlite-input" autocomplete="off" value="" formControlName="given_name">
       <app-form-element-message
-          *ngIf="signupForm.controls.given_name.touched && signupForm.controls.given_name.hasError('required')"
+          *ngIf="signupForm.controls['given_name'].touched && signupForm.controls['given_name'].hasError('required')"
           [blankGivenname]="signupFormGivennameErrorMessage">
       </app-form-element-message>
   </div>
@@ -21,7 +21,7 @@
       </app-form-element-message>
       <input type="text" class="authlite-input" autocomplete="off" value="" formControlName="family_name">
       <app-form-element-message
-          *ngIf="signupForm.controls.family_name.touched && signupForm.controls.family_name.hasError('required')"
+          *ngIf="signupForm.controls['family_name'].touched && signupForm.controls['family_name'].hasError('required')"
           [blankGivenname]="signupFormFamilynameErrorMessage">
       </app-form-element-message>
   </div>
@@ -31,11 +31,11 @@
       </app-form-element-message>
       <input type="email" id="userid" formControlName="email" class="authlite-input" name="email" autocomplete="off" value="">
       <app-form-element-message
-          *ngIf="signupForm.controls.email.touched && signupForm.controls.email.hasError('required')"
+          *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('required')"
           [blankUsername]="signupFormUsernameErrorMessage">
       </app-form-element-message>
       <app-form-element-message
-          *ngIf="signupForm.controls.email.touched && signupForm.controls.email.hasError('email')"
+          *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('email')"
           [invalidUsername]="signupFormInvalidUsername">
       </app-form-element-message>
   </div>
@@ -55,7 +55,7 @@
         </span>
     </div>
       <app-form-element-message 
-          *ngIf="signupForm.controls.password.touched && signupForm.controls.password.hasError('required')"
+          *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].hasError('required')"
           [blankPassword]="signupFormPasswordErrorMessage">
       </app-form-element-message>
   </div>
@@ -75,11 +75,11 @@
         </span>
     </div>
       <app-form-element-message 
-          *ngIf="signupForm.controls.retype_password.touched && signupForm.controls.retype_password.hasError('required')"
+          *ngIf="signupForm.controls['retype_password'].touched && signupForm.controls['retype_password'].hasError('required')"
           [blankRetypePassword]="signupFormReTypePasswordErrorMessage">
       </app-form-element-message>
       <app-form-element-message 
-          *ngIf="signupForm.hasError('passwordMismatch') && (signupForm.controls.retype_password.touched || signupForm.controls.password.touched)"
+          *ngIf="signupForm.hasError('passwordMismatch') && (signupForm.controls['retype_password'].touched || signupForm.controls['password'].touched)"
           [RetypePasswordDoesnotmatch]="signupFormReTypePasswordDoesnotMatch">
       </app-form-element-message>
   </div>

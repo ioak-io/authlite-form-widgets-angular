@@ -7,14 +7,14 @@
     <app-form-element-message [email]="resendVerifyLinkFormLabelEmail"></app-form-element-message>
     <input type="email" formControlName="email" class="authlite-input" name="email" autocomplete="off" value="" />
     <app-form-element-message
-      *ngIf="resendVerifyLinkForm.controls.email.touched && resendVerifyLinkForm.controls.email.hasError('required')"
+      *ngIf="resendVerifyLinkForm.controls['email'].touched && resendVerifyLinkForm.controls['email'].hasError('required')"
       [blankUsername]="resendVerifyLinkFormUsernameErrorMessage">
     </app-form-element-message>
     <app-form-element-message
-      *ngIf="resendVerifyLinkForm.controls.email.touched && resendVerifyLinkForm.controls.email.hasError('email')"
+      *ngIf="resendVerifyLinkForm.controls['email'].touched && resendVerifyLinkForm.controls['email'].hasError('email')"
       [invalidUsername]="resendVerifyLinkFormInvalidUsername">
     </app-form-element-message>
-    <app-form-element-message *ngIf="resendVerifyLinkForm.errors?.userNotFound"
+    <app-form-element-message *ngIf="resendVerifyLinkForm.errors?.['userNotFound']"
       [userNotFound]="resendVerifyLinkFormUserNotFound">
     </app-form-element-message>
   </div>

@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/AuthenticationService';
+import { AppComponent } from './app.component';
 import { DesignOneComponent } from './login/DesignOne/design-one.component';
 import { MainFormComponent } from './login/MainForm/main-form.component';
 import { HeaderComponent } from './Header/header.component';
@@ -12,14 +15,12 @@ import { SigninFormComponent } from './signinForm/signin-form.component';
 import { CheckboxComponent } from './ui/checkbox/checkbox.component';
 import { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';
 import { SignupFormComponent } from './SignupForm/signup-form.component';
-import { AppRoutingModule } from './app-routing.module';
 import { ResendVerifyLinkFormComponent } from './ResendVerifyLinkForm/resend-verify-link-form.component';
 import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-page.component';
-
+import { AuthliteFormsWidgetsModule } from 'authlite-forms-widgets';
 
 @NgModule({
   declarations: [
-    AppComponent,
     DesignOneComponent,
     MainFormComponent,
     HeaderComponent,
@@ -31,13 +32,18 @@ import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-p
     ForgotPasswordFormComponent,
     SignupFormComponent,
     ResendVerifyLinkFormComponent,
-    SignupSuccessPageComponent
+    SignupSuccessPageComponent, 
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule, AppRoutingModule, 
+    AppComponent,
+    BrowserModule, 
+    ReactiveFormsModule, 
+    AppRoutingModule, 
+    HttpClientModule, 
+    AuthliteFormsWidgetsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }

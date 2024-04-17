@@ -1,5 +1,9 @@
 import { moduleMetadata, Meta, Story } from '@storybook/angular';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../services/AuthenticationService';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { LoginWrapperComponent } from './login-wrapper.component';
 import { DesignOneComponent } from './DesignOne/design-one.component';
 import { MainFormComponent } from './MainForm/main-form.component';
@@ -10,9 +14,7 @@ import { TaglineComponent } from '../Tagline/tagline.component';
 import { CheckboxComponent } from '../ui/checkbox/checkbox.component';
 import { ForgotPasswordFormComponent } from '../ForgotPasswordForm/forgot-password-form.component';
 import { SignupFormComponent } from '../SignupForm/signup-form.component';
-import { DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { FormElementMessageComponent } from '../shared/FormElementMessage/form-element-message.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ResendVerifyLinkFormComponent } from '../ResendVerifyLinkForm/resend-verify-link-form.component';
 import { SignupSuccessPageComponent } from '../SignupSuccessPage/signup-success-page.component';
 
@@ -22,9 +24,9 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [
-        LoginWrapperComponent, 
-        DesignOneComponent, 
-        MainFormComponent, 
+        LoginWrapperComponent,
+        DesignOneComponent,
+        MainFormComponent,
         HeaderComponent,
         LogoComponent,
         SigninFormComponent,
@@ -34,15 +36,16 @@ export default {
         SignupFormComponent,
         FormElementMessageComponent,
         ResendVerifyLinkFormComponent,
-        SignupSuccessPageComponent
+        SignupSuccessPageComponent,
       ],
-      imports: [RouterTestingModule, ReactiveFormsModule
+      imports: [RouterTestingModule, ReactiveFormsModule, HttpClientModule
       ],
+    providers: [AuthService],
     }),
   ],
 } as Meta;
 
-const Template: Story<LoginWrapperComponent> = (args:LoginWrapperComponent) => ({
+const Template: Story<LoginWrapperComponent> = (args: LoginWrapperComponent) => ({
   component: LoginWrapperComponent,
   props: args,
 });
@@ -64,9 +67,9 @@ Demo.args = {
   signupFormLabelPassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_PASSWORD,
   signupFormLabelRetypePassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_RETYPEPASSWORD,
   forgotPasswordFormLabelEmail: DEFAULT_TRANSLATION_DICTIONARY.FORGOT_PASSWORD_FORM__LABEL_EMAIL,
-  resendVerifyLinkFormGreetingTitle:DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__GREETING_TITLE,
-  resendVerifyLinkFormGreetingSubtitle:DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__GREETING_SUBTITLE,
-  resendVerifyLinkFormLabelEmail:DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__LABEL_EMAIL,
+  resendVerifyLinkFormGreetingTitle: DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__GREETING_TITLE,
+  resendVerifyLinkFormGreetingSubtitle: DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__GREETING_SUBTITLE,
+  resendVerifyLinkFormLabelEmail: DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__LABEL_EMAIL,
   heading: 'Signup Successful',
   children: 'Your account has been successfully created.',
 }
