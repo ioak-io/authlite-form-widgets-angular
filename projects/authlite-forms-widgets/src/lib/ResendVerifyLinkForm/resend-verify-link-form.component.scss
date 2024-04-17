@@ -1,0 +1,12 @@
+@import '../styles/index.css';
+
+.authlite-resendverifylink-form {
+    display: grid;
+    grid-auto-flow: row;
+    /* row-gap: 20px; */
+    width: 100%;
+}
+.authlite-action-bar,
+.authlite-action-bar-center {
+    font-size: 12px;
+}

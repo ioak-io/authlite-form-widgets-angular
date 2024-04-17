@@ -1,0 +1,93 @@
+<form class="authlite-d1-signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <div class="authlite-margin-top">
+    <lib-tagline 
+          [title]="signupGreetingTitle"
+          [subtitle]="signupGreetingSubtitle">
+    </lib-tagline>
+  </div>
+  <div class="authlite-margin-top">
+      <lib-form-element-message 
+          [given_name]="signupFormLabelGivenname">
+      </lib-form-element-message> 
+      <input type="text" class="authlite-input" autocomplete="off" value="" formControlName="given_name">
+      <lib-form-element-message
+          *ngIf="signupForm.controls['given_name'].touched && signupForm.controls['given_name'].hasError('required')"
+          [blankGivenname]="signupFormGivennameErrorMessage">
+      </lib-form-element-message>
+  </div>
+  <div class="authlite-margin-top">
+      <lib-form-element-message 
+          [family_name]="signupFormLabelFamilyname">
+      </lib-form-element-message>
+      <input type="text" class="authlite-input" autocomplete="off" value="" formControlName="family_name">
+      <lib-form-element-message
+          *ngIf="signupForm.controls['family_name'].touched && signupForm.controls['family_name'].hasError('required')"
+          [blankGivenname]="signupFormFamilynameErrorMessage">
+      </lib-form-element-message>
+  </div>
+  <div class="authlite-margin-top">
+      <lib-form-element-message 
+          [email]="signupFormLabelUsername">
+      </lib-form-element-message>
+      <input type="email" id="userid" formControlName="email" class="authlite-input" name="email" autocomplete="off" value="">
+      <lib-form-element-message
+          *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('required')"
+          [blankUsername]="signupFormUsernameErrorMessage">
+      </lib-form-element-message>
+      <lib-form-element-message
+          *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('email')"
+          [invalidUsername]="signupFormInvalidUsername">
+      </lib-form-element-message>
+  </div>
+  <div class="authlite-margin-top">
+      <lib-form-element-message 
+          [password]="signupFormLabelPassword">
+      </lib-form-element-message>
+      <div class="authlite-input-container">
+        <input [type]="showPassword?'password':'text'" formControlName="password" class="authlite-input" name="password" value="">
+        <span (click)="togglePassword()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" *ngIf="!showPassword" class="authlite-password-hide-icon">
+                <path d="M320 400c-75.9 0-137.3-58.7-142.9-133.1L72.2 185.8c-13.8 17.3-26.5 35.6-36.7 55.6a32.4 32.4 0 0 0 0 29.2C89.7 376.4 197.1 448 320 448c26.9 0 52.9-4 77.9-10.5L346 397.4a144.1 144.1 0 0 1 -26 2.6zm313.8 58.1l-110.6-85.4a331.3 331.3 0 0 0 81.3-102.1 32.4 32.4 0 0 0 0-29.2C550.3 135.6 442.9 64 320 64a308.2 308.2 0 0 0 -147.3 37.7L45.5 3.4A16 16 0 0 0 23 6.2L3.4 31.5A16 16 0 0 0 6.2 53.9l588.4 454.7a16 16 0 0 0 22.5-2.8l19.6-25.3a16 16 0 0 0 -2.8-22.5zm-183.7-142l-39.3-30.4A94.8 94.8 0 0 0 416 256a94.8 94.8 0 0 0 -121.3-92.2A47.7 47.7 0 0 1 304 192a46.6 46.6 0 0 1 -1.5 10l-73.6-56.9A142.3 142.3 0 0 1 320 112a143.9 143.9 0 0 1 144 144c0 21.6-5.3 41.8-13.9 60.1z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" *ngIf="showPassword" class="authlite-password-show-icon">
+                <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
+            </svg>
+        </span>
+    </div>
+      <lib-form-element-message 
+          *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].hasError('required')"
+          [blankPassword]="signupFormPasswordErrorMessage">
+      </lib-form-element-message>
+  </div>
+  <div class="authlite-margin-top">
+      <lib-form-element-message 
+          [retype_password]="signupFormLabelRetypePassword">
+      </lib-form-element-message>
+      <div class="authlite-input-container">
+        <input [type]="showPassword?'password':'text'" formControlName="retype_password" class="authlite-input" name="retype_password" value="">
+        <span (click)="togglePassword()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" *ngIf="!showPassword" class="authlite-password-hide-icon">
+                <path d="M320 400c-75.9 0-137.3-58.7-142.9-133.1L72.2 185.8c-13.8 17.3-26.5 35.6-36.7 55.6a32.4 32.4 0 0 0 0 29.2C89.7 376.4 197.1 448 320 448c26.9 0 52.9-4 77.9-10.5L346 397.4a144.1 144.1 0 0 1 -26 2.6zm313.8 58.1l-110.6-85.4a331.3 331.3 0 0 0 81.3-102.1 32.4 32.4 0 0 0 0-29.2C550.3 135.6 442.9 64 320 64a308.2 308.2 0 0 0 -147.3 37.7L45.5 3.4A16 16 0 0 0 23 6.2L3.4 31.5A16 16 0 0 0 6.2 53.9l588.4 454.7a16 16 0 0 0 22.5-2.8l19.6-25.3a16 16 0 0 0 -2.8-22.5zm-183.7-142l-39.3-30.4A94.8 94.8 0 0 0 416 256a94.8 94.8 0 0 0 -121.3-92.2A47.7 47.7 0 0 1 304 192a46.6 46.6 0 0 1 -1.5 10l-73.6-56.9A142.3 142.3 0 0 1 320 112a143.9 143.9 0 0 1 144 144c0 21.6-5.3 41.8-13.9 60.1z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" *ngIf="showPassword" class="authlite-password-show-icon">
+                <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
+            </svg>
+        </span>
+    </div>
+      <lib-form-element-message 
+          *ngIf="signupForm.controls['retype_password'].touched && signupForm.controls['retype_password'].hasError('required')"
+          [blankRetypePassword]="signupFormReTypePasswordErrorMessage">
+      </lib-form-element-message>
+      <lib-form-element-message 
+          *ngIf="signupForm.hasError('passwordMismatch') && (signupForm.controls['retype_password'].touched || signupForm.controls['password'].touched)"
+          [RetypePasswordDoesnotmatch]="signupFormReTypePasswordDoesnotMatch">
+      </lib-form-element-message>
+  </div>
+  <div class="authlite-action-bar authlite-margin-top">
+      <button class="authlite-primary-button" type="submit">{{translationDictionary.SIGNUP_FORM__ACTION_CREATEACCOUNT}}</button>
+  </div>
+  <div class="authlite-margin-top authlite-action-bar-center">
+      {{translationDictionary.SIGNUP_FORM__MESSAGE_EXISTING_ACCOUNT}}
+      <button class="authlite-button-as-link" type="submit" routerLink="/signin-form">{{translationDictionary.SIGNUP_FORM__ACTION_SIGNIN}}</button>
+  </div>
+</form>
