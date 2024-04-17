@@ -1,0 +1,16 @@
+import { Component, Input } from '@angular/core';
+import * as i0 from "@angular/core";
+export class TaglineComponent {
+    constructor() { }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.2", ngImport: i0, type: TaglineComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.2", type: TaglineComponent, selector: "lib-tagline", inputs: { title: "title", subtitle: "subtitle" }, ngImport: i0, template: "<div class=\"authlite-d1-tagline\">\r\n    <div class=\"authlite-d1-tagline__title\">{{title}}</div>\r\n    <div class=\"authlite-d1-tagline__subtitle\">{{subtitle}}</div>\r\n</div>", styles: [".authlite-d1-tagline{text-align:center;display:grid;grid-auto-flow:row;row-gap:6px}.authlite-d1-tagline__title{font-size:20px}.authlite-d1-tagline__subtitle{font-size:12px;opacity:.6}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.2", ngImport: i0, type: TaglineComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'lib-tagline', template: "<div class=\"authlite-d1-tagline\">\r\n    <div class=\"authlite-d1-tagline__title\">{{title}}</div>\r\n    <div class=\"authlite-d1-tagline__subtitle\">{{subtitle}}</div>\r\n</div>", styles: [".authlite-d1-tagline{text-align:center;display:grid;grid-auto-flow:row;row-gap:6px}.authlite-d1-tagline__title{font-size:20px}.authlite-d1-tagline__subtitle{font-size:12px;opacity:.6}\n"] }]
+        }], ctorParameters: () => [], propDecorators: { title: [{
+                type: Input
+            }], subtitle: [{
+                type: Input
+            }] } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGFnbGluZS5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9hdXRobGl0ZS1mb3Jtcy13aWRnZXRzL3NyYy9saWIvVGFnbGluZS90YWdsaW5lLmNvbXBvbmVudC50cyIsIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL2F1dGhsaXRlLWZvcm1zLXdpZGdldHMvc3JjL2xpYi9UYWdsaW5lL3RhZ2xpbmUuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7O0FBT2pELE1BQU0sT0FBTyxnQkFBZ0I7SUFJM0IsZ0JBQWdCLENBQUM7OEdBSk4sZ0JBQWdCO2tHQUFoQixnQkFBZ0IscUdDUDdCLHVMQUdNOzsyRkRJTyxnQkFBZ0I7a0JBTDVCLFNBQVM7K0JBQ0UsYUFBYTt3REFLZCxLQUFLO3NCQUFiLEtBQUs7Z0JBQ0csUUFBUTtzQkFBaEIsS0FBSyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuXHJcbkBDb21wb25lbnQoe1xyXG4gIHNlbGVjdG9yOiAnbGliLXRhZ2xpbmUnLFxyXG4gIHRlbXBsYXRlVXJsOiAnLi90YWdsaW5lLmNvbXBvbmVudC5odG1sJyxcclxuICBzdHlsZVVybHM6IFsnLi90YWdsaW5lLmNvbXBvbmVudC5zY3NzJ10sXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBUYWdsaW5lQ29tcG9uZW50IHtcclxuICBASW5wdXQoKSB0aXRsZSE6IHN0cmluZztcclxuICBASW5wdXQoKSBzdWJ0aXRsZSE6IHN0cmluZztcclxuXHJcbiAgY29uc3RydWN0b3IoKSB7IH1cclxufSIsIjxkaXYgY2xhc3M9XCJhdXRobGl0ZS1kMS10YWdsaW5lXCI+XHJcbiAgICA8ZGl2IGNsYXNzPVwiYXV0aGxpdGUtZDEtdGFnbGluZV9fdGl0bGVcIj57e3RpdGxlfX08L2Rpdj5cclxuICAgIDxkaXYgY2xhc3M9XCJhdXRobGl0ZS1kMS10YWdsaW5lX19zdWJ0aXRsZVwiPnt7c3VidGl0bGV9fTwvZGl2PlxyXG48L2Rpdj4iXX0=
