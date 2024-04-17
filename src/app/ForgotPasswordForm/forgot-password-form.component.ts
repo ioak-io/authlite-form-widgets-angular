@@ -16,6 +16,7 @@ export class ForgotPasswordFormComponent {
   forgotPasswordForm!: FormGroup;
 
   passwordResetLinkSent: boolean = false;
+  email: any;
 
   constructor(private fb: FormBuilder) { }
 
@@ -38,8 +39,7 @@ export class ForgotPasswordFormComponent {
     return this.translationDictionary.FORGOT_PASSWORD_FORM__LABEL_EMAIL;
   }
   get forgotPasswordFormUsernameErrorMessage(): string {
-    const email = this.forgotPasswordForm.get('email');
-    return email?.hasError('required') ? this.translationDictionary['FORGOT_PASSWORD_ERROR__BLANK_USERNAME'] : email?.hasError('email') ? this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME : '';
+    return this.translationDictionary['FORGOT_PASSWORD_ERROR__BLANK_USERNAME'];
   }
   get forgotPasswordFormInvalidUsername(): string {
     return this.translationDictionary.FORGOT_PASSWORD_ERROR__INVALID_USERNAME;
@@ -56,17 +56,17 @@ export class ForgotPasswordFormComponent {
     const enteredEmail = this.forgotPasswordForm.value.email;
 
     if (!this.isUserExists(enteredEmail)) {
-      this.forgotPasswordForm.setErrors({ userNotFound: true});
+      this.forgotPasswordForm.setErrors({ userNotFound: true });
     }
     else {
       console.log('reset link sent to:', this.forgotPasswordForm.value);
       this.sendPasswordResetLink(enteredEmail);
     }
   }
-  private isUserExists(email: string): boolean {
+  isUserExists(email: string): boolean {
     return false;
   }
-  private sendPasswordResetLink(email: string): void {
+  sendPasswordResetLink(email: string): void {
     console.log('Password reset link sent to ${enteredEmail}', email);
     this.passwordResetLinkSent = true;
   }
