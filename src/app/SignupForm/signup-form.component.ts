@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';
 import { FormBuilder, FormGroup, Validators, AbstractControl, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from "../services/AuthenticationService";
+import { AuthenticationService } from "../services/AuthenticationService";
 
 @Component({
   selector: 'app-signup-form',
@@ -24,7 +24,7 @@ export class SignupFormComponent implements OnInit {
     this.showPassword = !this.showPassword
   }
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService ) { }
+  constructor(private fb: FormBuilder, private router: Router, private authenticationService: AuthenticationService ) { }
 
   ngOnInit(): void {
     this.initForm();

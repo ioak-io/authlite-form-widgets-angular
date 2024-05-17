@@ -1,9 +1,50 @@
 
 <div class="authlite-mainform">
-    <app-header></app-header>
+    <app-header [logo]="logo"></app-header>
     <app-signin-form></app-signin-form>
     <!--<app-signup-form></app-signup-form>
     <app-forgot-password-form></app-forgot-password-form>
     <app-resend-verify-link-form></app-resend-verify-link-form>
     <app-signup-success-page></app-signup-success-page>-->
 </div>
+
+<!--<div class="authlite-mainform">
+    <app-header [logo]="logo"></app-header>
+    <ng-container *ngIf="view === 'signin'">
+        <app-signin-form
+          [onSignin]="onSignin"
+          (onSignup)="changeView(PageView.signup)"
+          (onForgotPassword)="changeView(PageView.forgotpassword)"
+          [signinFormErrorMessages]="signinFormErrorMessages"
+          [dictionary]="dictionary">
+        </app-signin-form>
+      </ng-container>
+      <ng-container *ngIf="view === 'signup'">
+        <app-signup-form
+          [onSignup]="onSignup"
+          (onSignin)="changeView(PageView.signin)"
+          [signupFormErrorMessages]="signupFormErrorMessages"
+          [dictionary]="dictionary">
+        </app-signup-form>
+      </ng-container>
+      <ng-container *ngIf="view === 'forgotpassword'">
+        <app-forgot-password-form
+          [onForgotPassword]="onForgotPassword"
+          (onSignin)="changeView(PageView.signin)"
+          [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
+          [dictionary]="dictionary">
+        </app-forgot-password-form>
+      </ng-container>
+      <ng-container *ngIf="view === 'resendverifyemail'">
+        <app-resend-verify-link-form
+          [email]="signinFormErrorMessages?.unverifiedEmail || ''"
+          (onSignin)="changeView(PageView.signin)"
+          [onResendVerifyLink]="onResendVerifyLink"
+          [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages"
+          [dictionary]="dictionary">
+        </app-resend-verify-link-form>
+      </ng-container>
+      <ng-container *ngIf="view === 'placeholder'">
+        {{ placeholder }}
+      </ng-container>
+    </div>-->

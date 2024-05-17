@@ -1,6 +1,21 @@
 <div class="authlite-d1">
   <div class="authlite-d1__left"></div>
   <div class="authlite-d1__right">
-    <app-main-form></app-main-form>
+    <app-main-form
+      [onSignin]="onSignin"
+      [onSignup]="onSignup"
+      [onForgotPassword]="onForgotPassword"
+      [onResendVerifyLink]="onResendVerifyLink"
+      [signinFormErrorMessages]="signinFormErrorMessages"
+      [signupFormErrorMessages]="signupFormErrorMessages"
+      [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
+      [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages"
+      [clearErrorMessages]="clearErrorMessages"
+      [logo]="logo"
+      [placeholder]="placeholder"
+      [dictionary]="dictionary"
+      [view]="view"
+      [changeView]="changeView">
+    </app-main-form>
   </div>
 </div>

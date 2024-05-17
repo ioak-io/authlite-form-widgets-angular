@@ -1,6 +1,7 @@
-
 import { Component, Input} from '@angular/core';
 import { TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';
+import { AuthenticationService } from '../services/AuthenticationService';
+import PageView from '../types/PageViewType';
 
 @Component({
   selector: 'app-login',
@@ -29,4 +30,56 @@ export class LoginWrapperComponent{
   @Input() resendVerifyLinkFormLabelEmail!:string;
   @Input() heading: string = '';
   @Input() children: any;
+
+  successPage: 'signin' | 'signup' | 'forgotpassword' | 'resendverifyemail' | null = null;
+  view: PageView = PageView.signin;
+
+  constructor(private authenticationService: AuthenticationService) { }
+
+  ngOnInit(): void {
+  }
+
+  onSignin(data: any): void {
+    this.authenticationService.signin('production', 228, data).subscribe((response: any) => {
+      if (response.outcome === 'SUCCESS') {
+        this.view = PageView.placeholder;
+        this.successPage = 'signin';
+      }
+      //this.signinFormErrorMessages = response.errorMessages;
+    });
+  }
+  onSignup(data: any): void {
+    this.authenticationService.signup('production', 228, data, '1d9524a6-30df-4b3c-9402-503f4011896c').subscribe((response: any) => {
+      console.log(response);
+      if (response.outcome === 'SUCCESS') {
+        this.view = PageView.placeholder;
+        this.successPage = 'signup';
+      }
+      //this.signupFormErrorMessages = response.errorMessages;
+    });
+  }
+  onForgotPasswordForm(data: any): void {
+    this.authenticationService.ForgotPasswordForm('production', 228, data).subscribe((response: any) => {
+      console.log(response);
+      if (response.outcome === 'SUCCESS') {
+        this.view = PageView.placeholder;
+        this.successPage = 'forgotpassword';
+      }
+      //this.forgotPasswordFormErrorMessages = response.errorMessages;
+    });
+  }
+  onResendVerifyLinkForm(data: any): void {
+    this.authenticationService.resendVerifyLink('production', 228, data).subscribe((response: any) => {
+      console.log(response);
+      if (response.outcome === 'SUCCESS') {
+        this.view = PageView.placeholder;
+        this.successPage = 'resendverifyemail';
+      }
+      //this.resendVerifyLinkFormErrorMessages = response.errorMessages;
+    });
+  }
+  clearErrorMessages(): void {
+    //this.signinFormErrorMessages = {};
+    //this.signupFormErrorMessages = {};
+  }
 }

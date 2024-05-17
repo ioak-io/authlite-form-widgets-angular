@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslationDictionary, TranslationName, getTranslation, DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/AuthenticationService';
+import { AuthenticationService } from '../services/AuthenticationService';
 import { HttpClient } from '@angular/common/http';
+import SigninFormErrorMessages from '../types/SigninFormErrorMessagesType';
+import SigninRequest from '../types/SigninRequest';
 
 @Component({
   selector: 'app-signin-form',
@@ -12,11 +14,32 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SigninFormComponent implements OnInit {
 
+  @Input() signinFormErrorMessages!: SigninFormErrorMessages;
+
+  @Output() onSignin = new EventEmitter<SigninRequest>();
+  @Output() onSignup = new EventEmitter<void>();
+  @Output() onForgotPassword = new EventEmitter<void>();
+
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
 
   @Input() translationName!: TranslationName;
 
   signinForm!: FormGroup;
+
+  state: SigninRequest = {
+    email: '',
+    password: ''
+  };
+
+  onInput(event: Event, field: keyof SigninRequest): void {
+    const target = event.target as HTMLInputElement;
+    this.state[field] = target.value;
+  }
+
+  /*onSubmit(event: Event): void {
+    event.preventDefault();
+    this.onSignin.emit(this.state);
+  }*/
 
   showPassword: boolean = true; //password eye icon functionality
     
@@ -26,7 +49,7 @@ export class SigninFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
               private router: Router, 
-              private authService:AuthService,
+              private authenticationService:AuthenticationService,
               private http:HttpClient) { }
 
   navigateToSignupForm() {
@@ -70,13 +93,12 @@ export class SigninFormComponent implements OnInit {
   get signinFormUserNotFound(): string {
     return this.translationDictionary.SIGNIN_ERROR__USER_NOT_FOUND;
   }
-  onSubmit(): void {
+ onSubmit(): void {
     console.log('onSubmit')
     if (this.signinForm.invalid) {
       this.signinForm.markAllAsTouched();
       return;
     }
-
     
     const enteredEmail = this.signinForm.value.email;
     const enteredPassword = this.signinForm.value.password;
@@ -86,7 +108,7 @@ export class SigninFormComponent implements OnInit {
     const environment = 'local';
     const realm = '228';
 
-    this.authService.signin(environment, realm, signinRequest)
+    this.authenticationService.signin(environment, realm, signinRequest)
     .subscribe(
       (response: any) => {
         console.log('Login Successful', response);

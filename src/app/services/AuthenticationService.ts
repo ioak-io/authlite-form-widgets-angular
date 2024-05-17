@@ -48,10 +48,11 @@ interface ResendVerifyLinkResponse {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthenticationService {
 
   private BASE_URL_PRODUCTION = "https://api.ioak.io:8010/api";
   private BASE_URL_LOCAL = "http://api.ioak.io:8010/api";
+  resetPasswordLink: any;
 
   constructor(private http: HttpClient) { }
 

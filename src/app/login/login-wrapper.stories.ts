@@ -1,7 +1,7 @@
 import { moduleMetadata, Meta, Story } from '@storybook/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../services/AuthenticationService';
+import { AuthenticationService } from '../services/AuthenticationService';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { LoginWrapperComponent } from './login-wrapper.component';
@@ -40,7 +40,7 @@ export default {
       ],
       imports: [RouterTestingModule, ReactiveFormsModule, HttpClientModule
       ],
-    providers: [AuthService],
+    providers: [AuthenticationService],
     }),
   ],
 } as Meta;

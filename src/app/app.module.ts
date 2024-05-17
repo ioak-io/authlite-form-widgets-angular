@@ -3,7 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './services/AuthenticationService';
+import { AuthenticationService } from './services/AuthenticationService';
 import { AppComponent } from './app.component';
 import { DesignOneComponent } from './login/DesignOne/design-one.component';
 import { MainFormComponent } from './login/MainForm/main-form.component';
@@ -42,7 +42,7 @@ import { AuthliteFormsWidgetsModule } from 'authlite-forms-widgets';
     HttpClientModule, 
     AuthliteFormsWidgetsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthenticationService],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: []
 })
