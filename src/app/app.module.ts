@@ -11,6 +11,7 @@ import { HeaderComponent } from './Header/header.component';
 import { LogoComponent } from './Logo/logo.component';
 import { FormElementMessageComponent } from './shared/FormElementMessage/form-element-message.component';
 import { LoginWrapperComponent } from './login/login-wrapper.component';
+import { LoginComponent } from './login/login/login.component';
 import { SigninFormComponent } from './signinForm/signin-form.component';
 import { CheckboxComponent } from './ui/checkbox/checkbox.component';
 import { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';
@@ -27,6 +28,7 @@ import { AuthliteFormsWidgetsModule } from 'authlite-forms-widgets';
     LogoComponent,
     FormElementMessageComponent,
     LoginWrapperComponent,
+    LoginComponent,
     SigninFormComponent,
     CheckboxComponent,
     ForgotPasswordFormComponent,

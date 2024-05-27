@@ -5,6 +5,7 @@ import { AuthenticationService } from '../services/AuthenticationService';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { LoginWrapperComponent } from './login-wrapper.component';
+import { LoginComponent } from '../login/login/login.component';
 import { DesignOneComponent } from './DesignOne/design-one.component';
 import { MainFormComponent } from './MainForm/main-form.component';
 import { HeaderComponent } from '../Header/header.component';
@@ -17,6 +18,10 @@ import { SignupFormComponent } from '../SignupForm/signup-form.component';
 import { FormElementMessageComponent } from '../shared/FormElementMessage/form-element-message.component';
 import { ResendVerifyLinkFormComponent } from '../ResendVerifyLinkForm/resend-verify-link-form.component';
 import { SignupSuccessPageComponent } from '../SignupSuccessPage/signup-success-page.component';
+import { InfoPageComponent } from '../InfoPage/info-page.component';
+import { InfoPageDescriptionComponent } from '../InfoPage/InfoPageDescription/info-page-description.component';
+import { InfoPageFootnoteComponent } from '../InfoPage/InfoPageFootnote/info-page.footnote.component';
+
 
 export default {
   title: 'Form Elements/Login',
@@ -25,6 +30,7 @@ export default {
     moduleMetadata({
       declarations: [
         LoginWrapperComponent,
+        LoginComponent,
         DesignOneComponent,
         MainFormComponent,
         HeaderComponent,
@@ -37,6 +43,9 @@ export default {
         FormElementMessageComponent,
         ResendVerifyLinkFormComponent,
         SignupSuccessPageComponent,
+        InfoPageComponent,
+        InfoPageDescriptionComponent,
+        InfoPageFootnoteComponent
       ],
       imports: [RouterTestingModule, ReactiveFormsModule, HttpClientModule
       ],

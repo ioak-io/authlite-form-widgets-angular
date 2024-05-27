@@ -4,7 +4,7 @@ import { AuthenticationService } from '../services/AuthenticationService';
 import PageView from '../types/PageViewType';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-wrapper',
   templateUrl: './login-wrapper.component.html',
   styleUrls: ['./style.css'],
 })
@@ -49,7 +49,7 @@ export class LoginWrapperComponent{
     });
   }
   onSignup(data: any): void {
-    this.authenticationService.signup('production', 228, data, '1d9524a6-30df-4b3c-9402-503f4011896c').subscribe((response: any) => {
+    this.authenticationService.signup('production', 228, data).subscribe((response: any) => {
       console.log(response);
       if (response.outcome === 'SUCCESS') {
         this.view = PageView.placeholder;

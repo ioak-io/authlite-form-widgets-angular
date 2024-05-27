@@ -98,16 +98,21 @@ export class SignupFormComponent implements OnInit {
       this.signupForm.markAllAsTouched();
       return;
     }
+
+    const environment = 'production';
+    const realm = '228';
+
     const signupRequest = this.signupForm.value;
-    /*this.authService.signup('local', '228', signupRequest, 'apikey').subscribe(
-      (response) => {
+
+    this.authenticationService.signup(environment, realm, signupRequest).subscribe(
+      (response: any) => {
         console.log('Signup Successful:', response);
-        this.router.navigate(['/signup-success-page']);
+        //this.router.navigate(['/signup-success-page']);
       },
       (error) => {
         console.error('Signup Error:', error);
       }
-    );*/
+    );
   }
 }
 

@@ -3,7 +3,6 @@ import { TranslationDictionary, TranslationName, getTranslation, DEFAULT_TRANSLA
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/AuthenticationService';
-import { HttpClient } from '@angular/common/http';
 import SigninFormErrorMessages from '../types/SigninFormErrorMessagesType';
 import SigninRequest from '../types/SigninRequest';
 
@@ -17,7 +16,9 @@ export class SigninFormComponent implements OnInit {
   @Input() signinFormErrorMessages!: SigninFormErrorMessages;
 
   @Output() onSignin = new EventEmitter<SigninRequest>();
+
   @Output() onSignup = new EventEmitter<void>();
+
   @Output() onForgotPassword = new EventEmitter<void>();
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
@@ -31,29 +32,25 @@ export class SigninFormComponent implements OnInit {
     password: ''
   };
 
-  onInput(event: Event, field: keyof SigninRequest): void {
+  /*onInput(event: Event, field: keyof SigninRequest): void {
     const target = event.target as HTMLInputElement;
     this.state[field] = target.value;
-  }
-
-  /*onSubmit(event: Event): void {
-    event.preventDefault();
-    this.onSignin.emit(this.state);
   }*/
 
   showPassword: boolean = true; //password eye icon functionality
+
+  constructor(private fb: FormBuilder, 
+    private router: Router, 
+    private authenticationService:AuthenticationService) { }
     
   togglePassword() {
     this.showPassword = !this.showPassword
   }
-
-  constructor(private fb: FormBuilder, 
-              private router: Router, 
-              private authenticationService:AuthenticationService,
-              private http:HttpClient) { }
-
   navigateToSignupForm() {
     this.router.navigate(['/signup-form']);
+  }
+  navigateToLogin(){
+    this.router.navigate(['/login']);
   }
 
   ngOnInit(): void {
@@ -105,13 +102,14 @@ export class SigninFormComponent implements OnInit {
 
     const signinRequest = this.signinForm.value;
 
-    const environment = 'local';
+    const environment = 'production';
     const realm = '228';
 
     this.authenticationService.signin(environment, realm, signinRequest)
     .subscribe(
       (response: any) => {
         console.log('Login Successful', response);
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.error('Login Error', error);

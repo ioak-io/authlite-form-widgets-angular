@@ -78,7 +78,7 @@ export class AuthenticationService {
       ) as Observable<SigninResponse>;
   }
 
-  signup(environment: 'local' | 'production', realm: number | string, payloadRequest: SignupRequest, apikey: string): Observable<SigninResponse> {
+  signup(environment: 'local' | 'production', realm: number | string, payloadRequest: SignupRequest): Observable<SigninResponse> {
     const payload: SignupRequest = {
       given_name: payloadRequest.given_name?.trim(),
       family_name: payloadRequest.family_name?.trim(),
@@ -96,7 +96,6 @@ export class AuthenticationService {
 
     const headers = new HttpHeaders({
       "Content-type": "application/json; charset=UTF-8",
-      "authorization": apikey
     });
 
     return this.http.post<SigninResponse>(`${url}/${realm}/admin/auth/signup`, { response_type: "token", ...payload }, { headers })
