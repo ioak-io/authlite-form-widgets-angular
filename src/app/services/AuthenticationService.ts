@@ -25,6 +25,7 @@ interface ResendVerifyLinkRequest {
 }
 
 interface SigninResponse {
+  outcome: string;
   success: boolean;
   errorCode?: string;
   errorMessages: string;
@@ -39,6 +40,7 @@ interface ForgotPasswordResponse {
 }
 
 interface ResendVerifyLinkResponse {
+  outcome: string;
   success: boolean;
   errorCode?: string;
   errorMessages: string;
