@@ -3,3 +3,5 @@ lib/*
 storybook-static
 storybook-static/*
 .angular
+/projects
+/dist
