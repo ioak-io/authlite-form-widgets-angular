@@ -1,15 +1,14 @@
-
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SigninFormComponent } from './signinForm/signin-form.component';
 import { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-password-form.component';
 import { SignupFormComponent } from './SignupForm/signup-form.component';
 import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-page.component';
 import { LoginComponent } from './login/login/login.component';
-//import { APP_BASE_HREF } from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'signin-form', pathMatch: 'full'},
+  { path: '', redirectTo: 'signin-form', pathMatch: 'full' },
   { path: 'signin-form', component: SigninFormComponent },
   { path: 'signup-form', component: SignupFormComponent },
   { path: 'forgot-password-form', component: ForgotPasswordFormComponent },
@@ -18,10 +17,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  //providers: [{provide: APP_BASE_HREF, useValue: '/'}],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
-  providers:[],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }
