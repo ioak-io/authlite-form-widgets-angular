@@ -17,11 +17,6 @@ import { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-passwor
 import { SignupFormComponent } from './SignupForm/signup-form.component';
 import { ResendVerifyLinkFormComponent } from './ResendVerifyLinkForm/resend-verify-link-form.component';
 import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-page.component';
-<<<<<<< HEAD
-import { AuthliteFormsWidgetsModule } from 'authlite-forms-widgets';
-//import { AppRoutingModule } from './app-routing.module'; 
-=======
->>>>>>> 5a4393a4c4d83b9c4c7d49a676b9e17a372a2db6
 
 @NgModule({
   declarations: [
@@ -43,14 +38,7 @@ import { AuthliteFormsWidgetsModule } from 'authlite-forms-widgets';
     AppComponent,
     BrowserModule, 
     ReactiveFormsModule, 
-<<<<<<< HEAD
     HttpClientModule,
-    //AppRoutingModule,
-    AuthliteFormsWidgetsModule,
-=======
-    AppRoutingModule, 
-    HttpClientModule,
->>>>>>> 5a4393a4c4d83b9c4c7d49a676b9e17a372a2db6
   ],
   providers: [AuthenticationService],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
