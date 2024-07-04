@@ -5,7 +5,7 @@ import { AuthenticationService } from '../services/AuthenticationService';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { LoginWrapperComponent } from './login-wrapper.component';
-import { LoginComponent } from '../login/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { DesignOneComponent } from './DesignOne/design-one.component';
 import { MainFormComponent } from './MainForm/main-form.component';
 import { HeaderComponent } from '../Header/header.component';
@@ -21,7 +21,10 @@ import { SignupSuccessPageComponent } from '../SignupSuccessPage/signup-success-
 import { InfoPageComponent } from '../InfoPage/info-page.component';
 import { InfoPageDescriptionComponent } from '../InfoPage/InfoPageDescription/info-page-description.component';
 import { InfoPageFootnoteComponent } from '../InfoPage/InfoPageFootnote/info-page.footnote.component';
+import PageView from '../types/PageViewType';
+import { TranslationName } from '../types/TranslationDictionaryType';
 
+//import { action } from '@storybook/addon-actions'; 
 
 export default {
   title: 'Form Elements/Login',
@@ -47,38 +50,24 @@ export default {
         InfoPageDescriptionComponent,
         InfoPageFootnoteComponent
       ],
-      imports: [RouterTestingModule, ReactiveFormsModule, HttpClientModule
-      ],
-    providers: [AuthenticationService],
+      imports: [RouterTestingModule, ReactiveFormsModule, HttpClientModule],
+      providers: [AuthenticationService],
     }),
   ],
 } as Meta;
 
-const Template: Story<LoginWrapperComponent> = (args: LoginWrapperComponent) => ({
+const Template: Story<LoginWrapperComponent> = (args: LoginWrapperComponent,) => ({
   component: LoginWrapperComponent,
   props: args,
 });
 
 export const Demo = Template.bind({});
 Demo.args = {
+  signinFormErrorMessages: {},
+  signupFormErrorMessages: {},
+  forgotPasswordFormErrorMessages: {},
+  resendVerifyLinkFormErrorMessages: {},
   translationDictionary: DEFAULT_TRANSLATION_DICTIONARY,
-  signinGreetingTitle: DEFAULT_TRANSLATION_DICTIONARY.SIGNIN_FORM__GREETING_TITLE,
-  signinGreetingSubtitle: DEFAULT_TRANSLATION_DICTIONARY.SIGNIN_FORM__GREETING_SUBTITLE,
-  signupGreetingTitle: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__GREETING_TITLE,
-  signupGreetingSubtitle: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__GREETING_SUBTITLE,
-  forgotPasswordGreetingTitle: DEFAULT_TRANSLATION_DICTIONARY.FORGOT_PASSWORD_FORM__GREETING_TITLE,
-  forgotPasswordGreetingSubtitle: DEFAULT_TRANSLATION_DICTIONARY.FORGOT_PASSWORD_FORM__GREETING_SUBTITLE,
-  signinFormLabelUsername: DEFAULT_TRANSLATION_DICTIONARY.SIGNIN_FORM__LABEL_USERNAME,
-  signinFormLabelPassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNIN_FORM__LABEL_PASSWORD,
-  signupFormLabelGivenname: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_GIVENNAME,
-  signupFormLabelFamilyname: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_FAMILYNAME,
-  signupFormLabelEmail: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_EMAIL,
-  signupFormLabelPassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_PASSWORD,
-  signupFormLabelRetypePassword: DEFAULT_TRANSLATION_DICTIONARY.SIGNUP_FORM__LABEL_RETYPEPASSWORD,
-  forgotPasswordFormLabelEmail: DEFAULT_TRANSLATION_DICTIONARY.FORGOT_PASSWORD_FORM__LABEL_EMAIL,
-  resendVerifyLinkFormGreetingTitle: DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__GREETING_TITLE,
-  resendVerifyLinkFormGreetingSubtitle: DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__GREETING_SUBTITLE,
-  resendVerifyLinkFormLabelEmail: DEFAULT_TRANSLATION_DICTIONARY.RESEND_VERIFY_LINK_FORM__LABEL_EMAIL,
-  heading: 'Signup Successful',
-  children: 'Your account has been successfully created.',
-}
+  view: PageView.signin,
+  changeView: (view: PageView) => console.log(`Change view to ${view}`),
+};

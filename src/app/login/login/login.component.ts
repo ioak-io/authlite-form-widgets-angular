@@ -1,73 +1,70 @@
-import { Component } from '@angular/core';
-import { AuthenticationService } from '../../services/AuthenticationService';
-//import { LoginProps } from '.';
-import { SigninRequest, SigninResponse } from '../../types';
-import { SignupRequest, SignupResponse } from '../../types';
-import { ForgotPasswordResponse } from '../../types';
-import { ResendVerifyLinkRequest, ResendVerifyLinkResponse } from '../../types';
+import { Component, Input, OnInit } from '@angular/core';
+import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../../types/TranslationDictionaryType';
 import PageView from '../../types/PageViewType';
+import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType';
+import SignupFormErrorMessages from '../../types/SignupFormErrorMessagesType';
+import ForgotPasswordFormErrorMessages from '../../types/ForgotPasswordFormErrorMessagesType';
+import ResendVerifyLinkFormErrorMessages from '../../types/ResendVerifyLinkFormErrorMessagesType';
+import { AuthenticationService } from '../../services/AuthenticationService';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
-  view: PageView = PageView.signin;
-  successPage: 'signin' | 'signup' | 'forgotpassword' | 'resendverifyemail' | null = null;
-  signinFormErrorMessages: any = {};
-  signupFormErrorMessages: any = {};
-  forgotPasswordFormErrorMessages: any = {};
-  resendVerifyLinkFormErrorMessages: any = {};
-  PageView: any;
 
-  constructor(private authenticationService: AuthenticationService) {}
+export class LoginComponent implements OnInit {
+  @Input() logo: any = null;
+  @Input() placeholder: any = null;
+  @Input() onSignin: any;
+  @Input() onSignup: any;
+  @Input() onForgotPassword: any;
+  @Input() onResendVerifyLink: any;
+  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
+  @Input() signinFormErrorMessages!: SigninFormErrorMessages;
+  @Input() signupFormErrorMessages!: SignupFormErrorMessages;
+  @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
+  @Input() resendVerifyLinkFormErrorMessages!: ResendVerifyLinkFormErrorMessages;
+  @Input() clearErrorMessages: any;
+  @Input() changeView: any;
+  @Input() children: any;
+  @Input() view!: PageView;
 
-  onSignin(data: any): void {
-    this.authenticationService.signin('production', 228, data).subscribe((response: any) => {
-      if (response.outcome === 'SUCCESS') {
-        this.view = PageView.placeholder;
-        this.successPage = 'signin';
+  constructor(private authenticationService: AuthenticationService) { }
+
+  ngOnInit(): void {
+    this.processChildren();
+  }
+
+  processChildren(): void {
+    if (!Array.isArray(this.children)) {
+      this.children = [this.children];
+    }
+
+    this.children.forEach((item: any) => {
+      if (item?.type?.displayName === 'Logo' || item?.type?.name === 'Logo') {
+        this.logo = item;
       }
-      this.signinFormErrorMessages = response.errorMessages;
+      if (item?.type?.displayName === 'Placeholder' || item?.type?.name === 'Placeholder') {
+        this.placeholder = item;
+      }
     });
   }
 
-  onSignup(data: any): void {
-    this.authenticationService.signup('production', 228, data).subscribe((response: any) => {
-      console.log(response);
-      if (response.outcome === 'SUCCESS') {
-        this.view = PageView.placeholder;
-        this.successPage = 'signup';
-      }
-      this.signupFormErrorMessages = response.errorMessages;
-    });
+  navigateToSignin(): void {
+    this.changeView(PageView.signin);
   }
 
-  onForgotPasswordForm(data: any): void {
-    this.authenticationService.ForgotPasswordForm('production', 228, data).subscribe((response: any) => {
-      console.log(response);
-      if (response.outcome === 'SUCCESS') {
-        this.view = PageView.placeholder;
-        this.successPage = 'forgotpassword';
-      }
-      this.forgotPasswordFormErrorMessages = response.errorMessages;
-    });
+  navigateToSignup(): void {
+    this.changeView(PageView.signup);
   }
 
-  onResendVerifyLinkForm(data: any): void {
-    this.authenticationService.resendVerifyLink('production', 228, data).subscribe((response: any) => {
-      console.log(response);
-      if (response.outcome === 'SUCCESS') {
-        this.view = PageView.placeholder;
-        this.successPage = 'resendverifyemail';
-      }
-      this.resendVerifyLinkFormErrorMessages = response.errorMessages;
-    });
+  navigateToForgotPassword(): void {
+    this.onForgotPassword();
   }
 
-  clearErrorMessages(): void {
-    this.signinFormErrorMessages = {};
-    this.signupFormErrorMessages = {};
+  navigateToResendVerifyLink(): void {
+    this.onResendVerifyLink();
   }
+
 }

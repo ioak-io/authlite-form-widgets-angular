@@ -1,48 +1,40 @@
-<form class="authlite-d1-signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+<form class="authlite-d1-signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit($event)">
   <div class="authlite-margin-top">
     <app-tagline 
-          [title]="signupGreetingTitle"
-          [subtitle]="signupGreetingSubtitle">
+        [title]="getTranslation('SIGNUP_FORM__GREETING_TITLE')" 
+        [subtitle]="getTranslation('SIGNUP_FORM__GREETING_SUBTITLE')">
     </app-tagline>
   </div>
   <div class="authlite-margin-top">
-      <app-form-element-message 
-          [given_name]="signupFormLabelGivenname">
-      </app-form-element-message> 
-      <input type="text" class="authlite-input" autocomplete="off" value="" formControlName="given_name">
-      <app-form-element-message
-          *ngIf="signupForm.controls['given_name'].touched && signupForm.controls['given_name'].hasError('required')"
-          [blankGivenname]="signupFormGivennameErrorMessage">
+    <app-form-element-message [text]="getTranslation('SIGNUP_FORM__LABEL_GIVENNAME')" type='label'></app-form-element-message>
+    <input class="authlite-input" formControlName="given_name" [(ngModel)]="state.given_name" autocomplete='off' autofocus (input)="onInput($event)"/>
+    <app-form-element-message 
+            *ngIf="formControls['given_name'].touched && formControls['given_name'].hasError('required')"
+            [text]="getTranslation(signupFormErrorMessages['given_name'] || 'SIGNUP_ERROR__BLANK_GIVENNAME')" type='error'>
       </app-form-element-message>
   </div>
   <div class="authlite-margin-top">
-      <app-form-element-message 
-          [family_name]="signupFormLabelFamilyname">
-      </app-form-element-message>
-      <input type="text" class="authlite-input" autocomplete="off" value="" formControlName="family_name">
-      <app-form-element-message
-          *ngIf="signupForm.controls['family_name'].touched && signupForm.controls['family_name'].hasError('required')"
-          [blankGivenname]="signupFormFamilynameErrorMessage">
+    <app-form-element-message [text]="getTranslation('SIGNUP_FORM__LABEL_FAMILYNAME')" type='label'></app-form-element-message>
+    <input class="authlite-input" formControlName="family_name" [(ngModel)]="state.family_name" autocomplete='off' autofocus (input)="onInput($event)"/>
+    <app-form-element-message 
+            *ngIf="formControls['family_name'].touched && formControls['family_name'].hasError('required')"
+            [text]="getTranslation(signupFormErrorMessages['family_name'] || 'SIGNUP_ERROR__BLANK_FAMILYNAME')" type='error'>
       </app-form-element-message>
   </div>
   <div class="authlite-margin-top">
-      <app-form-element-message 
-          [email]="signupFormLabelUsername">
-      </app-form-element-message>
-      <input type="email" id="userid" formControlName="email" class="authlite-input" name="email" autocomplete="off" value="">
-      <app-form-element-message
-          *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('required')"
-          [blankUsername]="signupFormUsernameErrorMessage">
-      </app-form-element-message>
-      <app-form-element-message
-          *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('email')"
-          [invalidUsername]="signupFormInvalidUsername">
-      </app-form-element-message>
+    <app-form-element-message [text]="getTranslation('SIGNUP_FORM__LABEL_EMAIL')" type='label'></app-form-element-message>
+    <input class="authlite-input" formControlName="email" [(ngModel)]="state.email" autocomplete='off' (input)="onInput($event)"/>
+    <app-form-element-message 
+          *ngIf="formControls['email'].touched && formControls['email'].hasError('required')"
+          [text]="getTranslation(signupFormErrorMessages['email'] || 'SIGNUP_ERROR__BLANK_USERNAME')" type='error'>
+    </app-form-element-message>
+    <app-form-element-message 
+          *ngIf="formControls['email'].hasError('email')"
+          [text]="getTranslation(signupFormErrorMessages['email'] || 'SIGNUP_ERROR__INVALID_USERNAME')" type='error'>
+    </app-form-element-message>
   </div>
   <div class="authlite-margin-top">
-      <app-form-element-message 
-          [password]="signupFormLabelPassword">
-      </app-form-element-message>
+    <app-form-element-message [text]="getTranslation('SIGNUP_FORM__LABEL_PASSWORD')" type='label'></app-form-element-message>
       <div class="authlite-input-container">
         <input [type]="showPassword?'password':'text'" formControlName="password" class="authlite-input" name="password" value="">
         <span (click)="togglePassword()">
@@ -54,15 +46,13 @@
             </svg>
         </span>
     </div>
-      <app-form-element-message 
-          *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].hasError('required')"
-          [blankPassword]="signupFormPasswordErrorMessage">
-      </app-form-element-message>
+    <app-form-element-message 
+        *ngIf="formControls['password'].touched && formControls['password'].hasError('required')"
+        [text]="getTranslation(signupFormErrorMessages['password'] || 'SIGNUP_ERROR__BLANK_PASSWORD')" type='error'>
+</app-form-element-message>
   </div>
   <div class="authlite-margin-top">
-      <app-form-element-message 
-          [retype_password]="signupFormLabelRetypePassword">
-      </app-form-element-message>
+    <app-form-element-message [text]="getTranslation('SIGNUP_FORM__LABEL_RETYPEPASSWORD')" type='label'></app-form-element-message>
       <div class="authlite-input-container">
         <input [type]="showPassword?'password':'text'" formControlName="retype_password" class="authlite-input" name="retype_password" value="">
         <span (click)="togglePassword()">
@@ -74,20 +64,20 @@
             </svg>
         </span>
     </div>
+    <app-form-element-message 
+        *ngIf="formControls['password'].touched && formControls['password'].hasError('required')"
+        [text]="getTranslation(signupFormErrorMessages['password'] || 'SIGNUP_ERROR__BLANK_RETYPEPASSWORD')" type='error'>
+    </app-form-element-message>
       <app-form-element-message 
-          *ngIf="signupForm.controls['retype_password'].touched && signupForm.controls['retype_password'].hasError('required')"
-          [blankRetypePassword]="signupFormReTypePasswordErrorMessage">
-      </app-form-element-message>
-      <app-form-element-message 
-          *ngIf="signupForm.hasError('passwordMismatch') && (signupForm.controls['retype_password'].touched || signupForm.controls['password'].touched)"
-          [RetypePasswordDoesnotmatch]="signupFormReTypePasswordDoesnotMatch">
-      </app-form-element-message>
+          *ngIf="signupForm.hasError('passwordMismatch') && (formControls['retype_password'].touched || formControls['password'].touched)"
+          [text]="getTranslation(signupFormErrorMessages['password'] || 'SIGNUP_ERROR__PASSWORDS_DO_NOT_MATCH')" type='error'>
+    </app-form-element-message>
   </div>
   <div class="authlite-action-bar authlite-margin-top">
       <button class="authlite-primary-button" type="submit">{{translationDictionary.SIGNUP_FORM__ACTION_CREATEACCOUNT}}</button>
   </div>
   <div class="authlite-margin-top authlite-action-bar-center">
       {{translationDictionary.SIGNUP_FORM__MESSAGE_EXISTING_ACCOUNT}}
-      <button class="authlite-button-as-link" type="submit" routerLink="/signin-form">{{translationDictionary.SIGNUP_FORM__ACTION_SIGNIN}}</button>
+      <button class="authlite-button-as-link" type="button" (click)="navigateToSignin()">{{translationDictionary.SIGNUP_FORM__ACTION_SIGNIN}}</button>
   </div>
 </form>

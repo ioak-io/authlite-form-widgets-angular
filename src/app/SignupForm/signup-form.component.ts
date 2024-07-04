@@ -3,87 +3,50 @@ import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName,
 import { FormBuilder, FormGroup, Validators, AbstractControl, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from "../services/AuthenticationService";
+import SignupRequest from '../types/SignupRequest';
+import SignupFormErrorMessages from '../types/SignupFormErrorMessagesType';
 
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss'],
 })
-export class SignupFormComponent implements OnInit {
+export class SignupFormComponent {
+
+  @Output() onSignup: EventEmitter<SignupRequest> = new EventEmitter<SignupRequest>();
+  @Output() onSignin: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onForgotPassword: EventEmitter<void> = new EventEmitter<void>();
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
 
   @Input() translationName!: TranslationName;
 
+  @Input() signupFormErrorMessages!: SignupFormErrorMessages;
+
   signupForm!: FormGroup;
 
   showPassword: boolean = true;
-  data!: any;
 
   togglePassword() {
     this.showPassword = !this.showPassword
   }
 
-  constructor(private fb: FormBuilder, private router: Router, private authenticationService: AuthenticationService ) { }
-
-  ngOnInit(): void {
-    this.initForm();
-  }
-  initForm(): void {
-    this.signupForm = this.fb.group({
-      given_name: ['', Validators.required],
-      family_name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      retype_password: ['', Validators.required],
-    },
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService) 
+    {
+      this.signupForm = this.fb.group({
+        given_name: ['', Validators.required],
+        family_name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
+        retype_password: ['', Validators.required],
+      },
       {
         validators: this.passwordMatchValidator,
       });
-  }
-  get signupGreetingTitle(): string {
-    return this.translationDictionary.SIGNUP_FORM__GREETING_TITLE;
-  }
-  get signupGreetingSubtitle(): string {
-    return this.translationDictionary.SIGNUP_FORM__GREETING_SUBTITLE;
-  }
-  get signupFormLabelGivenname(): string {
-    return this.translationDictionary.SIGNUP_FORM__LABEL_GIVENNAME;
-  }
-  get signupFormLabelFamilyname(): string {
-    return this.translationDictionary.SIGNUP_FORM__LABEL_FAMILYNAME;
-  }
-  get signupFormLabelUsername(): string {
-    return this.translationDictionary.SIGNUP_FORM__LABEL_EMAIL;
-  }
-  get signupFormLabelPassword(): string {
-    return this.translationDictionary.SIGNUP_FORM__LABEL_PASSWORD;
-  }
-  get signupFormLabelRetypePassword(): string {
-    return this.translationDictionary.SIGNUP_FORM__LABEL_RETYPEPASSWORD;
-  }
-  get signupFormGivennameErrorMessage(): string {
-    return this.translationDictionary.SIGNUP_ERROR__BLANK_GIVENNAME;
-  }
-  get signupFormFamilynameErrorMessage(): string {
-    return this.translationDictionary.SIGNUP_ERROR__BLANK_FAMILYNAME;
-  }
-  get signupFormUsernameErrorMessage(): string {
-    return this.translationDictionary.SIGNUP_ERROR__BLANK_USERNAME;
-  }
-  get signupFormInvalidUsername(): string {
-    return this.translationDictionary.SIGNUP_ERROR__INVALID_USERNAME;
-  }
-  get signupFormPasswordErrorMessage(): string {
-    return this.translationDictionary.SIGNUP_ERROR__BLANK_PASSWORD;
-  }
-  get signupFormReTypePasswordErrorMessage(): string {
-    return this.translationDictionary.SIGNUP_ERROR__BLANK_RETYPEPASSWORD;
-  }
-  get signupFormReTypePasswordDoesnotMatch(): string {
-    const retypePassword = this.signupForm.get('retype_password');
-    return this.translationDictionary.SIGNUP_ERROR__PASSWORDS_DO_NOT_MATCH;
-  }
+    }
+
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password');
     const retypePassword = control.get('retype_password');
@@ -93,26 +56,54 @@ export class SignupFormComponent implements OnInit {
     }
     return null;
   }
-  onSubmit(): void {
-    if (this.signupForm.invalid) {
-      this.signupForm.markAllAsTouched();
-      return;
+
+  get formControls() {
+    return this.signupForm.controls;
+  }
+
+  onInput(event: any) {
+    const { name, value } = event.target;
+    this.signupForm.patchValue({ [name]: value });
+  }
+
+  state: SignupRequest = {
+    given_name: '',
+    family_name: '',
+    email: '',
+    password: '',
+    retype_password: ''
+  };
+  
+  onSubmit(event: Event): void {
+    console.log('onSubmit')
+    event.preventDefault();
+    if (this.signupForm.valid)
+    {
+      const signinRequest = this.signupForm.value;
+      const environment = 'production';
+      const realm = '228';
+
+      this.authenticationService.signup(environment, realm, signinRequest).subscribe(
+        (response: any) => {
+          console.log('Signup Successful:', response);
+          this.router.navigate(['/signup-success-page']);
+        },
+        (error: any) => {
+          console.error('Signup Error:', error);
+        }
+      );
     }
+    else {
+      this.signupForm.markAllAsTouched();
+    }
+  }
+  getTranslation(key: string): string {
+    return this.translationDictionary[key] || '';
+  }
 
-    const environment = 'production';
-    const realm = '228';
-
-    const signupRequest = this.signupForm.value;
-
-    this.authenticationService.signup(environment, realm, signupRequest).subscribe(
-      (response: any) => {
-        console.log('Signup Successful:', response);
-        //this.router.navigate(['/signup-success-page']);
-      },
-      (error) => {
-        console.error('Signup Error:', error);
-      }
-    );
+  navigateToSignin() {
+    this.onSignin.emit();
+    this.router.navigate(['/signin-form']);
   }
 }
 

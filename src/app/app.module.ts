@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/AuthenticationService';
 import { AppComponent } from './app.component';
@@ -19,6 +18,7 @@ import { SignupFormComponent } from './SignupForm/signup-form.component';
 import { ResendVerifyLinkFormComponent } from './ResendVerifyLinkForm/resend-verify-link-form.component';
 import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-page.component';
 import { AuthliteFormsWidgetsModule } from 'authlite-forms-widgets';
+//import { AppRoutingModule } from './app-routing.module'; 
 
 @NgModule({
   declarations: [
@@ -40,8 +40,8 @@ import { AuthliteFormsWidgetsModule } from 'authlite-forms-widgets';
     AppComponent,
     BrowserModule, 
     ReactiveFormsModule, 
-    AppRoutingModule, 
-    HttpClientModule, 
+    HttpClientModule,
+    //AppRoutingModule,
     AuthliteFormsWidgetsModule,
   ],
   providers: [AuthenticationService],

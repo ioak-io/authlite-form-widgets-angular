@@ -1,4 +1,4 @@
 <div class="authlite-d1-tagline">
-    <div class="authlite-d1-tagline__title">{{title}}</div>
-    <div class="authlite-d1-tagline__subtitle">{{subtitle}}</div>
+    <div *ngIf="title" class="authlite-d1-tagline__title">{{title}}</div>
+    <div *ngIf="subtitle" class="authlite-d1-tagline__subtitle">{{subtitle}}</div>
 </div>

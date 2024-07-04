@@ -1,5 +1,5 @@
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TranslationDictionary } from '../../types/TranslationDictionaryType';
 import PageView from '../../types/PageViewType';
 import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType';
@@ -12,7 +12,7 @@ import ResendVerifyLinkFormErrorMessages from '../../types/ResendVerifyLinkFormE
   templateUrl: './main-form.component.html',
   styleUrls: ['./main-form.component.scss'],
 })
-export class MainFormComponent {
+export class MainFormComponent implements OnInit {
   @Input() logo: any;
   @Input() placeholder: any;
   @Input() onSignin: any;
@@ -23,22 +23,42 @@ export class MainFormComponent {
   @Input() signupFormErrorMessages!: SignupFormErrorMessages;
   @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
   @Input() resendVerifyLinkFormErrorMessages!: ResendVerifyLinkFormErrorMessages;
-  @Input() clearErrorMessages: any;
   @Input() translationDictionary!: TranslationDictionary;
   @Input() view!: PageView;
-  @Input() changeView: any;
-  PageView: any;
-  //@Input() PageView: any;
+  PageView = PageView;
+  changeView: any;
 
   ngOnInit(): void {
-    
     if (this.signinFormErrorMessages?.unverifiedEmail) {
       this.changeView(PageView.resendverifyemail);
     }
   }
 
-  changeViewAndClear(view: PageView): void {
-    this.changeView(view);
+  handleChangeView(view: PageView): void {
+    this.view = view;
     this.clearErrorMessages();
+  }
+
+  handleSignup(): void {
+    this.handleChangeView(PageView.signup);
+  }
+
+  handleSignin(): void {
+    this.handleChangeView(PageView.signin);
+  }
+
+  handleForgotPassword(): void {
+    this.handleChangeView(PageView.forgotpassword);
+  }
+
+  handleResendVerifyEmail(): void {
+    this.handleChangeView(PageView.resendverifyemail);
+  }
+
+  clearErrorMessages(): void {
+    this.signinFormErrorMessages = {};
+    this.signupFormErrorMessages = {};
+    this.forgotPasswordFormErrorMessages = {};
+    this.resendVerifyLinkFormErrorMessages = {};
   }
 }

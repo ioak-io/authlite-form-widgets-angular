@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { TranslationDictionary } from '../../types/TranslationDictionaryType';
 import PageView from '../../types/PageViewType';
 import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType';
@@ -23,13 +23,14 @@ export class DesignOneComponent{
   @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
   @Input() resendVerifyLinkFormErrorMessages!: ResendVerifyLinkFormErrorMessages;
   @Input() clearErrorMessages: any;
-  @Input() dictionary!: TranslationDictionary;
+  @Input() translationDictionary!: TranslationDictionary;
   @Input() view!: PageView;
   @Input() changeView: any;
 
-  ngOnInit(): void {
-    
-    if (this.signinFormErrorMessages?.unverifiedEmail) {
+  ngOnInit() {}
+
+  ngOnChanges(): void {
+    if (this.signinFormErrorMessages.unverifiedEmail) {
       this.changeView(PageView.resendverifyemail);
     }
   }

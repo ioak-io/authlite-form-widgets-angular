@@ -1,4 +1,4 @@
-<div class="authlite-form-element-label" type="type">
+<!--<div class="authlite-form-element-label" type="type">
     {{email}}
     {{password}}
     {{given_name}}
@@ -15,4 +15,7 @@
     {{blankFamilyname}}
     {{blankRetypePassword}}
     {{RetypePasswordDoesnotmatch}}
-</div>
+</div>-->
+<div [ngClass]="'authlite-form-element-' + type">
+    {{ text }}
+  </div>

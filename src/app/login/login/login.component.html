@@ -1,43 +1,19 @@
-<app-logo>
-    <img src="assets/authlite_black.svg" alt="Authlite logo">
-  </app-logo>
-    <ng-container *ngIf="successPage === 'signin'">
-      <app-info-page heading="Authentication successful!">
-        <app-info-page-description>
-          Posuere ipsum tellus ornare rutrumaliquam torquent fermentum euismod musvestibulum tincidunt cursus quisque elitsuspendisse augue. rutrumaliquam commodo <a (click)="view = PageView.signin">login now</a> parturient rutrumaliquam nec varius sociosqu.
-        </app-info-page-description>
-        <app-info-page-footnote>
-          Commodo nullam et facilisis hendrerit pharetra platea duis commodo nascetur libero aptent
-        </app-info-page-footnote>
-      </app-info-page>
-    </ng-container>
-    <ng-container *ngIf="successPage === 'signup'">
-      <app-info-page heading="User account created!">
-        <app-info-page-description>
-          Gravida dolor suscipit urna sagittis per  <a (click)="view = PageView.signin">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.
-        </app-info-page-description>
-        <app-info-page-footnote>
-          Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam
-        </app-info-page-footnote>
-      </app-info-page>
-    </ng-container>
-    <ng-container *ngIf="successPage === 'forgotpassword'">
-      <app-info-page heading="Password reset link sent!">
-        <app-info-page-description>
-          Gravida dolor suscipit urna sagittis per  <a (click)="view = PageView.signin">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.
-        </app-info-page-description>
-        <app-info-page-footnote>
-          Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam
-        </app-info-page-footnote>
-      </app-info-page>
-    </ng-container>
-    <ng-container *ngIf="successPage === 'resendverifyemail'">
-      <app-info-page heading="Email confirmation link sent!">
-        <app-info-page-description>
-          Please check your email for  <a (click)="view = PageView.signin">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.
-        </app-info-page-description>
-        <app-info-page-footnote>
-          Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam
-        </app-info-page-footnote>
-      </app-info-page>
-</ng-container>
+
+<div class="authlite-login">
+  <app-design-one
+    [onSignin]="onSignin"
+    [onSignup]="onSignup"
+    [signinFormErrorMessages]="signinFormErrorMessages"
+    [signupFormErrorMessages]="signupFormErrorMessages"
+    [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
+    [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages"
+    [clearErrorMessages]="clearErrorMessages"
+    [logo]="logo"
+    [placeholder]="placeholder"
+    [dictionary]="translationDictionary"
+    [view]="view"
+    (changeView)="changeView($event)"
+    (onForgotPassword)="navigateToForgotPassword()"
+    (onResendVerifyLink)="navigateToResendVerifyLink()">
+  </app-design-one>
+</div>

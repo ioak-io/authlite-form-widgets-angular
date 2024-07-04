@@ -1,38 +1,29 @@
-import { Component, Input} from '@angular/core';
-import { TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/AuthenticationService';
+import SigninFormErrorMessages from '../types/SigninFormErrorMessagesType';
+import SignupFormErrorMessages from '../types/SignupFormErrorMessagesType';
+import ForgotPasswordFormErrorMessages from '../types/ForgotPasswordFormErrorMessagesType';
+import ResendVerifyLinkFormErrorMessages from '../types/ResendVerifyLinkFormErrorMessagesType';
 import PageView from '../types/PageViewType';
+import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary } from '../types/TranslationDictionaryType';
+import SigninRequest from '../types/SigninRequest';
 
 @Component({
   selector: 'app-login-wrapper',
   templateUrl: './login-wrapper.component.html',
-  styleUrls: ['./style.css'],
+  styleUrls: ['./style.css']
 })
+export class LoginWrapperComponent implements OnInit {
 
-export class LoginWrapperComponent{
-  @Input() translationDictionary!: TranslationDictionary;
-  @Input() signinGreetingTitle!: string;
-  @Input() signinGreetingSubtitle!: string;
-  @Input() signinFormLabelUsername!: string;
-  @Input() signinFormLabelPassword!: string;
-  @Input() signupGreetingTitle!: string;
-  @Input() signupGreetingSubtitle!: string;
-  @Input() signupFormLabelGivenname!: string;
-  @Input() signupFormLabelFamilyname!: string;
-  @Input() signupFormLabelEmail!: string;
-  @Input() signupFormLabelPassword!: string;
-  @Input() signupFormLabelRetypePassword!: string;
-  @Input() forgotPasswordGreetingTitle!: string;
-  @Input() forgotPasswordGreetingSubtitle!: string;
-  @Input() forgotPasswordFormLabelEmail!: string;
-  @Input() resendVerifyLinkFormGreetingTitle!:string;
-  @Input() resendVerifyLinkFormGreetingSubtitle!: string;
-  @Input() resendVerifyLinkFormLabelEmail!:string;
-  @Input() heading: string = '';
-  @Input() children: any;
-
-  successPage: 'signin' | 'signup' | 'forgotpassword' | 'resendverifyemail' | null = null;
+  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
+  PageView: any;
   view: PageView = PageView.signin;
+  successPage: 'signin' | 'signup' | 'forgotpassword' | 'resendverifyemail' | null = null;
+  signinFormErrorMessages: SigninFormErrorMessages = {};
+  signupFormErrorMessages: SignupFormErrorMessages = {};
+  forgotPasswordFormErrorMessages: ForgotPasswordFormErrorMessages = {};
+  resendVerifyLinkFormErrorMessages: ResendVerifyLinkFormErrorMessages = {};
+  changeView: any;
 
   constructor(private authenticationService: AuthenticationService) { }
 
@@ -45,9 +36,10 @@ export class LoginWrapperComponent{
         this.view = PageView.placeholder;
         this.successPage = 'signin';
       }
-      //this.signinFormErrorMessages = response.errorMessages;
+      this.signinFormErrorMessages = response.errorMessages;
     });
   }
+
   onSignup(data: any): void {
     this.authenticationService.signup('production', 228, data).subscribe((response: any) => {
       console.log(response);
@@ -55,9 +47,10 @@ export class LoginWrapperComponent{
         this.view = PageView.placeholder;
         this.successPage = 'signup';
       }
-      //this.signupFormErrorMessages = response.errorMessages;
+      this.signupFormErrorMessages = response.errorMessages;
     });
   }
+
   onForgotPasswordForm(data: any): void {
     this.authenticationService.ForgotPasswordForm('production', 228, data).subscribe((response: any) => {
       console.log(response);
@@ -65,9 +58,10 @@ export class LoginWrapperComponent{
         this.view = PageView.placeholder;
         this.successPage = 'forgotpassword';
       }
-      //this.forgotPasswordFormErrorMessages = response.errorMessages;
+      this.forgotPasswordFormErrorMessages = response.errorMessages;
     });
   }
+
   onResendVerifyLinkForm(data: any): void {
     this.authenticationService.resendVerifyLink('production', 228, data).subscribe((response: any) => {
       console.log(response);
@@ -75,11 +69,29 @@ export class LoginWrapperComponent{
         this.view = PageView.placeholder;
         this.successPage = 'resendverifyemail';
       }
-      //this.resendVerifyLinkFormErrorMessages = response.errorMessages;
+      this.resendVerifyLinkFormErrorMessages = response.errorMessages;
     });
   }
-  clearErrorMessages(): void {
-    //this.signinFormErrorMessages = {};
-    //this.signupFormErrorMessages = {};
+
+  clearErrorMessages() {
+    this.signinFormErrorMessages = {};
+    this.signupFormErrorMessages = {};
   }
+
+  navigateToSignin(): void {
+    this.view = PageView.signin;
+  }
+
+  navigateToSignup(): void {
+    this.view = PageView.signup;
+  }
+
+  navigateToForgotPassword(): void {
+    this.view = PageView.forgotpassword;
+  }
+
+  navigateToResendVerifyLink(): void {
+    this.view = PageView.resendverifyemail;
+  }
+
 }

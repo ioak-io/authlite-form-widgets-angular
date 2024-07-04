@@ -22,4 +22,7 @@ export class FormElementMessageComponent {
   @Input() blankFamilyname!: string;
   @Input() blankRetypePassword!: string;
   @Input() RetypePasswordDoesnotmatch!: string;
+  @Input() text: string = '';
+  //@Input() type: 'error' | 'warning' | 'success' | 'info' | 'label' = 'label';
+  constructor() { }
 }

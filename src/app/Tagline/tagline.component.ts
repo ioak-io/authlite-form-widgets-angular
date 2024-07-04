@@ -8,6 +8,4 @@ import { Component, Input } from '@angular/core';
 export class TaglineComponent {
   @Input() title!: string;
   @Input() subtitle!: string;
-
-  constructor() { }
 }

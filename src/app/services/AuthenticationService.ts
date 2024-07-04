@@ -54,7 +54,6 @@ export class AuthenticationService {
 
   private BASE_URL_PRODUCTION = "https://api.ioak.io:8010/api";
   private BASE_URL_LOCAL = "http://api.ioak.io:8010/api";
-  resetPasswordLink: any;
 
   constructor(private http: HttpClient) { }
 
@@ -106,7 +105,7 @@ export class AuthenticationService {
       )as Observable<SigninResponse>;
   }
 
-  ForgotPasswordForm(environment: 'local' | 'production', realm: number | string, payloadRequest: ForgotPasswordRequest): Observable<ForgotPasswordResponse> {
+  ForgotPasswordForm(environment: 'local' | 'production', realm: number | string, payloadRequest: ForgotPasswordRequest ): Observable<ForgotPasswordResponse> {
     const payload: ForgotPasswordRequest = {
       email: payloadRequest.email?.trim(),
     };
