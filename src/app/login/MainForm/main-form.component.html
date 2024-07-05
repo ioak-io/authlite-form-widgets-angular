@@ -5,10 +5,11 @@
   </app-header>
 
   <app-signin-form *ngIf="view === PageView.signin" 
-                    [onSignin]="onSignin" [onSignup]="handleSignup"
-                    [onForgotPassword]="handleForgotPassword" 
+                    (onSignin)="onSignin" (onSignup)="handleSignup($event)"
+                    (onForgotPassword)="handleForgotPassword($event)" 
                     [signinFormErrorMessages]="signinFormErrorMessages"
-                    [dictionary]="translationDictionary">
+                    [dictionary]="translationDictionary"
+                    [changeView]="changeView">
   </app-signin-form>
 
   <app-signup-form *ngIf="view === PageView.signup" 
@@ -17,8 +18,8 @@
                     [dictionary]="translationDictionary">
   </app-signup-form>
 
-  <app-forgot-password-form *ngIf="view === PageView.forgotpassword" [onForgotPassword]="handleForgotPassword"
-    [onSignin]="handleSignin" [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
+  <app-forgot-password-form *ngIf="view === PageView.forgotpassword" (onForgotPassword)="handleForgotPassword($event)"
+    (onSignin)="handleSignin($event)" [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
     [dictionary]="translationDictionary">
   </app-forgot-password-form>
 

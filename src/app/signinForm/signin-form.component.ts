@@ -17,11 +17,12 @@ export class SigninFormComponent {
 
   @Output() onSignin: EventEmitter<SigninRequest> = new EventEmitter<SigninRequest>();
   @Output() onSignup: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onForgotPassword: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onForgotPassword = new EventEmitter<any>();
 
   @Input() signinFormErrorMessages!: SigninFormErrorMessages;
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
+  @Input() changeView : any;
 
   signinForm!: FormGroup;
 
@@ -99,6 +100,7 @@ export class SigninFormComponent {
   }
 
   navigateToForgotPassword() {
-    this.router.navigate(['/forgot-password-form']);
+    // this.router.navigate(['/forgot-password-form']);
+    this.onForgotPassword.emit();
   }
 }

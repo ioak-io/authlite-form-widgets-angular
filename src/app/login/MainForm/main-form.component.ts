@@ -30,7 +30,7 @@ export class MainFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.signinFormErrorMessages?.unverifiedEmail) {
-      this.changeView(PageView.resendverifyemail);
+      this.changeView = PageView.resendverifyemail;
     }
   }
 
