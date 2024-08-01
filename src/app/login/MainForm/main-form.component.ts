@@ -1,32 +1,32 @@
-
-import { Component, Input, OnInit } from '@angular/core';
-import { TranslationDictionary } from '../../types/TranslationDictionaryType';
-import PageView from '../../types/PageViewType';
-import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType';
-import SignupFormErrorMessages from '../../types/SignupFormErrorMessagesType';
-import ForgotPasswordFormErrorMessages from '../../types/ForgotPasswordFormErrorMessagesType';
-import ResendVerifyLinkFormErrorMessages from '../../types/ResendVerifyLinkFormErrorMessagesType';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import PageView from '../../types/PageViewType';  // Make sure this is the correct path
+import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType'; // Correct path
+import SignupFormErrorMessages from '../../types/SignupFormErrorMessagesType'; // Correct path
+import ForgotPasswordFormErrorMessages from '../../types/ForgotPasswordFormErrorMessagesType'; // Correct path
+import ResendVerifyLinkFormErrorMessages from '../../types/ResendVerifyLinkFormErrorMessagesType'; // Correct path
+import { TranslationDictionary, DEFAULT_TRANSLATION_DICTIONARY } from '../../types/TranslationDictionaryType'; // Correct path
 
 @Component({
   selector: 'app-main-form',
   templateUrl: './main-form.component.html',
-  styleUrls: ['./main-form.component.scss'],
+  styleUrls: ['./main-form.component.scss']
 })
-export class MainFormComponent implements OnInit {
-  @Input() logo: any;
-  @Input() placeholder: any;
-  @Input() onSignin: any;
-  @Input() onSignup: any;
-  @Input() onForgotPassword: any;
-  @Input() onResendVerifyLink: any;
+export class MainFormComponent {
+  @Input() view!: PageView;
   @Input() signinFormErrorMessages!: SigninFormErrorMessages;
   @Input() signupFormErrorMessages!: SignupFormErrorMessages;
   @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
   @Input() resendVerifyLinkFormErrorMessages!: ResendVerifyLinkFormErrorMessages;
-  @Input() translationDictionary!: TranslationDictionary;
-  @Input() view!: PageView;
+  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
+  @Input() logo!: string;
   PageView = PageView;
   changeView: any;
+  clearErrorMessages: any;
+  @Output() onSignin = new EventEmitter<any>();
+  @Output() onSignup = new EventEmitter<any>();
+  @Output() onForgotPassword = new EventEmitter<any>();
+  @Output() onResendVerifyLink = new EventEmitter<any>();
+  @Output() onPlaceholder = new EventEmitter<any>();  
 
   ngOnInit(): void {
     if (this.signinFormErrorMessages?.unverifiedEmail) {
@@ -39,26 +39,24 @@ export class MainFormComponent implements OnInit {
     this.clearErrorMessages();
   }
 
-  handleSignup(): void {
-    this.handleChangeView(PageView.signup);
-  }
-
-  handleSignin(): void {
+  handleSignin(event: any): void{
     this.handleChangeView(PageView.signin);
   }
 
-  handleForgotPassword(): void {
+  handleSignup(event: any): void {
+    this.handleChangeView(PageView.signup);
+  }
+
+  handleForgotPassword(event: any) {
     this.handleChangeView(PageView.forgotpassword);
   }
 
-  handleResendVerifyEmail(): void {
+  handleResendVerifyEmail(event: any) {
     this.handleChangeView(PageView.resendverifyemail);
   }
 
-  clearErrorMessages(): void {
-    this.signinFormErrorMessages = {};
-    this.signupFormErrorMessages = {};
-    this.forgotPasswordFormErrorMessages = {};
-    this.resendVerifyLinkFormErrorMessages = {};
+  handlePlaceholder(event: any) {
+    this.handleChangeView(PageView.placeholder);
   }
 }
+

@@ -1,70 +1,54 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../../types/TranslationDictionaryType';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { TranslationDictionary, DEFAULT_TRANSLATION_DICTIONARY,} from '../../types/TranslationDictionaryType';
 import PageView from '../../types/PageViewType';
 import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType';
 import SignupFormErrorMessages from '../../types/SignupFormErrorMessagesType';
 import ForgotPasswordFormErrorMessages from '../../types/ForgotPasswordFormErrorMessagesType';
 import ResendVerifyLinkFormErrorMessages from '../../types/ResendVerifyLinkFormErrorMessagesType';
-import { AuthenticationService } from '../../services/AuthenticationService';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss']
 })
-
-export class LoginComponent implements OnInit {
-  @Input() logo: any = null;
-  @Input() placeholder: any = null;
-  @Input() onSignin: any;
-  @Input() onSignup: any;
-  @Input() onForgotPassword: any;
-  @Input() onResendVerifyLink: any;
-  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
+export class LoginComponent{
+  @Input() view!: PageView;
   @Input() signinFormErrorMessages!: SigninFormErrorMessages;
   @Input() signupFormErrorMessages!: SignupFormErrorMessages;
   @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
   @Input() resendVerifyLinkFormErrorMessages!: ResendVerifyLinkFormErrorMessages;
-  @Input() clearErrorMessages: any;
-  @Input() changeView: any;
-  @Input() children: any;
-  @Input() view!: PageView;
+  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
+  @Input() children!: any;
+  @Output() onSignin = new EventEmitter<any>();
+  @Output() onSignup = new EventEmitter<any>();
+  @Output() onForgotPassword = new EventEmitter<any>();
+  @Output() onResendVerifyLink = new EventEmitter<any>();
+  @Output() onPlaceholder = new EventEmitter<any>();
+  @Output() clearErrorMessages = new EventEmitter<void>();
+  @Output() changeView = new EventEmitter<any>();
+  @Input() logo!: string;
 
-  constructor(private authenticationService: AuthenticationService) { }
-
-  ngOnInit(): void {
-    this.processChildren();
+  handleSignin(event: any) {
+    this.onSignin.emit(event);
   }
 
-  processChildren(): void {
-    if (!Array.isArray(this.children)) {
-      this.children = [this.children];
-    }
-
-    this.children.forEach((item: any) => {
-      if (item?.type?.displayName === 'Logo' || item?.type?.name === 'Logo') {
-        this.logo = item;
-      }
-      if (item?.type?.displayName === 'Placeholder' || item?.type?.name === 'Placeholder') {
-        this.placeholder = item;
-      }
-    });
+  handleSignup(event: any) {
+    this.onSignup.emit(event);
   }
 
-  navigateToSignin(): void {
-    this.changeView(PageView.signin);
+  handleForgotPassword(event: any) {
+    this.onForgotPassword.emit(event);
   }
 
-  navigateToSignup(): void {
-    this.changeView(PageView.signup);
+  handleResendVerifyLink(event: any) {
+    this.onResendVerifyLink.emit(event);
   }
 
-  navigateToForgotPassword(): void {
-    this.onForgotPassword();
+  handlePlaceholder(event: any): void{
+    this.onPlaceholder.emit(event);
   }
 
-  navigateToResendVerifyLink(): void {
-    this.onResendVerifyLink();
+  handleChangeView(event: any) {
+    this.changeView.emit(event);
   }
-
 }

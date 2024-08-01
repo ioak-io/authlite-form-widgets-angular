@@ -2,20 +2,21 @@
   <div class="authlite-d1__left"></div>
   <div class="authlite-d1__right">
     <app-main-form
-      [onSignin]="onSignin"
-      [onSignup]="onSignup"
+      (onSignin)="handleSignin($event)"
+      (onSignup)="handleSignup($event)"
       [signinFormErrorMessages]="signinFormErrorMessages"
       [signupFormErrorMessages]="signupFormErrorMessages"
       [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
       [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages"
       [clearErrorMessages]="clearErrorMessages"
       [logo]="logo"
+      (onPlaceholder)="handlePlaceholder($event)"
       [placeholder]="placeholder"
       [dictionary]="translationDictionary"
       [view]="view"
       [changeView]="changeView"
-      [onForgotPassword]="onForgotPassword"
-      [onResendVerifyLink]="onResendVerifyLink">
+      (onForgotPassword)="handleForgotPassword($event)"
+      (onResendVerifyLink)="handleResendVerifyLink($event)">
     </app-main-form>
   </div>
 </div>

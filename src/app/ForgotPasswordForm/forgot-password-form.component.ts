@@ -11,16 +11,15 @@ import ForgotPasswordRequest from '../types/ResendVerifyLinkRequestType';
   templateUrl: './forgot-password-form.component.html',
   styleUrls: ['./forgot-password-form.component.scss'],
 })
-export class ForgotPasswordFormComponent{
+export class ForgotPasswordFormComponent {
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
-
   @Input() translationName!: TranslationName;
 
-  @Output() onForgotPassword: EventEmitter<{ email: string }> = new EventEmitter<{ email: string }>();
+  @Output() onForgotPassword: EventEmitter<ForgotPasswordRequest> = new EventEmitter<ForgotPasswordRequest>();
   @Output() onSignin: EventEmitter<void> = new EventEmitter<void>();
 
-  forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
+  @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
 
   forgotPasswordForm!: FormGroup;
 
@@ -33,77 +32,49 @@ export class ForgotPasswordFormComponent{
   };
 
   constructor(private fb: FormBuilder,
-    public router:Router,
-    public authenticationService: AuthenticationService) 
-    {
+    public router: Router,
+    public authenticationService: AuthenticationService) {
     this.forgotPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
     });
-   }
+  }
 
   get formControls() {
     return this.forgotPasswordForm.controls;
   }
 
-  onInput(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const controlName = inputElement.name;
-    this.forgotPasswordForm.controls[controlName].setValue(inputElement.value);
+  onInput(event: any) {
+    const { name, value } = event.target;
+    this.forgotPasswordForm.patchValue({ [name]: value });
   }
 
-    onSubmit(event: Event): void {
-      console.log('onSubmit')
-      event.preventDefault();
-      if (this.forgotPasswordForm.valid) 
-        {
-        const forgotPasswordFormRequest = this.forgotPasswordForm.value;
-        const environment = 'production';
-        const realm = '228';
-        const email = forgotPasswordFormRequest.email;
-  
-        this.authenticationService.ForgotPasswordForm(environment, realm, forgotPasswordFormRequest).subscribe({
-          next: (response: any) => {
-            console.log(response);
-            this.router.navigate(['/signin-form']);
-          },  
-          error: (error: any) => {
-            console.error(error);
-          }
-        });
-      } else {
-        this.forgotPasswordForm.markAllAsTouched();
-      }
-    }
-
-    getTranslation(key: string): string {
-      return this.translationDictionary[key] || '';
-    }
-
-    navigateToSignin() {
-      this.router.navigate(['/signin-form']);
-    }
-
-  /*onSubmit(): void {
+  onSubmit(event: Event): void {
     console.log('onSubmit')
-    if (this.forgotPasswordForm.invalid) {
-      this.forgotPasswordForm.markAllAsTouched();
-      return;
-    }
-    const enteredEmail = this.forgotPasswordForm.value.email;
+    event.preventDefault();
+    if (this.forgotPasswordForm.valid) {
+      const forgotPasswordFormRequest = this.forgotPasswordForm.value;
+      const environment = 'production';
+      const realm = '228';
 
-    if (!this.isUserExists(enteredEmail)) {
-      this.forgotPasswordForm.setErrors({ userNotFound: true });
-    }
-    else {
-      console.log('reset link sent to:', this.forgotPasswordForm.value);
-      this.sendPasswordResetLink(enteredEmail);
+      this.authenticationService.ForgotPasswordForm(environment, realm, forgotPasswordFormRequest).subscribe({
+        next: (response: any) => {
+          console.log(response);
+          this.router.navigate(['/signin-form']);
+        },
+        error: (error: any) => {
+          console.error(error);
+        }
+      });
+    } else {
+      this.forgotPasswordForm.markAllAsTouched();
     }
   }
-  isUserExists(email: string): boolean {
-    return false;
+
+  getTranslation(key: string): string {
+    return this.translationDictionary[key] || '';
   }
-  sendPasswordResetLink(email: string): void {
-    console.log('Password reset link sent to ${enteredEmail}', email);
-    this.passwordResetLinkSent = true;
-  }*/
+
+  navigateToSignin() {
+    this.onSignin.emit();
+  }
 }

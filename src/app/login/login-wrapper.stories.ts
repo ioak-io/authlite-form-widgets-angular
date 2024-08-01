@@ -23,8 +23,7 @@ import { InfoPageDescriptionComponent } from '../InfoPage/InfoPageDescription/in
 import { InfoPageFootnoteComponent } from '../InfoPage/InfoPageFootnote/info-page.footnote.component';
 import PageView from '../types/PageViewType';
 import { TranslationName } from '../types/TranslationDictionaryType';
-
-//import { action } from '@storybook/addon-actions'; 
+import { PlaceholderComponent } from '../Placeholder/placeholder.component';
 
 export default {
   title: 'Form Elements/Login',
@@ -38,6 +37,7 @@ export default {
         MainFormComponent,
         HeaderComponent,
         LogoComponent,
+        PlaceholderComponent,
         SigninFormComponent,
         TaglineComponent,
         CheckboxComponent,
@@ -63,11 +63,11 @@ const Template: Story<LoginWrapperComponent> = (args: LoginWrapperComponent,) =>
 
 export const Demo = Template.bind({});
 Demo.args = {
-  signinFormErrorMessages: {},
-  signupFormErrorMessages: {},
-  forgotPasswordFormErrorMessages: {},
-  resendVerifyLinkFormErrorMessages: {},
-  translationDictionary: DEFAULT_TRANSLATION_DICTIONARY,
-  view: PageView.signin,
-  changeView: (view: PageView) => console.log(`Change view to ${view}`),
+  //signinFormErrorMessages: {},
+  //signupFormErrorMessages: {},
+  //forgotPasswordFormErrorMessages: {},
+  //resendVerifyLinkFormErrorMessages: {},
+  //translationDictionary: DEFAULT_TRANSLATION_DICTIONARY,
+  //view: PageView.signin,
+  //changeView: (view: PageView) => console.log(`Change view to ${view}`),
 };

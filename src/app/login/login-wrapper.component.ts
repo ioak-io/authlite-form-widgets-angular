@@ -6,7 +6,6 @@ import ForgotPasswordFormErrorMessages from '../types/ForgotPasswordFormErrorMes
 import ResendVerifyLinkFormErrorMessages from '../types/ResendVerifyLinkFormErrorMessagesType';
 import PageView from '../types/PageViewType';
 import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary } from '../types/TranslationDictionaryType';
-import SigninRequest from '../types/SigninRequest';
 
 @Component({
   selector: 'app-login-wrapper',
@@ -35,6 +34,7 @@ export class LoginWrapperComponent implements OnInit {
       if (response.outcome === 'SUCCESS') {
         this.view = PageView.placeholder;
         this.successPage = 'signin';
+        console.log(this.successPage);
       }
       this.signinFormErrorMessages = response.errorMessages;
     });
@@ -51,7 +51,7 @@ export class LoginWrapperComponent implements OnInit {
     });
   }
 
-  onForgotPasswordForm(data: any): void {
+  onForgotPassword(data: any): void {
     this.authenticationService.ForgotPasswordForm('production', 228, data).subscribe((response: any) => {
       console.log(response);
       if (response.outcome === 'SUCCESS') {
@@ -62,7 +62,7 @@ export class LoginWrapperComponent implements OnInit {
     });
   }
 
-  onResendVerifyLinkForm(data: any): void {
+  onResendVerifyLink(data: any): void {
     this.authenticationService.resendVerifyLink('production', 228, data).subscribe((response: any) => {
       console.log(response);
       if (response.outcome === 'SUCCESS') {

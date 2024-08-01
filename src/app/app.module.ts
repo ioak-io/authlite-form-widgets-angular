@@ -17,6 +17,11 @@ import { ForgotPasswordFormComponent } from './ForgotPasswordForm/forgot-passwor
 import { SignupFormComponent } from './SignupForm/signup-form.component';
 import { ResendVerifyLinkFormComponent } from './ResendVerifyLinkForm/resend-verify-link-form.component';
 import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-page.component';
+import { InfoPageComponent } from './InfoPage/info-page.component';
+import { InfoPageDescriptionComponent } from './InfoPage/InfoPageDescription/info-page-description.component';
+import { InfoPageFootnoteComponent } from './InfoPage/InfoPageFootnote/info-page.footnote.component';
+import { PlaceholderComponent } from './Placeholder/placeholder.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +29,7 @@ import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-p
     MainFormComponent,
     HeaderComponent,
     LogoComponent,
+    PlaceholderComponent,
     FormElementMessageComponent,
     LoginWrapperComponent,
     LoginComponent,
@@ -33,6 +39,9 @@ import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-p
     SignupFormComponent,
     ResendVerifyLinkFormComponent,
     SignupSuccessPageComponent, 
+    InfoPageComponent,
+    InfoPageDescriptionComponent,
+    InfoPageFootnoteComponent
   ],
   imports: [
     AppComponent,

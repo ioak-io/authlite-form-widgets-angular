@@ -15,7 +15,8 @@ export class SignupFormComponent {
 
   @Output() onSignup: EventEmitter<SignupRequest> = new EventEmitter<SignupRequest>();
   @Output() onSignin: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onForgotPassword: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onForgotPasswordForm = new EventEmitter<void>();
+  @Output() onSignupSuccessPage = new EventEmitter<void>();
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
 
@@ -32,7 +33,6 @@ export class SignupFormComponent {
   }
 
   constructor(private fb: FormBuilder,
-    private router: Router,
     private authenticationService: AuthenticationService) 
     {
       this.signupForm = this.fb.group({
@@ -86,7 +86,7 @@ export class SignupFormComponent {
       this.authenticationService.signup(environment, realm, signinRequest).subscribe(
         (response: any) => {
           console.log('Signup Successful:', response);
-          this.router.navigate(['/signup-success-page']);
+          this.onSignupSuccessPage.emit();
         },
         (error: any) => {
           console.error('Signup Error:', error);
@@ -103,7 +103,6 @@ export class SignupFormComponent {
 
   navigateToSignin() {
     this.onSignin.emit();
-    this.router.navigate(['/signin-form']);
   }
 }
 

@@ -1,19 +1,19 @@
 
 <div class="authlite-login">
   <app-design-one
-    [onSignin]="onSignin"
-    [onSignup]="onSignup"
+    (onSignin)="handleSignin($event)"
+    (onSignup)="handleSignup($event)"
     [signinFormErrorMessages]="signinFormErrorMessages"
     [signupFormErrorMessages]="signupFormErrorMessages"
     [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
     [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages"
     [clearErrorMessages]="clearErrorMessages"
     [logo]="logo"
-    [placeholder]="placeholder"
+    (onPlaceholder)="handlePlaceholder($event)"
     [dictionary]="translationDictionary"
     [view]="view"
-    (changeView)="changeView($event)"
-    (onForgotPassword)="navigateToForgotPassword()"
-    (onResendVerifyLink)="navigateToResendVerifyLink()">
+    (changeView)="changeView"
+    (onForgotPassword)="handleForgotPassword($event)"
+    (onResendVerifyLink)="handleResendVerifyLink($event)">
   </app-design-one>
 </div>

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TranslationDictionary, TranslationName, getTranslation, DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/AuthenticationService';
 import SigninFormErrorMessages from '../types/SigninFormErrorMessagesType';
 import SigninRequest from '../types/SigninRequest';
@@ -16,8 +15,9 @@ import PageView from '../types/PageViewType';
 export class SigninFormComponent {
 
   @Output() onSignin: EventEmitter<SigninRequest> = new EventEmitter<SigninRequest>();
-  @Output() onSignup: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onSignup = new EventEmitter<any>();
   @Output() onForgotPassword = new EventEmitter<any>();
+  @Output() onPlaceholder = new EventEmitter<any>();
 
   @Input() signinFormErrorMessages!: SigninFormErrorMessages;
 
@@ -31,7 +31,6 @@ export class SigninFormComponent {
   TranslationName!: TranslationName;
 
   constructor(private fb: FormBuilder,
-    private router: Router,
     private authenticationService: AuthenticationService) {
     this.signinForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -77,7 +76,7 @@ export class SigninFormComponent {
       this.authenticationService.signin(environment, realm, signinRequest).subscribe(
         (response: any) => {
           console.log('Login Successfull', response);
-            this.router.navigate(['/signup-form']);
+            this.onPlaceholder.emit();
         },
 
         (error: any) => {
@@ -96,11 +95,13 @@ export class SigninFormComponent {
 
 
   navigateToSignup() {
-    this.router.navigate(['/signup-form']);
+    this.onSignup.emit();
   }
 
   navigateToForgotPassword() {
-    // this.router.navigate(['/forgot-password-form']);
     this.onForgotPassword.emit();
+  }
+  navigateToPlaceholder(){
+    this.onPlaceholder.emit();
   }
 }

@@ -7,5 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class InfoPageComponent {
   @Input() heading!: string;
-  @Input() children!: string;
 }

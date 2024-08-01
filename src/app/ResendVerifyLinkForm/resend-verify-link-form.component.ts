@@ -1,21 +1,48 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary, TranslationName, getTranslation } from '../types/TranslationDictionaryType';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { ResendVerifyLinkFormErrorMessages, ResendVerifyLinkRequest } from '../types';
+import { AuthenticationService } from '../services/AuthenticationService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resend-verify-link-form',
   templateUrl: './resend-verify-link-form.component.html',
   styleUrls: ['./resend-verify-link-form.component.scss'],
 })
-export class ResendVerifyLinkFormComponent implements OnInit {
+export class ResendVerifyLinkFormComponent{
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
 
   @Input() translationName!: TranslationName;
 
+  @Output() onResendVerifyLink: EventEmitter<ResendVerifyLinkRequest> = new EventEmitter<ResendVerifyLinkRequest>();
+  @Output() onSignin: EventEmitter<void> = new EventEmitter<void>();
+
   resendVerifyLinkForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  @Input() resendVerifyLinkFormErrorMessages!: ResendVerifyLinkFormErrorMessages;
+
+  constructor(private fb: FormBuilder,
+    public router: Router,
+    public authenticationService: AuthenticationService) { 
+      this.resendVerifyLinkForm = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+      });
+    }
+
+  get formControls() {
+    return this.resendVerifyLinkForm.controls;
+  }
+
+  onInput(event: any) {
+    const { name, value } = event.target;
+    this.resendVerifyLinkForm.patchValue({ [name]: value });
+  }
+
+  state: ResendVerifyLinkRequest = {
+    email: '',
+  };
 
   ngOnInit(): void {
     this.initForm();
@@ -25,40 +52,34 @@ export class ResendVerifyLinkFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
     });
   }
-  get resendVerifyLinkFormGreetingTitle(): string {
-    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__GREETING_TITLE;
-  }
-  get resendVerifyLinkFormGreetingSubtitle(): string {
-    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__GREETING_SUBTITLE;
-  }
-  get resendVerifyLinkFormLabelEmail(): string {
-    return this.translationDictionary.RESEND_VERIFY_LINK_FORM__LABEL_EMAIL;
-  }
-  get resendVerifyLinkFormUsernameErrorMessage(): string {
-    return this.translationDictionary['RESEND_VERIFY_LINK_ERROR__BLANK_USERNAME'];
-  }
-  get resendVerifyLinkFormInvalidUsername(): string {
-    return this.translationDictionary.RESEND_VERIFY_LINK_ERROR__INVALID_USERNAME;
-  }
-  get resendVerifyLinkFormUserNotFound(): string {
-    return this.translationDictionary.RESEND_VERIFY_LINK_ERROR__USER_NOT_FOUND;
-  }
-  onSubmit(): void {
+  
+  onSubmit(event: Event): void {
     console.log('onSubmit')
-    if (this.resendVerifyLinkForm.invalid) {
-      this.resendVerifyLinkForm.markAllAsTouched();
-      return;
-    }
-    const enteredEmail = this.resendVerifyLinkForm.value.email;
+    event.preventDefault();
+    if (this.resendVerifyLinkForm.valid) {
+      const resendVerifyLinkRequest = this.resendVerifyLinkForm.value;
+      const environment = 'production';
+      const realm = '228';
 
-    if (!this.isUserExists(enteredEmail)) {
-      this.resendVerifyLinkForm.setErrors({ userNotFound: true });
-    }
-    else {
-      console.log('reset link sent to:', this.resendVerifyLinkForm.value);
+      this.authenticationService.resendVerifyLink(environment, realm, resendVerifyLinkRequest).subscribe({
+        next: (response: any) => {
+          console.log(response);
+          //this.router.navigate(['/signin-form']);
+          //console.log('reset link sent to:', this.resendVerifyLinkForm.value);
+        },
+        error: (error: any) => {
+          console.error(error);
+        }
+      });
+    } else {
+      this.resendVerifyLinkForm.markAllAsTouched();
     }
   }
-  isUserExists(_email: string): boolean {
-    return false;
+
+  getTranslation(key: string): string {
+    return this.translationDictionary[key] || '';
+  }  
+  navigateToSignin() {
+    this.onSignin.emit();
   }
 }
