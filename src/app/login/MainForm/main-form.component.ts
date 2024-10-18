@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import PageView from '../../types/PageViewType';  // Make sure this is the correct path
-import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType'; // Correct path
-import SignupFormErrorMessages from '../../types/SignupFormErrorMessagesType'; // Correct path
-import ForgotPasswordFormErrorMessages from '../../types/ForgotPasswordFormErrorMessagesType'; // Correct path
-import ResendVerifyLinkFormErrorMessages from '../../types/ResendVerifyLinkFormErrorMessagesType'; // Correct path
-import { TranslationDictionary, DEFAULT_TRANSLATION_DICTIONARY } from '../../types/TranslationDictionaryType'; // Correct path
+import PageView from '../../types/PageViewType';
+import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType';
+import SignupFormErrorMessages from '../../types/SignupFormErrorMessagesType';
+import ForgotPasswordFormErrorMessages from '../../types/ForgotPasswordFormErrorMessagesType';
+import ResendVerifyLinkFormErrorMessages from '../../types/ResendVerifyLinkFormErrorMessagesType';
+import { TranslationDictionary, DEFAULT_TRANSLATION_DICTIONARY } from '../../types/TranslationDictionaryType';
 
 @Component({
   selector: 'app-main-form',
@@ -12,21 +12,40 @@ import { TranslationDictionary, DEFAULT_TRANSLATION_DICTIONARY } from '../../typ
   styleUrls: ['./main-form.component.scss']
 })
 export class MainFormComponent {
+  @Input() successPage: 'signin' | 'signup' | 'forgotpassword' | 'resendverifyemail' = 'signin';
   @Input() view!: PageView;
+  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
+  @Input() PageView = PageView;
+  @Input() changeView: any;
+
   @Input() signinFormErrorMessages!: SigninFormErrorMessages;
   @Input() signupFormErrorMessages!: SignupFormErrorMessages;
   @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
   @Input() resendVerifyLinkFormErrorMessages!: ResendVerifyLinkFormErrorMessages;
-  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
-  @Input() logo!: string;
-  PageView = PageView;
-  changeView: any;
-  clearErrorMessages: any;
+  
+  @Input() src!: string;
+
+  @Input() signinheading!: string;
+  @Input() signupheading!: string;
+  @Input() forgotpasswordheading!: string;
+  @Input() resendverifyemailheading!: string;
+
+  @Input() signindescription!: string;
+  @Input() signupdescription!: string;
+  @Input() forgotpassworddescription!: string;
+  @Input() resendverifyemaildescription!: string;
+
+  @Input() signinfootnote!: string;
+  @Input() signupfootnote!: string;
+  @Input() forgotpasswordfootnote!: string;
+  @Input() resendverifyemailfootnote!: string;
+
+  @Output() clearErrorMessages = new EventEmitter<any>();
   @Output() onSignin = new EventEmitter<any>();
   @Output() onSignup = new EventEmitter<any>();
   @Output() onForgotPassword = new EventEmitter<any>();
   @Output() onResendVerifyLink = new EventEmitter<any>();
-  @Output() onPlaceholder = new EventEmitter<any>();  
+  @Output() onPlaceholder = new EventEmitter<any>();
 
   ngOnInit(): void {
     if (this.signinFormErrorMessages?.unverifiedEmail) {
@@ -36,26 +55,52 @@ export class MainFormComponent {
 
   handleChangeView(view: PageView): void {
     this.view = view;
-    this.clearErrorMessages();
+    console.log(this.view);
+    // this.clearErrorMessages.emit();
   }
 
-  handleSignin(event: any): void{
-    this.handleChangeView(PageView.signin);
+  handleSignin(event: any): void {    
+    if (event) {
+      this.handleChangeView(PageView.placeholder);
+      this.successPage = 'signin';
+    }
+    else {
+      this.handleChangeView(PageView.signin);
+    }
+    this.onSignin.emit(event);
   }
 
   handleSignup(event: any): void {
-    this.handleChangeView(PageView.signup);
+    if (event) {
+      this.handleChangeView(PageView.placeholder);
+      this.successPage = 'signup';
+    }
+    else {
+      this.handleChangeView(PageView.signup);
+    }
   }
 
-  handleForgotPassword(event: any) {
-    this.handleChangeView(PageView.forgotpassword);
+  handleForgotPassword(event: any): void {
+    if (event) {
+      this.handleChangeView(PageView.placeholder);
+      this.successPage = 'forgotpassword';
+    }
+    else {
+      this.handleChangeView(PageView.forgotpassword);
+    }
   }
 
-  handleResendVerifyEmail(event: any) {
-    this.handleChangeView(PageView.resendverifyemail);
+  handleResendVerifyEmail(event: any): void {
+    if (event) {
+      this.handleChangeView(PageView.placeholder);
+      this.successPage = 'resendverifyemail';
+    }
+    else {
+      this.handleChangeView(PageView.resendverifyemail);
+    }
   }
 
-  handlePlaceholder(event: any) {
+  handlePlaceholder(event: any): void {
     this.handleChangeView(PageView.placeholder);
   }
 }

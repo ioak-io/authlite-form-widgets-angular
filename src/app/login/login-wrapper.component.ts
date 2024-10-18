@@ -15,14 +15,31 @@ import { DEFAULT_TRANSLATION_DICTIONARY, TranslationDictionary } from '../types/
 export class LoginWrapperComponent implements OnInit {
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
-  PageView: any;
-  view: PageView = PageView.signin;
-  successPage: 'signin' | 'signup' | 'forgotpassword' | 'resendverifyemail' | null = null;
-  signinFormErrorMessages: SigninFormErrorMessages = {};
-  signupFormErrorMessages: SignupFormErrorMessages = {};
-  forgotPasswordFormErrorMessages: ForgotPasswordFormErrorMessages = {};
-  resendVerifyLinkFormErrorMessages: ResendVerifyLinkFormErrorMessages = {};
-  changeView: any;
+  @Input() PageView: any;
+  @Input() view: PageView = PageView.signin;
+  @Input() successPage: 'signin' | 'signup' | 'forgotpassword' | 'resendverifyemail' = 'signin';
+  @Input() signinFormErrorMessages: SigninFormErrorMessages = {};
+  @Input() signupFormErrorMessages: SignupFormErrorMessages = {};
+  @Input() forgotPasswordFormErrorMessages: ForgotPasswordFormErrorMessages = {};
+  @Input() resendVerifyLinkFormErrorMessages: ResendVerifyLinkFormErrorMessages = {};
+  @Input() changeView: any;
+
+  logo: string = 'https://authlite-widgets.ioak.io/static/media/authlite_black.449e265c.svg';
+
+  signinheading = 'Authentication successful!';
+  signupheading = 'User account created!';
+  forgotpasswordheading = 'Password reset link sent!';
+  resendverifyemailheading = 'Email confirmation link sent!';
+
+  signindescription = 'Posuere ipsum tellus ornare rutrumaliquam torquent fermentum euismod musvestibulum tincidunt cursus quisque elitsuspendisse augue. rutrumaliquam commodo <a href="#" (click)="handleSignin($event)">login now</a> parturient rutrumaliquam nec varius sociosqu.';
+  signupdescription = 'Gravida dolor suscipit urna sagittis per <a href="#" (click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
+  forgotpassworddescription = 'Gravida dolor suscipit urna sagittis per <a href="#" (click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
+  resendverifyemaildescription = 'Please check your email for <a href="#"(click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
+
+  signinfootnote = 'Commodo nullam et facilisis hendrerit pharetra platea duis commodo nascetur libero aptent';
+  signupfootnote = 'Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam';
+  forgotpasswordfootnote = 'Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam';
+  resendverifyemailfootnote = 'Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam';
 
   constructor(private authenticationService: AuthenticationService) { }
 
@@ -31,10 +48,10 @@ export class LoginWrapperComponent implements OnInit {
 
   onSignin(data: any): void {
     this.authenticationService.signin('production', 228, data).subscribe((response: any) => {
+      console.log(response);
       if (response.outcome === 'SUCCESS') {
         this.view = PageView.placeholder;
         this.successPage = 'signin';
-        console.log(this.successPage);
       }
       this.signinFormErrorMessages = response.errorMessages;
     });
@@ -78,20 +95,25 @@ export class LoginWrapperComponent implements OnInit {
     this.signupFormErrorMessages = {};
   }
 
-  navigateToSignin(): void {
+  handleSignin(event: MouseEvent): void {
+    event.preventDefault();
     this.view = PageView.signin;
   }
 
-  navigateToSignup(): void {
+  handleSignup(event: any): void {
     this.view = PageView.signup;
   }
 
-  navigateToForgotPassword(): void {
+  handleForgotPassword(event: MouseEvent): void {
+    event.preventDefault();
     this.view = PageView.forgotpassword;
   }
 
-  navigateToResendVerifyLink(): void {
+  handleResendVerifyLink(event: any): void {
     this.view = PageView.resendverifyemail;
   }
 
+  handlePlaceholder(event: any): void {
+    this.view = PageView.placeholder;
+  }
 }

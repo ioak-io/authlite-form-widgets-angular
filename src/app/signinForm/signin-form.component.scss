@@ -1,36 +1,43 @@
 @import '../styles/index.css';
 
-*{
-    font-family: 'Roboto', sans-serif;
+* {
+  font-family: 'Roboto', sans-serif;
 }
+
 .authlite-signin-form {
-    display: grid;
-    grid-auto-flow: row;
-    width: 100%;
+  display: grid;
+  grid-auto-flow: row;
+  width: 100%;
 }
+
 .authlite-signin-form__forgot {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
+
 .authlite-d1-tagline {
-    text-align: center;
-    display: grid;
-    grid-auto-flow: row;
-    row-gap: 6px;
+  text-align: center;
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 6px;
 }
+
 .authlite-d1-tagline__title {
-    font-size: 20px;
+  font-size: 20px;
 }
+
 .authlite-d1-tagline__subtitle {
-    font-size: 12px;
-    opacity: 0.6;
+  font-size: 12px;
+  opacity: 0.6;
 }
+
 .authlite-action-bar,
 .authlite-action-bar-center {
-    font-size: 12px;
+  font-size: 12px;
 }
+
 .authlite-input-container {
   position: relative;
 }
@@ -52,7 +59,6 @@
 }
 
 .authlite-password-show-icon {
-  //display: none;
   width: 4%;
 }
 

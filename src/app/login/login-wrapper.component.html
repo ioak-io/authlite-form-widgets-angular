@@ -1,66 +1,27 @@
 <app-login 
-    (onSignin)="onSignin($event)" 
-    (onSignup)="onSignup($event)" 
-    (forgotPassword)="onForgotPassword($event)"
-    (resendVerifyLink)="onResendVerifyLink($event)" 
+    (onSignin)="handleSignin($event)" 
+    (onSignup)="handleSignup($event)" 
+    (onForgotPassword)="handleForgotPassword($event)"
+    (onResendVerifyLink)="handleResendVerifyLink($event)" 
     [signinFormErrorMessages]="signinFormErrorMessages"
     [signupFormErrorMessages]="signupFormErrorMessages"
     [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
     [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages" 
     (clearErrorMessages)="clearErrorMessages()"
     [view]="view" 
-    (changeView)="changeView($event)">
-    <app-logo>
-      <img src="authlite_black.449e265c.svg" alt="Authlite logo" />
-    </app-logo>
-    <app-placeholder>
-      <ng-container *ngIf="successPage === 'signin'">
-        <app-info-page heading="Authentication successful!">
-          <app-info-page-description>
-            Posuere ipsum tellus ornare rutrumaliquam torquent fermentum euismod musvestibulum tincidunt cursus quisque
-            elitsuspendisse augue. rutrumaliquam commodo <a (click)="view = PageView.signin">login now</a> parturient
-            rutrumaliquam nec varius sociosqu.
-          </app-info-page-description>
-          <app-info-page-footnote>
-            Commodo nullam et facilisis hendrerit pharetra platea duis commodo nascetur libero aptent
-          </app-info-page-footnote>
-        </app-info-page>
-      </ng-container>
-      <ng-container *ngIf="successPage === 'signup'">
-        <app-info-page heading="User account created!">
-          <app-info-page-description>
-            Gravida dolor suscipit urna sagittis per <a (click)="view = PageView.signin">login now</a> parturient eu.
-            laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus
-            convallis donec nam sodales.
-          </app-info-page-description>
-          <app-info-page-footnote>
-            Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam
-          </app-info-page-footnote>
-        </app-info-page>
-      </ng-container>
-      <ng-container *ngIf="successPage === 'forgotpassword'">
-        <app-info-page heading="Password reset link sent!">
-          <app-info-page-description>
-            Gravida dolor suscipit urna sagittis per <a (click)="view = PageView.signin">login now</a> parturient eu.
-            laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus
-            convallis donec nam sodales.
-          </app-info-page-description>
-          <app-info-page-footnote>
-            Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam
-          </app-info-page-footnote>
-        </app-info-page>
-      </ng-container>
-      <ng-container *ngIf="successPage === 'resendverifyemail'">
-        <app-info-page heading="Email confirmation link sent!">
-          <app-info-page-description>
-            Please check your email for <a (click)="view = PageView.signin">login now</a> parturient eu. laoreet
-            congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis
-            donec nam sodales.
-          </app-info-page-description>
-          <app-info-page-footnote>
-            Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam
-          </app-info-page-footnote>
-        </app-info-page>
-      </ng-container>
-    </app-placeholder>
+    (changeView)="changeView"
+    [src]="logo"
+    [successPage]="successPage"
+    [signinheading]="signinheading"
+    [signupheading]="signupheading"
+    [forgotpasswordheading]="forgotpasswordheading"
+    [resendverifyemailheading]="resendverifyemailheading"
+    [signindescription]="signindescription"
+    [signupdescription]="signupdescription"
+    [forgotpassworddescription]="forgotpassworddescription"
+    [resendverifyemaildescription]="resendverifyemaildescription"
+    [signinfootnote]="signinfootnote"
+    [signupfootnote]="signupfootnote"
+    [forgotpasswordfootnote]="forgotpasswordfootnote"
+    [resendverifyemailfootnote]="resendverifyemailfootnote">
 </app-login>

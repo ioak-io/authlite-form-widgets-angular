@@ -1,9 +1,7 @@
 
 <div class="authlite-mainform">
   
-  <app-header [logo]="logo">
-    <ng-container *ngIf="logo">{{ logo }}</ng-container>
-  </app-header>
+  <app-header [src]="src"></app-header>
 
   <app-signin-form *ngIf="view === PageView.signin" 
                     (onSignin)="handleSignin($event)" 
@@ -11,7 +9,8 @@
                     (onForgotPassword)="handleForgotPassword($event)" 
                     [signinFormErrorMessages]="signinFormErrorMessages"
                     [dictionary]="translationDictionary"
-                    [changeView]="changeView">
+                    [changeView]="changeView"
+                    [successPage]="successPage">
   </app-signin-form>
 
   <app-signup-form *ngIf="view === PageView.signup"
@@ -19,7 +18,8 @@
                     (onSignin)="handleSignin($event)"
                     [signupFormErrorMessages]="signupFormErrorMessages" 
                     [dictionary]="translationDictionary"
-                    [changeView]="changeView">
+                    [changeView]="changeView"
+                    [successPage]="successPage">
   </app-signup-form>
 
   <app-forgot-password-form *ngIf="view === PageView.forgotpassword" 
@@ -27,7 +27,8 @@
                     (onSignin)="handleSignin($event)" 
                     [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
                     [dictionary]="translationDictionary"
-                    [changeView]="changeView">
+                    [changeView]="changeView"
+                    [successPage]="successPage">
   </app-forgot-password-form>
 
   <app-resend-verify-link-form *ngIf="view === PageView.resendverifyemail"
@@ -35,10 +36,27 @@
           (onSignin)="handleSignin($event)"
           [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages" 
           [dictionary]="translationDictionary"
-          [email]="signinFormErrorMessages?.unverifiedEmail || ''" >
+          [email]="signinFormErrorMessages?.unverifiedEmail || ''"
+          [successPage]="successPage">
   </app-resend-verify-link-form>
 
   <app-placeholder *ngIf="view === PageView.placeholder"
-          (onPlaceholder)="handlePlaceholder($event)">
+          (onPlaceholder)="handlePlaceholder($event)"
+          (onSignin)="handleSignin($event)"
+          [dictionary]="translationDictionary"
+          [changeView]="changeView"
+          [successPage]="successPage"
+          [signinheading]="signinheading"
+          [signupheading]="signupheading"
+          [forgotpasswordheading]="forgotpasswordheading"
+          [resendverifyemailheading]="resendverifyemailheading"
+          [signindescription]="signindescription"
+          [signupdescription]="signupdescription"
+          [forgotpassworddescription]="forgotpassworddescription"
+          [resendverifyemaildescription]="resendverifyemaildescription"
+          [signinfootnote]="signinfootnote"
+          [signupfootnote]="signupfootnote"
+          [forgotpasswordfootnote]="forgotpasswordfootnote"
+          [resendverifyemailfootnote]="resendverifyemailfootnote">
   </app-placeholder>
 </div>

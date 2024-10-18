@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { TranslationDictionary } from '../../types/TranslationDictionaryType';
 import PageView from '../../types/PageViewType';
 import SigninFormErrorMessages from '../../types/SigninFormErrorMessagesType';
@@ -11,10 +11,25 @@ import ResendVerifyLinkFormErrorMessages from '../../types/ResendVerifyLinkFormE
   templateUrl: './design-one.component.html',
   styleUrls: ['./design-one.component.scss'],
 })
-export class DesignOneComponent{
-  @Input() successPage!: string;
-  @Input() logo!: string;
-  @Input() placeholder: any;
+export class DesignOneComponent {
+  @Input() successPage: 'signin' | 'signup' | 'forgotpassword' | 'resendverifyemail' = 'signin';
+  @Input() src!: string;
+
+  @Input() signinheading!: string;
+  @Input() signupheading!: string;
+  @Input() forgotpasswordheading!: string;
+  @Input() resendverifyemailheading!: string;
+
+  @Input() signindescription!: string;
+  @Input() signupdescription!: string;
+  @Input() forgotpassworddescription!: string;
+  @Input() resendverifyemaildescription!: string;
+
+  @Input() signinfootnote!: string;
+  @Input() signupfootnote!: string;
+  @Input() forgotpasswordfootnote!: string;
+  @Input() resendverifyemailfootnote!: string;
+
   @Input() signinFormErrorMessages!: SigninFormErrorMessages;
   @Input() signupFormErrorMessages!: SignupFormErrorMessages;
   @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
@@ -22,6 +37,7 @@ export class DesignOneComponent{
   @Input() translationDictionary!: TranslationDictionary;
   @Input() view!: PageView;
   @Input() changeView: any;
+
   @Output() onSignin = new EventEmitter<any>();
   @Output() onSignup = new EventEmitter<any>();
   @Output() onForgotPassword = new EventEmitter<any>();
@@ -29,7 +45,7 @@ export class DesignOneComponent{
   @Output() onPlaceholder = new EventEmitter<any>();
   @Output() clearErrorMessages = new EventEmitter<void>();
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnChanges(): void {
     if (this.signinFormErrorMessages.unverifiedEmail) {
@@ -52,7 +68,7 @@ export class DesignOneComponent{
   handleResendVerifyLink(event: any) {
     this.onResendVerifyLink.emit(event);
   }
-  
+
   handlePlaceholder(event: any) {
     this.onPlaceholder.emit(event);
   }

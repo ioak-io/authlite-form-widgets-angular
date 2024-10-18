@@ -15,7 +15,6 @@ export class SignupFormComponent {
 
   @Output() onSignup: EventEmitter<SignupRequest> = new EventEmitter<SignupRequest>();
   @Output() onSignin: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onForgotPasswordForm = new EventEmitter<void>();
   @Output() onSignupSuccessPage = new EventEmitter<void>();
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
@@ -33,19 +32,18 @@ export class SignupFormComponent {
   }
 
   constructor(private fb: FormBuilder,
-    private authenticationService: AuthenticationService) 
-    {
-      this.signupForm = this.fb.group({
-        given_name: ['', Validators.required],
-        family_name: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-        retype_password: ['', Validators.required],
-      },
+    private authenticationService: AuthenticationService) {
+    this.signupForm = this.fb.group({
+      given_name: ['', Validators.required],
+      family_name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      retype_password: ['', Validators.required],
+    },
       {
         validators: this.passwordMatchValidator,
       });
-    }
+  }
 
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password');
@@ -73,12 +71,11 @@ export class SignupFormComponent {
     password: '',
     retype_password: ''
   };
-  
+
   onSubmit(event: Event): void {
     console.log('onSubmit')
     event.preventDefault();
-    if (this.signupForm.valid)
-    {
+    if (this.signupForm.valid) {
       const signinRequest = this.signupForm.value;
       const environment = 'production';
       const realm = '228';
@@ -86,7 +83,7 @@ export class SignupFormComponent {
       this.authenticationService.signup(environment, realm, signinRequest).subscribe(
         (response: any) => {
           console.log('Signup Successful:', response);
-          this.onSignupSuccessPage.emit();
+          this.onSignup.emit(response);
         },
         (error: any) => {
           console.error('Signup Error:', error);

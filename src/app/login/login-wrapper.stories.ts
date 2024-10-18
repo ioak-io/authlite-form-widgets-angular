@@ -63,11 +63,4 @@ const Template: Story<LoginWrapperComponent> = (args: LoginWrapperComponent,) =>
 
 export const Demo = Template.bind({});
 Demo.args = {
-  //signinFormErrorMessages: {},
-  //signupFormErrorMessages: {},
-  //forgotPasswordFormErrorMessages: {},
-  //resendVerifyLinkFormErrorMessages: {},
-  //translationDictionary: DEFAULT_TRANSLATION_DICTIONARY,
-  //view: PageView.signin,
-  //changeView: (view: PageView) => console.log(`Change view to ${view}`),
 };

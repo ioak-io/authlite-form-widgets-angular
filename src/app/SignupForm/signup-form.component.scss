@@ -1,37 +1,38 @@
 @import '../styles/index.css';
+
 .authlite-action-bar,
 .authlite-action-bar-center {
-    font-size: 12px;
+	font-size: 12px;
 }
+
 .authlite-input-container {
 	position: relative;
-  }
-  
-  .authlite-input {
+}
+
+.authlite-input {
 	width: 100%;
 	padding: 10px;
 	margin-bottom: 10px;
-  }
-  
-  .authlite-password-hide-icon,
-  .authlite-password-show-icon {
+}
+
+.authlite-password-hide-icon,
+.authlite-password-show-icon {
 	position: absolute;
 	top: 40%;
 	right: 10px;
 	transform: translateY(-50%);
 	cursor: pointer;
 	width: 4%;
-  }
-  
-  .authlite-password-show-icon {
-	//display: none;
+}
+
+.authlite-password-show-icon {
 	width: 4%;
-  }
-  
-  .authlite-input-container.show-password .authlite-password-hide-icon {
+}
+
+.authlite-input-container.show-password .authlite-password-hide-icon {
 	display: none;
-  }
-  
-  .authlite-input-container.show-password .authlite-password-show-icon {
+}
+
+.authlite-input-container.show-password .authlite-password-show-icon {
 	display: block;
-  }
+}

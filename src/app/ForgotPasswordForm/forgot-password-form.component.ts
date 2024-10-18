@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/AuthenticationService';
 import ForgotPasswordFormErrorMessages from '../types/ForgotPasswordFormErrorMessagesType';
 import ForgotPasswordRequest from '../types/ResendVerifyLinkRequestType';
+import PageView from '../types/PageViewType';
 
 @Component({
   selector: 'app-forgot-password-form',
@@ -15,11 +16,11 @@ export class ForgotPasswordFormComponent {
 
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
   @Input() translationName!: TranslationName;
+  @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
 
   @Output() onForgotPassword: EventEmitter<ForgotPasswordRequest> = new EventEmitter<ForgotPasswordRequest>();
   @Output() onSignin: EventEmitter<void> = new EventEmitter<void>();
-
-  @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
+  @Output() onPlaceholder: EventEmitter<void> = new EventEmitter<void>();
 
   forgotPasswordForm!: FormGroup;
 
@@ -56,15 +57,19 @@ export class ForgotPasswordFormComponent {
       const environment = 'production';
       const realm = '228';
 
-      this.authenticationService.ForgotPasswordForm(environment, realm, forgotPasswordFormRequest).subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.router.navigate(['/signin-form']);
+      this.authenticationService.ForgotPasswordForm(environment, realm, forgotPasswordFormRequest).subscribe(
+        (response: any) => {
+          console.log('Password reset link successful', response);
+          this.passwordResetLinkSent = true;
+          this.onForgotPassword.emit(response);
         },
-        error: (error: any) => {
-          console.error(error);
+        (error: any) => {
+          console.error('Error', error);
+          if (error.errorCode === 'userNotFound') {
+            this.forgotPasswordForm.controls['email'].setErrors({ userNotFound: true });
+          }
         }
-      });
+      );
     } else {
       this.forgotPasswordForm.markAllAsTouched();
     }
@@ -76,5 +81,9 @@ export class ForgotPasswordFormComponent {
 
   navigateToSignin() {
     this.onSignin.emit();
+  }
+
+  navigateToPlaceholder() {
+    this.onPlaceholder.emit();
   }
 }

@@ -1,3 +1,5 @@
+@import '../../styles/index.css';
+
 .authlite-d1 {
     display: grid;
     grid-template-columns: 0 1fr;
@@ -30,5 +32,4 @@
     max-width: 456px;
     padding: 20px;
     margin: auto;
-    /* row-gap: 20px; */
 }

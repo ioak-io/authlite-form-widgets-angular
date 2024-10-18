@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/AuthenticationService';
 import SigninFormErrorMessages from '../types/SigninFormErrorMessagesType';
 import SigninRequest from '../types/SigninRequest';
-import PageView from '../types/PageViewType';
 
 @Component({
   selector: 'app-signin-form',
@@ -20,15 +19,13 @@ export class SigninFormComponent {
   @Output() onPlaceholder = new EventEmitter<any>();
 
   @Input() signinFormErrorMessages!: SigninFormErrorMessages;
-
+  @Input() TranslationName!: TranslationName;
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
-  @Input() changeView : any;
+  @Input() changeView: any;
 
   signinForm!: FormGroup;
 
   showPassword: boolean = true; //password eye icon functionality
-
-  TranslationName!: TranslationName;
 
   constructor(private fb: FormBuilder,
     private authenticationService: AuthenticationService) {
@@ -56,7 +53,6 @@ export class SigninFormComponent {
     password: ''
   };
 
-
   initForm(): void {
     this.signinForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -67,8 +63,7 @@ export class SigninFormComponent {
   onSubmit(event: Event): void {
     console.log('onSubmit')
     event.preventDefault();
-    if (this.signinForm.valid) 
-      {
+    if (this.signinForm.valid) {
       const signinRequest = this.signinForm.value;
       const environment = 'production';
       const realm = '228';
@@ -76,11 +71,17 @@ export class SigninFormComponent {
       this.authenticationService.signin(environment, realm, signinRequest).subscribe(
         (response: any) => {
           console.log('Login Successfull', response);
-            this.onPlaceholder.emit();
+          this.onSignin.emit(response);
         },
 
         (error: any) => {
-          console.error('Login Error:', error);
+          console.log('Login Error:', error);
+          if (error.errorCode === 'userNotFound') {
+            this.signinForm.controls['email'].setErrors({ userNotFound: true });
+          }
+          else if (error.errorCode === 'incorrectPassword') {
+            this.signinForm.controls['password'].setErrors({ incorrectPassword: true });
+          }
         }
       );
 
@@ -93,15 +94,11 @@ export class SigninFormComponent {
     return this.translationDictionary[key] || '';
   }
 
-
   navigateToSignup() {
     this.onSignup.emit();
   }
 
   navigateToForgotPassword() {
     this.onForgotPassword.emit();
-  }
-  navigateToPlaceholder(){
-    this.onPlaceholder.emit();
   }
 }
