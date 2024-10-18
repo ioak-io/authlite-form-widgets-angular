@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./info-page-description.component.scss']
 })
 export class InfoPageDescriptionComponent {
-  
+  @Input() description!: string;
 }

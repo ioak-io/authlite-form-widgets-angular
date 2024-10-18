@@ -102,10 +102,10 @@ export class AuthenticationService {
     return this.http.post<SigninResponse>(`${url}/${realm}/admin/auth/signup`, { response_type: "token", ...payload }, { headers })
       .pipe(
         catchError(error => this.processSignupResponse(error))
-      )as Observable<SigninResponse>;
+      ) as Observable<SigninResponse>;
   }
 
-  ForgotPasswordForm(environment: 'local' | 'production', realm: number | string, payloadRequest: ForgotPasswordRequest ): Observable<ForgotPasswordResponse> {
+  ForgotPasswordForm(environment: 'local' | 'production', realm: number | string, payloadRequest: ForgotPasswordRequest): Observable<ForgotPasswordResponse> {
     const payload: ForgotPasswordRequest = {
       email: payloadRequest.email?.trim(),
     };
@@ -120,7 +120,7 @@ export class AuthenticationService {
     return this.http.post<ForgotPasswordResponse>(`${url}/${realm}/user/auth/reset-password-link`, payload)
       .pipe(
         catchError(error => this.processForgotPasswordResponse(error))
-      )as Observable<ForgotPasswordResponse>;
+      ) as Observable<ForgotPasswordResponse>;
   }
 
   resendVerifyLink(environment: 'local' | 'production', realm: number | string, payloadRequest: ResendVerifyLinkRequest): Observable<ResendVerifyLinkResponse> {
@@ -138,7 +138,7 @@ export class AuthenticationService {
     return this.http.post<ResendVerifyLinkResponse>(`${url}/${realm}/user/auth/verify-email/resend`, payload)
       .pipe(
         catchError(error => this.processResendVerifyLinkResponse(error))
-      )as Observable<ResendVerifyLinkResponse>;
+      ) as Observable<ResendVerifyLinkResponse>;
   }
 
   private validateSigninForm(payload: SigninRequest): any {
@@ -155,7 +155,7 @@ export class AuthenticationService {
     if (!payload.family_name) {
       return { error: 'Family name is required.' };
     }
-  
+
     if (!payload.email) {
       return { error: 'Email address is required.' };
     }
@@ -200,9 +200,11 @@ export class AuthenticationService {
 
   private processSigninResponse(error: any): Observable<SigninResponse> {
     if (error.status === 401) {
-      return throwError({ error: 'Invalid email or password.' });
+      return throwError({ error: 'Invalid email or password.', errorCode: 'incorrectPassword' });
+    } else if (error.status === 404) {
+      return throwError({ error: 'User not found.', errorCode: 'userNotFound' });
     } else {
-    return throwError({ error: 'An unexpected error occurred. Please try again later.' });
+      return throwError({ error: 'An unexpected error occurred. Please try again later.' });
     }
   }
 
@@ -216,7 +218,7 @@ export class AuthenticationService {
 
   private processForgotPasswordResponse(error: any): any {
     if (error.status === 404) {
-      return { error: 'User does not exist.' };
+      return throwError({ error: 'User does not exist.', errorCode: 'userNotFound' });
     } else if (error.status === 400) {
       return { error: 'Invalid Email request. Please try again later.' };
     } else {

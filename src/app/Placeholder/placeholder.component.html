@@ -1,3 +1,20 @@
 <div class="authlite-placeholder">
-    <ng-content></ng-content>
+    <app-info-page
+        (onSignin)="handleSignin($event)"
+        [successPage]="successPage"
+        [signinheading]="signinheading"
+        [signupheading]="signupheading"
+        [forgotpasswordheading]="forgotpasswordheading"
+        [resendverifyemailheading]="resendverifyemailheading"
+        [signindescription]="signindescription"
+        [signupdescription]="signupdescription"
+        [forgotpassworddescription]="forgotpassworddescription"
+        [resendverifyemaildescription]="resendverifyemaildescription"
+        [signinfootnote]="signinfootnote"
+        [signupfootnote]="signupfootnote"
+        [forgotpasswordfootnote]="forgotpasswordfootnote"
+        [resendverifyemailfootnote]="resendverifyemailfootnote"
+        [dictionary]="translationDictionary"
+        (changeView)="changeView($event)">
+    </app-info-page>
 </div>

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-info-page-footnote',
   templateUrl: './info-page-footnote.component.html',
   styleUrls: ['./info-page-footnote.component.scss']
 })
-export class InfoPageFootnoteComponent {}
+export class InfoPageFootnoteComponent {
+  @Input() footnote!: string;
+}

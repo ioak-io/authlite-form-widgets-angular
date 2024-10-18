@@ -1,16 +1,24 @@
+@import '../styles/elements/hyperlink.css';
+@import '../styles/elements/typography.css';
+@import '../styles/index.css';
+*{
+    font-family: system-ui;
+}
+
 .authlite-infopage {
     display: grid;
     justify-items: center;
-    /* row-gap: 20px; */
-    /* width: 340px; */
     max-width: 90vw;
     text-align: center;
     font-size: 14px;
     margin-top: 40px;
 }
 
-
 .authlite-infopage h1 {
     font-weight: 500;
     font-size: 24px;
+}
+
+.authlite-infopage a{
+    text-decoration: none;
 }

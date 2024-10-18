@@ -1,3 +1,10 @@
+@import '../../styles/index.css';
+@import '../../styles/elements/hyperlink.css';
+
+* {
+    font-family: system-ui;
+}
+
 .authlite-infopage-description {
     margin-top: 12px;
     font-size: 14px;

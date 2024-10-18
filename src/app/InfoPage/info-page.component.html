@@ -1,6 +1,25 @@
 <div class="authlite-infopage">
-  <h1>{{ heading }}</h1>
-  <div>
-    <ng-content></ng-content>
-  </div>
+  <ng-container *ngIf="successPage === 'signin'">
+    <h1>{{ signinheading }}</h1>
+    <app-info-page-description [description]="signindescription"></app-info-page-description>
+    <app-info-page-footnote [footnote]="signinfootnote"></app-info-page-footnote>
+  </ng-container>
+
+  <ng-container *ngIf="successPage === 'signup'">
+    <h1>{{ signupheading }}</h1>
+    <app-info-page-description [description]="signupdescription"></app-info-page-description>
+    <app-info-page-footnote [footnote]="signupfootnote"></app-info-page-footnote>
+  </ng-container>
+
+  <ng-container *ngIf="successPage === 'forgotpassword'">
+    <h1>{{ forgotpasswordheading }}</h1>
+    <app-info-page-description [description]="forgotpassworddescription"></app-info-page-description>
+    <app-info-page-footnote [footnote]="forgotpasswordfootnote"></app-info-page-footnote>
+  </ng-container>
+
+  <ng-container *ngIf="successPage === 'resendverifyemail'">
+    <h1>{{ resendverifyemailheading }}</h1>
+    <app-info-page-description [description]="resendverifyemaildescription"></app-info-page-description>
+    <app-info-page-footnote [footnote]="resendverifyemailfootnote"></app-info-page-footnote>
+  </ng-container>
 </div>
