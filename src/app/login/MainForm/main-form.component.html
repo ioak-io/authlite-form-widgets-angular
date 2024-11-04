@@ -8,42 +8,37 @@
                     (onSignup)="handleSignup($event)"
                     (onForgotPassword)="handleForgotPassword($event)" 
                     [signinFormErrorMessages]="signinFormErrorMessages"
-                    [dictionary]="translationDictionary"
-                    [changeView]="changeView"
-                    [successPage]="successPage">
+                    [translationDictionary]="translationDictionary"
+                    (changeView)="changeView($event)">
   </app-signin-form>
 
   <app-signup-form *ngIf="view === PageView.signup"
                     (onSignup)="handleSignup($event)" 
                     (onSignin)="handleSignin($event)"
                     [signupFormErrorMessages]="signupFormErrorMessages" 
-                    [dictionary]="translationDictionary"
-                    [changeView]="changeView"
-                    [successPage]="successPage">
+                    [translationDictionary]="translationDictionary">
   </app-signup-form>
 
   <app-forgot-password-form *ngIf="view === PageView.forgotpassword" 
                     (onForgotPassword)="handleForgotPassword($event)"
                     (onSignin)="handleSignin($event)" 
                     [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
-                    [dictionary]="translationDictionary"
-                    [changeView]="changeView"
-                    [successPage]="successPage">
+                    [translationDictionary]="translationDictionary">
   </app-forgot-password-form>
 
   <app-resend-verify-link-form *ngIf="view === PageView.resendverifyemail"
-          (onResendVerifyLink)="handleResendVerifyEmail($event)"
-          (onSignin)="handleSignin($event)"
-          [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages" 
-          [dictionary]="translationDictionary"
-          [email]="signinFormErrorMessages?.unverifiedEmail || ''"
-          [successPage]="successPage">
+                    (onResendVerifyLink)="handleResendVerifyEmail($event)"
+                    (onSignin)="handleSignin($event)"
+                    [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages" 
+                    [translationDictionary]="translationDictionary"
+                    [email]="signinFormErrorMessages.unverifiedEmail || ''"
+                    [successPage]="successPage">
   </app-resend-verify-link-form>
 
   <app-placeholder *ngIf="view === PageView.placeholder"
           (onPlaceholder)="handlePlaceholder($event)"
           (onSignin)="handleSignin($event)"
-          [dictionary]="translationDictionary"
+          [translationDictionary]="translationDictionary"
           [changeView]="changeView"
           [successPage]="successPage"
           [signinheading]="signinheading"

@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/AuthenticationService';
 import ForgotPasswordFormErrorMessages from '../types/ForgotPasswordFormErrorMessagesType';
 import ForgotPasswordRequest from '../types/ResendVerifyLinkRequestType';
-import PageView from '../types/PageViewType';
 
 @Component({
   selector: 'app-forgot-password-form',
@@ -17,7 +16,6 @@ export class ForgotPasswordFormComponent {
   @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
   @Input() translationName!: TranslationName;
   @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
-
   @Output() onForgotPassword: EventEmitter<ForgotPasswordRequest> = new EventEmitter<ForgotPasswordRequest>();
   @Output() onSignin: EventEmitter<void> = new EventEmitter<void>();
   @Output() onPlaceholder: EventEmitter<void> = new EventEmitter<void>();

@@ -37,13 +37,12 @@ export class DesignOneComponent {
   @Input() translationDictionary!: TranslationDictionary;
   @Input() view!: PageView;
   @Input() changeView: any;
-
+  @Input() clearErrorMessages!: boolean;
   @Output() onSignin = new EventEmitter<any>();
   @Output() onSignup = new EventEmitter<any>();
   @Output() onForgotPassword = new EventEmitter<any>();
   @Output() onResendVerifyLink = new EventEmitter<any>();
   @Output() onPlaceholder = new EventEmitter<any>();
-  @Output() clearErrorMessages = new EventEmitter<void>();
 
   ngOnInit() { }
 
@@ -73,9 +72,9 @@ export class DesignOneComponent {
     this.onPlaceholder.emit(event);
   }
 
-  handleClearErrorMessages() {
-    this.clearErrorMessages.emit();
-  }
+  // handleClearErrorMessages() {
+  //   this.clearErrorMessages.emit();
+  // }
 
   handleChangeView(event: any) {
     this.changeView.emit(event);

@@ -31,10 +31,10 @@ export class LoginWrapperComponent implements OnInit {
   forgotpasswordheading = 'Password reset link sent!';
   resendverifyemailheading = 'Email confirmation link sent!';
 
-  signindescription = 'Posuere ipsum tellus ornare rutrumaliquam torquent fermentum euismod musvestibulum tincidunt cursus quisque elitsuspendisse augue. rutrumaliquam commodo <a href="#" (click)="handleSignin($event)">login now</a> parturient rutrumaliquam nec varius sociosqu.';
-  signupdescription = 'Gravida dolor suscipit urna sagittis per <a href="#" (click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
-  forgotpassworddescription = 'Gravida dolor suscipit urna sagittis per <a href="#" (click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
-  resendverifyemaildescription = 'Please check your email for <a href="#"(click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
+  signindescription = 'Posuere ipsum tellus ornare rutrumaliquam torquent fermentum euismod musvestibulum tincidunt cursus quisque elitsuspendisse augue. rutrumaliquam commodo <a href="" (click)="handleSignin($event)">login now</a> parturient rutrumaliquam nec varius sociosqu.';
+  signupdescription = 'Gravida dolor suscipit urna sagittis per <a href="" (click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
+  forgotpassworddescription = 'Gravida dolor suscipit urna sagittis per <a href="" (click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
+  resendverifyemaildescription = 'Please check your email for <a href="" (click)="handleSignin($event)">login now</a> parturient eu. laoreet congue fermentum ipsum tincidunt elementum auctor aptent aliquam feugiat interdum. porta sem metus convallis donec nam sodales.';
 
   signinfootnote = 'Commodo nullam et facilisis hendrerit pharetra platea duis commodo nascetur libero aptent';
   signupfootnote = 'Rutrum elit lacus consequat justo luctus per proin venenatis varius quam dui dignissim etiam';
@@ -95,8 +95,7 @@ export class LoginWrapperComponent implements OnInit {
     this.signupFormErrorMessages = {};
   }
 
-  handleSignin(event: MouseEvent): void {
-    event.preventDefault();
+  handleSignin(event: any): void {
     this.view = PageView.signin;
   }
 
@@ -104,8 +103,7 @@ export class LoginWrapperComponent implements OnInit {
     this.view = PageView.signup;
   }
 
-  handleForgotPassword(event: MouseEvent): void {
-    event.preventDefault();
+  handleForgotPassword(event: any): void {
     this.view = PageView.forgotpassword;
   }
 

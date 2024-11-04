@@ -23,8 +23,7 @@
         <app-form-element-message [text]="getTranslation('SIGNIN_FORM__LABEL_PASSWORD')"
             type='label'></app-form-element-message>
         <div class="authlite-input-container">
-            <input [type]="showPassword?'password':'text'" id="passwordId" formControlName="password"
-                class="authlite-input" name="password" value="" (input)="onInput($event)">
+            <input [type]="showPassword?'password':'text'" id="passwordId" formControlName="password" class="authlite-input" name="password" value="" (input)="onInput($event)" autocomplete="on">
             <span (click)="togglePassword()">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" *ngIf="!showPassword"
                     class="authlite-password-hide-icon">

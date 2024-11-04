@@ -34,14 +34,12 @@ export class PlaceholderComponent implements OnChanges {
   @Output() onForgotPassword = new EventEmitter<any>();
   @Output() onResendVerifyLink = new EventEmitter<any>();
   @Output() onPlaceholder = new EventEmitter<any>();
-  @Output() clearErrorMessages = new EventEmitter<void>();
 
   ngOnChanges() {
     console.log(this.successPage);
   }
 
-  handleSignin(event: MouseEvent): void {
-    event.preventDefault();
+  handleSignin(event: any): void {
     this.onSignin.emit(event);
   }
 
@@ -49,8 +47,7 @@ export class PlaceholderComponent implements OnChanges {
     this.onSignup.emit(event);
   }
 
-  handleForgotPassword(event: MouseEvent): void {
-    event.preventDefault();
+  handleForgotPassword(event: any): void {
     this.onForgotPassword.emit(event);
   }
 

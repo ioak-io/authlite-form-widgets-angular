@@ -40,7 +40,7 @@
     <app-form-element-message [text]="getTranslation('SIGNUP_FORM__LABEL_PASSWORD')"
       type='label'></app-form-element-message>
     <div class="authlite-input-container">
-      <input [type]="showPassword?'password':'text'" formControlName="password" class="authlite-input" name="password"
+      <input [type]="showPassword?'password':'text'" formControlName="password" class="authlite-input" name="password" autocomplete="on"
         value="">
       <span (click)="togglePassword()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" *ngIf="!showPassword"
@@ -64,7 +64,7 @@
       type='label'></app-form-element-message>
     <div class="authlite-input-container">
       <input [type]="showPassword?'password':'text'" formControlName="retype_password" class="authlite-input"
-        name="retype_password" value="">
+        name="retype_password" value="" autocomplete="on">
       <span (click)="togglePassword()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" *ngIf="!showPassword"
           class="authlite-password-hide-icon">

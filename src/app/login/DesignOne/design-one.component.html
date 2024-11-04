@@ -11,7 +11,7 @@
       [signupFormErrorMessages]="signupFormErrorMessages"
       [forgotPasswordFormErrorMessages]="forgotPasswordFormErrorMessages"
       [resendVerifyLinkFormErrorMessages]="resendVerifyLinkFormErrorMessages"
-      [clearErrorMessages]="clearErrorMessages"
+      (clearErrorMessages)="clearErrorMessages"
       [src]="src"
       [successPage]="successPage"
       [signinheading]="signinheading"
@@ -26,9 +26,9 @@
       [signupfootnote]="signupfootnote"
       [forgotpasswordfootnote]="forgotpasswordfootnote"
       [resendverifyemailfootnote]="resendverifyemailfootnote"
-      [dictionary]="translationDictionary"
+      [translationDictionary]="translationDictionary"
       [view]="view"
-      (changeView)="changeView">
+      (changeView)="changeView($event)">
     </app-main-form>
   </div>
 </div>

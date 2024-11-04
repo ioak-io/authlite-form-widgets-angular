@@ -22,7 +22,7 @@ export class MainFormComponent {
   @Input() signupFormErrorMessages!: SignupFormErrorMessages;
   @Input() forgotPasswordFormErrorMessages!: ForgotPasswordFormErrorMessages;
   @Input() resendVerifyLinkFormErrorMessages!: ResendVerifyLinkFormErrorMessages;
-  
+
   @Input() src!: string;
 
   @Input() signinheading!: string;
@@ -39,8 +39,8 @@ export class MainFormComponent {
   @Input() signupfootnote!: string;
   @Input() forgotpasswordfootnote!: string;
   @Input() resendverifyemailfootnote!: string;
+  @Input() clearErrorMessages!: boolean;
 
-  @Output() clearErrorMessages = new EventEmitter<any>();
   @Output() onSignin = new EventEmitter<any>();
   @Output() onSignup = new EventEmitter<any>();
   @Output() onForgotPassword = new EventEmitter<any>();
@@ -59,7 +59,7 @@ export class MainFormComponent {
     // this.clearErrorMessages.emit();
   }
 
-  handleSignin(event: any): void {    
+  handleSignin(event: any): void {
     if (event) {
       this.handleChangeView(PageView.placeholder);
       this.successPage = 'signin';
