@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TranslationDictionary, TranslationName, getTranslation, DEFAULT_TRANSLATION_DICTIONARY } from '../types/TranslationDictionaryType';
+import {
+  TranslationDictionary,
+  TranslationName,
+  getTranslation,
+  DEFAULT_TRANSLATION_DICTIONARY,
+} from '../types/TranslationDictionaryType';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,20 +13,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signin-form.component.scss'],
 })
 export class SigninFormComponent implements OnInit {
-
-  @Input() translationDictionary: TranslationDictionary = DEFAULT_TRANSLATION_DICTIONARY;
+  @Input() translationDictionary: TranslationDictionary =
+    DEFAULT_TRANSLATION_DICTIONARY;
 
   @Input() translationName!: TranslationName;
 
   signinForm!: FormGroup;
+  userData: any;
 
   showPassword: boolean = true; //password eye icon functionality
-    
+
   togglePassword() {
-    this.showPassword = !this.showPassword
+    this.showPassword = !this.showPassword;
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -61,7 +67,7 @@ export class SigninFormComponent implements OnInit {
     return this.translationDictionary.SIGNIN_ERROR__USER_NOT_FOUND;
   }
   onSubmit(): void {
-    console.log('onSubmit')
+    console.log('onSubmit');
     if (this.signinForm.invalid) {
       this.signinForm.markAllAsTouched();
       return;
@@ -71,12 +77,27 @@ export class SigninFormComponent implements OnInit {
 
     if (!this.isUserExists(enteredEmail, enteredPassword)) {
       this.signinForm.setErrors({ userNotFound: true });
-    }
-    else {
+    } else {
       console.log('Login Successful', this.signinForm.value);
     }
   }
   isUserExists(email: string, password: string): boolean {
     return false;
+  }
+
+  onGoogleAuth() {
+    // const code = localStorage.getItem('code');
+    // if (code) {
+    //   console.log('code', localStorage.getItem('code'));
+    //   fetch(`http://localhost:4000/api/auth?code=${code}`)
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       this.userData = data.userDetails;
+    //       console.log('Fetched data:', this.userData);
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error fetching data:', error);
+    //     });
+    // }
   }
 }

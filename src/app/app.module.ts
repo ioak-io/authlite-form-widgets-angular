@@ -15,7 +15,7 @@ import { SignupFormComponent } from './SignupForm/signup-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ResendVerifyLinkFormComponent } from './ResendVerifyLinkForm/resend-verify-link-form.component';
 import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-page.component';
-
+import { GoogleSigninComponent } from './google-signin/google-signin.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +31,12 @@ import { SignupSuccessPageComponent } from './SignupSuccessPage/signup-success-p
     ForgotPasswordFormComponent,
     SignupFormComponent,
     ResendVerifyLinkFormComponent,
-    SignupSuccessPageComponent
+    SignupSuccessPageComponent,
+    GoogleSigninComponent,
   ],
-  imports: [
-    BrowserModule, ReactiveFormsModule, AppRoutingModule, 
-  ],
+  imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
   providers: [],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

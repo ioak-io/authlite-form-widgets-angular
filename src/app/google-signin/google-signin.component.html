@@ -1,0 +1,32 @@
+<!-- <button (click)="handleGoogleLogin()" class="login-with-google-btn">
+  Sign in with Google
+</button> -->
+
+<button
+  (click)="handleGoogleLogin()"
+  type="button"
+  class="login-with-google-btn"
+  *ngIf="!isLoggedIn"
+>
+  Sign in with Google
+</button>
+
+<div class="auth-div">
+  <div class="google-signin-container" *ngIf="isLoggedIn">
+    <img
+      class="user-image"
+      [src]="user.picture"
+      (error)="handleMissingImage($error)"
+      alt="User Image"
+    />
+    <div class="user-details">
+      <div class="user-name">Sign in as {{ user.name }}</div>
+      <div class="user-email">{{ user.email }}</div>
+    </div>
+    <img
+      class="google-icon"
+      src="https://developers-dot-devsite-v2-prod.appspot.com/identity/sign-in/g-normal.png"
+      alt="Google Icon"
+    />
+  </div>
+</div>
